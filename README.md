@@ -25,10 +25,8 @@ npm run build
 
 Output goes to `dist/`. For GitHub Pages:
 
-1. Push to the `main` branch — the GitHub Actions workflow builds and deploys automatically.
-2. In repo **Settings → Pages**, set **Source** to "GitHub Actions".
-
-The workflow uses `actions/deploy-pages` for user/organization sites.
+1. Push to the `main` branch — the workflow builds and pushes to the `gh-pages` branch.
+2. In repo **Settings → Pages**, set **Source** to "Deploy from a branch", **Branch** to `gh-pages`, **Folder** to `/ (root)`.
 
 ## Adding Content
 
