@@ -1,0 +1,131 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import PostCard from '../components/PostCard.astro';
+import Typewriter from '../components/Typewriter.astro';
+import RevealOnScroll from '../components/RevealOnScroll.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+const featuredProjects = projects.filter((p) => p.data.featured).slice(0, 3);
+const blogPosts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+
+const typewriterPhrases = [
+  'Software Engineer',
+  'Security Researcher',
+  'Technical Writer',
+  'Lab Architect',
+];
+---
+
+<PageLayout title="Home" description="TheRivetedRose — Portfolio, technical writing, and security lab projects">
+  <section class="hero relative overflow-hidden border-b border-border bg-surface-elevated">
+    <div class="mx-auto max-w-5xl px-4 py-24 sm:px-6 lg:px-8">
+      <RevealOnScroll>
+        <h1 class="mb-4 text-4xl font-bold tracking-tight text-[rgb(var(--c-text))] sm:text-5xl lg:text-6xl">
+          Hi, I'm <span class="text-accent">TheRivetedRose</span>
+        </h1>
+        <p class="text-xl text-muted">
+          <Typewriter client:load phrases={typewriterPhrases} />
+        </p>
+        <p class="mt-6 max-w-2xl text-muted">
+          I build secure systems, document architecture, and experiment with lab environments.
+          This site showcases my projects and technical writing.
+        </p>
+        <div class="mt-8 flex gap-4">
+          <a href="/projects/" class="btn-primary">View Projects</a>
+          <a href="/about/" class="btn-secondary">About Me</a>
+        </div>
+      </RevealOnScroll>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+    <RevealOnScroll>
+      <h2 class="section-heading mb-8">About</h2>
+      <p class="max-w-2xl text-muted">
+        I focus on security, virtualization, and technical documentation. My work spans dual-boot lab
+        architectures, network segmentation, packet analysis, and log collection. I believe in
+        repeatable deployments and clear documentation.
+      </p>
+      <a href="/about/" class="btn-secondary mt-4">Learn more</a>
+    </RevealOnScroll>
+  </section>
+
+  <section class="border-t border-border bg-surface-elevated">
+    <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+      <RevealOnScroll>
+        <h2 class="section-heading mb-8">Tools & Platforms</h2>
+        <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+          {['Ubuntu', 'VirtualBox', 'Kali Linux', 'Wireshark', 'Python', 'Git', 'Astro', 'Tailwind'].map((tool) => (
+            <span class="badge justify-center">{tool}</span>
+          ))}
+        </div>
+      </RevealOnScroll>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+    <RevealOnScroll>
+      <h2 class="section-heading mb-8">Featured Projects</h2>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {featuredProjects.length > 0
+          ? featuredProjects.map((project) => (
+              <ProjectCard
+                slug={project.slug}
+                title={project.data.title}
+                summary={project.data.summary}
+                tags={project.data.tags}
+                featured={project.data.featured}
+              />
+            ))
+          : projects.slice(0, 3).map((project) => (
+              <ProjectCard
+                slug={project.slug}
+                title={project.data.title}
+                summary={project.data.summary}
+                tags={project.data.tags}
+                featured={project.data.featured}
+              />
+            ))}
+      </div>
+      <a href="/projects/" class="btn-secondary mt-8">All projects</a>
+    </RevealOnScroll>
+  </section>
+
+  <section class="border-t border-border bg-surface-elevated">
+    <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+      <RevealOnScroll>
+        <h2 class="section-heading mb-8">Latest Blog</h2>
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {blogPosts.map((post) => (
+            <PostCard
+              slug={post.slug}
+              title={post.data.title}
+              summary={post.data.summary}
+              pubDate={post.data.pubDate}
+              tags={post.data.tags}
+            />
+          ))}
+        </div>
+        {blogPosts.length > 0 && (
+          <a href="/blog/" class="btn-secondary mt-8">All posts</a>
+        )}
+      </RevealOnScroll>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+    <RevealOnScroll>
+      <h2 class="section-heading mb-8">Contact</h2>
+      <p class="max-w-2xl text-muted">
+        Find me on GitHub or reach out via the links in the footer.
+      </p>
+      <a href="https://github.com/therivetedrose" class="btn-primary mt-4" target="_blank" rel="noopener noreferrer">
+        GitHub
+      </a>
+    </RevealOnScroll>
+  </section>
+</PageLayout>

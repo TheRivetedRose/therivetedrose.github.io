@@ -1,0 +1,130 @@
+PURPOSE
+-------
+This file contains the full structured content to populate the Astro project page:
+
+src/content/projects/home-lab-architecture.md
+
+It should be converted into Markdown with frontmatter and rendered using the ProjectLayout.
+This is content input for the project template, not a standalone HTML page.
+
+======================================================================
+
+PROJECT TITLE
+-------------
+Multi-VM Security Lab with Dual-Boot Host Isolation
+
+SLUG
+----
+home-lab-architecture
+
+SUMMARY
+-------
+A segmented cybersecurity lab architecture built around a dual-boot Ubuntu host to isolate virtual machine experimentation from the primary daily-use operating system.
+
+TAGS
+----
+lab, virtualization, network, dual-boot, blue-team
+
+FEATURED
+--------
+true
+
+======================================================================
+
+PROJECT OVERVIEW
+----------------
+This project documents the design and deployment of a security lab built using a dual-boot architecture. Ubuntu 22.04 is installed as a secondary operating system dedicated exclusively to virtualization and lab operations.
+
+All experimental activity occurs within Ubuntu, providing stronger separation from the primary Windows environment. The lab supports attack simulation, packet capture, log collection, and detection experimentation in a controlled setting.
+
+OBJECTIVES
+----------
+- Enforce OS-level separation for lab containment
+- Design a segmented internal virtual network
+- Simulate realistic attack and analysis workflows
+- Validate connectivity, logging, and containment
+- Document architecture and repeatable deployment steps
+
+HOST ARCHITECTURE
+-----------------
+Primary OS:
+Windows (daily-use environment)
+
+Lab OS:
+Ubuntu 22.04 LTS (dual-boot partition)
+
+Virtualization Platform:
+VirtualBox (installed only on Ubuntu)
+
+VIRTUAL MACHINES
+----------------
+- Kali Linux (attack simulation)
+- Windows 10 VM (target system)
+- Optional Ubuntu analysis VM (log collection / packet capture)
+
+NETWORK DESIGN
+--------------
+- Internal VirtualBox Network for VM-to-VM traffic
+- Static IP addressing for consistent correlation
+- NAT enabled temporarily for updates only
+- No port forwarding to host OS
+
+Example addressing scheme:
+10.10.10.10 - Ubuntu host
+10.10.10.11 - Windows VM
+10.10.10.12 - Kali VM
+
+DEPLOYMENT PROCESS
+------------------
+1. Install Ubuntu 22.04 on separate partition (dual-boot).
+2. Harden base installation and update packages.
+3. Install VirtualBox and extension pack.
+4. Create Windows and Kali VMs.
+5. Configure internal networking adapters.
+6. Assign static IP addresses.
+7. Take baseline snapshots.
+8. Validate connectivity using ping, SSH, and RDP (controlled testing).
+
+VALIDATION & EVIDENCE
+---------------------
+- ICMP connectivity validation between nodes
+- Wireshark packet capture of ARP, TCP handshakes, DNS queries
+- Authentication log collection from Windows VM
+- Snapshot restore verification
+
+SECURITY CONTROLS
+-----------------
+- Lab runs exclusively under Ubuntu
+- No host port forwarding
+- NAT disabled during active testing
+- Snapshot rollback capability
+- Redaction of sensitive information in documentation
+
+SKILLS DEMONSTRATED
+-------------------
+- Dual-boot architecture planning
+- Virtualization management
+- Network segmentation
+- Static IP planning
+- Packet analysis
+- Log collection and parsing
+- Structured technical documentation
+
+LESSONS LEARNED
+---------------
+- OS separation increases operational discipline
+- Snapshot management prevents configuration drift
+- Time synchronization is critical for log analysis
+- Static addressing simplifies detection development
+
+NEXT STEPS
+----------
+- Integrate centralized logging (Elastic or Splunk)
+- Simulate brute-force authentication attempts
+- Develop initial detection rules
+- Automate lab provisioning scripts
+
+NAVIGATION LINKS
+----------------
+Back to Projects -> /projects/
+Repository -> https://github.com/therivetedrose/home-lab-architecture

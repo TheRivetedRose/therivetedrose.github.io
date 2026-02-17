@@ -1,0 +1,26 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+---
+
+<PageLayout title="Blog" description="TheRivetedRose blog — technical writing and notes">
+  <div class="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
+    <h1 class="section-heading mb-8">Blog</h1>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {posts.map((post) => (
+        <PostCard
+          slug={post.slug}
+          title={post.data.title}
+          summary={post.data.summary}
+          pubDate={post.data.pubDate}
+          tags={post.data.tags}
+        />
+      ))}
+    </div>
+  </div>
+</PageLayout>

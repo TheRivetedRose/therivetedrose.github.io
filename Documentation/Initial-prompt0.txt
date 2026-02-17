@@ -1,0 +1,72 @@
+You are Cursor Composer 1.5 acting as a senior frontend engineer and site architect.
+
+Goal
+Build a production-ready Astro static site repository for a GitHub Pages USER site at:
+https://therivetedrose.github.io/
+Repository name must be exactly: therivetedrose.github.io
+
+Site requirements (high level)
+- Use Astro (static site generator) + Tailwind (build-time) with a strict, token-driven Tailwind config.
+- All pages must be visually cohesive (same layout, typography, tokens) and match the landing page vibe similar to https://snehavish595.github.io/Portfolio-Template/ but with my content and stylistic constraints.
+- Implement scroll-triggered reveal animations (IntersectionObserver) as a small, reusable JS “island” component. Animations must be subtle and accessible (reduced-motion respect).
+- Use Markdown (or MDX) for project and blog content, but render inside custom layouts so posts/pages do NOT look like raw markdown.
+- Provide a strict design system: centralized tokens (CSS variables), Tailwind config, a small global stylesheet with component classes (`.card`, `.btn-primary`, `.badge`, etc.). Avoid arbitrary utility values. Use `@apply` for component classes where useful.
+- Progressive enhancement: site must be usable with JS disabled for core content (because Astro prerenders HTML). JS islands provide enhancements only.
+- Dark-mode support via `html.dark` toggled by a small `theme.js` island; persist to localStorage and respect `prefers-color-scheme` on first load.
+- Zero third-party trackers — only Tailwind and required minimal libs (no analytics).
+
+Scope & deliverables
+1) Create an Astro project scaffold with:
+   - `astro.config.mjs`, `package.json`, PostCSS/Tailwind integration
+   - `src/pages/` routes for: `/index.astro`, `/about.astro`, `/projects/index.astro`, `/projects/project.astro` (generic template), `/blog/index.astro`, `/blog/post.astro` (generic template)
+   - `src/layouts/BaseLayout.astro`, `src/layouts/ProjectLayout.astro`, `src/layouts/PostLayout.astro`
+   - `src/components/` including: `Nav.astro`, `Footer.astro`, `ProjectCard.astro`, `PostCard.astro`, `RevealOnScroll.astro` (JS island wrapper), `Typewriter.astro` (JS island), `TOC.astro` (optional), `ThemeToggle.astro` (JS island)
+   - `src/content/projects/` with a populated Markdown project: `home-lab-architecture.md` reflecting the dual-boot + VM project we discussed (complete frontmatter + content).
+   - `src/content/blog/` with one dummy blog post Markdown file: `2026-02-17-sample-post.md`
+   - `src/styles/global.css` implementing tokens and strict component classes (use CSS variables + `@tailwind` directives)
+   - `tailwind.config.mjs` configured with token-based colors, typography plugin, darkMode: "class", content globs, and no arbitrary values promoted.
+   - `src/assets/img/` placeholder images (e.g., project screenshots)
+   - `README.md` with: run locally instructions (`npm install`, `npm run dev`), build & deploy (`npm run build` & GitHub Pages), how to add project/post (create markdown with frontmatter), and how the slug system works (Astro pretty URLs).
+   - A GitHub Actions workflow file to build and deploy to GitHub Pages for the `therivetedrose.github.io` user site.
+
+2) Content to seed
+   - Landing page content (Hero + typewriter phrases, About blurb, Tools & Platforms grid, Featured Projects [pulls from project collection], Latest Blog posts [pulls from blog collection], Contact).
+   - Populate featured projects on index by marking the sample project with `featured: true` in frontmatter.
+   - Full project page content using the dual-boot lab text we iterated earlier, optimized for a project case-study layout (Problem, Environment, Method, Artifacts, Results, Lessons, Next Steps). Provide images placeholders and links to a sample GitHub repo URL field in frontmatter.
+   - One dummy blog post with frontmatter (title, date, tags, summary) and a short content section demonstrating callouts, code block, and an image.
+
+3) Interactivity & polish
+   - `RevealOnScroll` component uses IntersectionObserver to add `.reveal--visible` class; CSS handles fade/slide in. Respect `prefers-reduced-motion` to disable animations.
+   - A small `typewriter` island for hero rotating phrases. Provide accessible fallback: the first phrase rendered in HTML without JS.
+   - Projects page client-side filter by tags (small JS island) — still render full list server-side so content is present without JS.
+   - Copy-to-clipboard button for code blocks in posts (JS island).
+   - Image lightbox for artifacts (JS island optional).
+
+4) Strict style enforcement guidance inside repo
+   - Tailwind tokens and limited custom classes only; document in README: “Do not use arbitrary Tailwind utilities or inline hex values; add tokens to tailwind.config if needed.”
+   - Provide a small `design-tokens.md` file listing variables and their use.
+
+5) Output format for Cursor
+   - Print the repository directory tree at top-level.
+   - Then generate full file contents for all files created above (Astro files, Markdown content, CSS, Tailwind config, package.json, GitHub Actions workflow, README).
+   - Use the landing page and dual-boot project content described in our conversation (copy/paste, polished and formatted to frontmatter + markdown body).
+   - Keep code and content concise and professional; avoid filler. Use TheRivetedRose branding in title/meta.
+
+Behavioral/QA requirements
+- Ensure all internal links use pretty URLs (Astro routes). Example project page should be accessible at `/projects/home-lab-architecture/`.
+- Ensure the site builds locally (`npm run build`) and the GitHub Actions workflow publishes the `dist/` to GitHub Pages correctly for a user site.
+- Ensure the project and blog templates generate reading time and include a small TOC if the post contains 3+ headings.
+- Minimize client JS payload: islands only for typewriter, reveal-on-scroll (lazy-loaded), filter, theme toggle, code-copy, image lightbox.
+- Make the scroll reveals tasteful (fade + slight upward translate) and only trigger once per element by default.
+
+Clarifying questions
+- If you encounter ambiguity about naming (e.g., `home-lab-architecture` slug vs other slugs), ask me before proceeding.
+- If you need my preferred accent color (or confirm the `--c-accent`), ask me. If I do not respond, use the restrained rose palette previously suggested (accent: rgb(219 39 119)).
+- If you need to choose between querystring routing and pretty URLs, prefer pretty URLs (Astro routes). Ask me only if I insist on querystring style.
+
+Start now:
+- Print the directory tree first.
+- Then produce every file required to push this repo to GitHub and build/deploy the site.
+- If you think a small optional improvement (e.g., RSS feed for blog) is valuable, present it as an optional follow-up question and implementation suggestion rather than adding it now.
+
+If anything is unclear while generating, pause and ask me a concise clarifying question (one at a time).

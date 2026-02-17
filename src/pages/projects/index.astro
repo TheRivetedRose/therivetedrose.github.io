@@ -1,0 +1,31 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import ProjectFilter from '../../components/ProjectFilter.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects')).sort((a, b) => {
+  const aDate = a.data.pubDate?.getTime() ?? 0;
+  const bDate = b.data.pubDate?.getTime() ?? 0;
+  return bDate - aDate;
+});
+const allTags = [...new Set(projects.flatMap((p) => p.data.tags))].sort();
+---
+
+<PageLayout title="Projects" description="TheRivetedRose projects — security labs, architecture, and technical work">
+  <div class="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
+    <h1 class="section-heading mb-8">Projects</h1>
+    <ProjectFilter client:load tags={allTags} />
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-project-grid>
+      {projects.map((project) => (
+        <ProjectCard
+          slug={project.slug}
+          title={project.data.title}
+          summary={project.data.summary}
+          tags={project.data.tags}
+          featured={project.data.featured}
+        />
+      ))}
+    </div>
+  </div>
+</PageLayout>

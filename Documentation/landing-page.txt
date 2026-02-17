@@ -1,0 +1,94 @@
+PURPOSE
+-------
+This file contains the structured content to populate the Astro landing page:
+src/pages/index.astro
+
+It should be used to fill the Hero, About, Tools, Featured Projects, Blog Preview, and Contact sections.
+Do not treat this as a standalone HTML file. This is content input for the page template.
+
+======================================================================
+
+PAGE: Landing Page
+ROUTE: /
+TITLE: The Riveted Rose — Defensive Security Portfolio
+
+HERO SECTION
+------------
+Headline:
+I build and document practical cybersecurity labs focused on detection, analysis, and defensive operations.
+
+Typewriter phrases (rotate in hero component):
+- SOC Analyst in Training
+- Detection Engineering Projects
+- Log Analysis & Incident Triage
+- Dual-Boot Lab Builder
+
+Subheadline:
+Veteran transitioning into cybersecurity. Focused on blue-team workflows, SIEM experimentation, and automation-driven analysis.
+
+Primary CTAs:
+- View Projects -> /projects/
+- Download Resume -> /resume.pdf
+
+ABOUT SECTION
+-------------
+I approach security the way I approached operational roles: define scope, gather evidence, document findings, and iterate on defenses.
+
+I maintain a dual-boot lab environment to ensure strong separation between daily-use systems and experimental testing. My focus is building repeatable detection workflows, structured technical documentation, and automation that reduces analyst workload.
+
+CURRENTLY BUILDING
+------------------
+- Segmented dual-boot lab (Ubuntu host + VirtualBox VMs)
+- SIEM experimentation and detection rule development
+- Python-based log parsing and triage automation
+- Structured blue-team playbooks
+
+TOOLS & PLATFORMS
+-----------------
+Operating Systems:
+- Ubuntu 22.04 (dual-boot lab host)
+- Windows 10 (target VMs)
+- Kali Linux (simulation VM)
+
+Security Tools:
+- Wireshark
+- Nmap
+- VirtualBox
+- Elastic Stack (lab)
+- Splunk (lab)
+- Sigma detection concepts
+
+Scripting:
+- Python
+- Bash
+- PowerShell
+
+FEATURED PROJECTS
+-----------------
+(These should pull dynamically from project collection, but this is the featured description text.)
+
+1) Multi-VM Security Lab with Dual-Boot Host Isolation
+Short description:
+Architected a dual-boot lab environment to isolate testing from primary OS and run segmented virtual machines for safe attack simulation and defensive analysis.
+Link: /projects/home-lab-architecture/
+
+LATEST BLOG POSTS
+-----------------
+(These should dynamically pull from blog collection.)
+
+Sample Post:
+Building Reproducible Detection Playbooks
+Link: /blog/2026-02-17-sample-post/
+
+CONTACT SECTION
+---------------
+GitHub: https://github.com/therivetedrose
+LinkedIn: [Insert LinkedIn URL]
+Email: [Insert professional email]
+
+Optional line:
+For responsible disclosure inquiries, please contact via email. Encrypted communication preferred.
+
+FOOTER
+------
+© TheRivetedRose — Practical Defensive Engineering, Documented.

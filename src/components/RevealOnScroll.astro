@@ -1,0 +1,39 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={['reveal', className]} data-reveal>
+  <slot />
+</div>
+
+<script>
+  (function initReveal() {
+    if (typeof window === 'undefined') return;
+    if (document.documentElement.hasAttribute('data-reveal-init')) return;
+    document.documentElement.setAttribute('data-reveal-init', '');
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      document.querySelectorAll('[data-reveal]').forEach((el) => el.classList.add('reveal--visible'));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal--visible', 'reveal--animate');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
+  })();
+</script>

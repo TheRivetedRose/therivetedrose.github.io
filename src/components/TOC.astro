@@ -1,0 +1,24 @@
+---
+interface Props {
+  headings: { depth: number; slug: string; text: string }[];
+}
+
+const { headings } = Astro.props;
+---
+
+<nav class="sticky top-24" aria-label="Table of contents">
+  <h2 class="mb-3 text-sm font-semibold uppercase tracking-wider text-muted">On this page</h2>
+  <ul class="space-y-2 border-l-2 border-border pl-4">
+    {headings.map((h) => (
+      <li>
+        <a
+          href={`#${h.slug}`}
+          class={`block text-sm text-muted hover:text-accent ${h.depth === 3 ? 'pl-2' : ''}`}
+          style={h.depth === 3 ? { marginLeft: '0' } : {}}
+        >
+          {h.text}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>

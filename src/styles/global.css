@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design tokens - light mode default */
+@layer base {
+  :root {
+    --c-accent: 219 39 119;
+    --c-accent-muted: 236 72 153;
+    --c-surface: 255 255 255;
+    --c-surface-elevated: 250 250 250;
+    --c-muted: 115 115 115;
+    --c-border: 229 229 229;
+    --c-text: 23 23 23;
+    --c-text-muted: 64 64 64;
+    --font-sans: 'DM Sans', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  .dark {
+    --c-surface: 23 23 23;
+    --c-surface-elevated: 38 38 38;
+    --c-muted: 163 163 163;
+    --c-border: 64 64 64;
+    --c-text: 250 250 250;
+    --c-text-muted: 163 163 163;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-surface text-[rgb(var(--c-text))] antialiased;
+  }
+}
+
+/* Component classes */
+@layer components {
+  .card {
+    @apply rounded-xl border border-border bg-surface-elevated p-6 shadow-sm transition-shadow hover:shadow-md;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-accent-muted focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-surface;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-lg border border-border bg-surface px-4 py-2 text-sm font-medium text-[rgb(var(--c-text))] transition-colors hover:bg-surface-elevated focus:outline-none focus:ring-2 focus:ring-border focus:ring-offset-2 focus:ring-offset-surface;
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full border border-border bg-surface-elevated px-2.5 py-0.5 text-xs font-medium text-muted;
+  }
+
+  .section-heading {
+    @apply text-2xl font-semibold tracking-tight text-[rgb(var(--c-text))] md:text-3xl;
+  }
+
+  .prose-custom {
+    @apply prose prose-neutral dark:prose-invert max-w-none;
+    @apply prose-headings:font-semibold prose-headings:tracking-tight;
+    @apply prose-a:text-accent prose-a:no-underline hover:prose-a:underline;
+    @apply prose-code:rounded prose-code:bg-surface-elevated prose-code:px-1.5 prose-code:py-0.5 prose-code:before:content-none prose-code:after:content-none;
+    @apply prose-pre:rounded-xl prose-pre:border prose-pre:border-border;
+  }
+}
+
+/* Reveal animation - respects reduced motion */
+@layer utilities {
+  .reveal {
+    @apply opacity-0 transition-all duration-500 ease-out;
+  }
+
+  .reveal--visible {
+    @apply opacity-100;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      @apply opacity-100 transition-none;
+    }
+  }
+
+  .reveal--visible.reveal--animate {
+    animation: fadeUp 0.5s ease-out forwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal--visible.reveal--animate {
+      animation: none;
+    }
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

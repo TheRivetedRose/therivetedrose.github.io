@@ -1,0 +1,28 @@
+---
+import PageLayout from './PageLayout.astro';
+import TOC from '../components/TOC.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  headings?: { depth: number; slug: string; text: string }[];
+}
+
+const { title, description, headings = [] } = Astro.props;
+const showTOC = headings.length >= 3;
+---
+
+<PageLayout title={title} description={description}>
+  <article class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class={showTOC ? 'lg:grid lg:grid-cols-[1fr_200px] lg:gap-12' : ''}>
+      <div>
+        <slot />
+      </div>
+      {showTOC && (
+        <aside class="hidden lg:block">
+          <TOC headings={headings} />
+        </aside>
+      )}
+    </div>
+  </article>
+</PageLayout>

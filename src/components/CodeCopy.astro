@@ -1,0 +1,45 @@
+---
+// This component wraps content and injects copy buttons via client script.
+// Used as a layout wrapper - the script finds all pre elements and adds buttons.
+---
+
+<div data-code-copy-container>
+  <slot />
+</div>
+
+<script>
+  function initCodeCopy() {
+    const container = document.querySelector('[data-code-copy-container]');
+    if (!container) return;
+    container.querySelectorAll('pre').forEach((pre) => {
+      if (pre.closest('[data-copy-wrapper]')) return;
+      const wrapper = document.createElement('div');
+      wrapper.className = 'group relative';
+      wrapper.setAttribute('data-copy-wrapper', '');
+      pre.parentNode?.insertBefore(wrapper, pre);
+      wrapper.appendChild(pre);
+
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className =
+        'absolute right-2 top-2 rounded border border-[rgb(var(--c-border))] bg-[rgb(var(--c-surface-elevated))] px-2 py-1 text-xs text-muted opacity-0 transition-opacity hover:bg-[rgb(var(--c-surface))] hover:text-accent group-hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-accent';
+      btn.setAttribute('aria-label', 'Copy code');
+      btn.setAttribute('data-copy-btn', '');
+      btn.textContent = 'Copy';
+      pre.classList.add('!pr-12');
+      wrapper.appendChild(btn);
+
+      btn.addEventListener('click', async () => {
+        const code = pre.querySelector('code')?.textContent ?? pre.textContent ?? '';
+        try {
+          await navigator.clipboard.writeText(code);
+          btn.textContent = 'Copied!';
+          setTimeout(() => (btn.textContent = 'Copy'), 2000);
+        } catch {
+          btn.textContent = 'Failed';
+        }
+      });
+    });
+  }
+  initCodeCopy();
+</script>

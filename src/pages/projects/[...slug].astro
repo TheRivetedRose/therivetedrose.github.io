@@ -1,0 +1,42 @@
+---
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+import { getCollection, render } from 'astro:content';
+import CodeCopy from '../../components/CodeCopy.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content, headings } = await render(project);
+---
+
+<ProjectLayout
+  title={project.data.title}
+  description={project.data.summary}
+  headings={headings.map((h) => ({ depth: h.depth, slug: h.slug, text: h.text }))}
+>
+  <header class="mb-8">
+    <h1 class="section-heading mb-4">{project.data.title}</h1>
+    <p class="mb-4 text-muted">{project.data.summary}</p>
+    <div class="flex flex-wrap gap-2">
+      {project.data.tags.map((tag) => (
+        <span class="badge">{tag}</span>
+      ))}
+    </div>
+    {project.data.repoUrl && (
+      <a href={project.data.repoUrl} class="btn-primary mt-4" target="_blank" rel="noopener noreferrer">
+        View repository
+      </a>
+    )}
+  </header>
+  <CodeCopy client:load>
+    <div class="prose-custom">
+      <Content />
+    </div>
+  </CodeCopy>
+</ProjectLayout>

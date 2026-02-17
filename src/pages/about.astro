@@ -1,0 +1,36 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import RevealOnScroll from '../components/RevealOnScroll.astro';
+---
+
+<PageLayout title="About" description="About TheRivetedRose — background, skills, and interests">
+  <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
+    <RevealOnScroll>
+      <h1 class="section-heading mb-8">About</h1>
+      <div class="prose-custom space-y-6">
+        <p>
+          I'm a software engineer and security researcher with a focus on lab architecture, virtualization,
+          and technical documentation. I build segmented environments for safe experimentation and
+          document the process for repeatability.
+        </p>
+        <p>
+          My work spans dual-boot lab setups, network segmentation, packet analysis, and log collection.
+          I believe in OS-level separation for lab containment and clear documentation for knowledge sharing.
+        </p>
+        <h2 class="text-xl font-semibold">Skills</h2>
+        <ul class="list-disc pl-6">
+          <li>Dual-boot architecture planning</li>
+          <li>Virtualization management (VirtualBox)</li>
+          <li>Network segmentation and static IP planning</li>
+          <li>Packet analysis (Wireshark)</li>
+          <li>Log collection and parsing</li>
+          <li>Structured technical documentation</li>
+        </ul>
+        <h2 class="text-xl font-semibold">Interests</h2>
+        <p>
+          Security lab design, automation, detection development, and writing clear technical guides.
+        </p>
+      </div>
+    </RevealOnScroll>
+  </div>
+</PageLayout>

@@ -1,0 +1,53 @@
+---
+interface Props {
+  tags: string[];
+}
+
+const { tags } = Astro.props;
+---
+
+<div class="mb-8 flex flex-wrap gap-2" data-project-filter>
+  <button
+    type="button"
+    class="badge cursor-pointer border-accent/30 bg-accent/10 text-accent"
+    data-filter="all"
+  >
+    All
+  </button>
+  {tags.map((tag) => (
+    <button type="button" class="badge cursor-pointer hover:border-accent/30 hover:bg-accent/10 hover:text-accent" data-filter={tag}>
+      {tag}
+    </button>
+  ))}
+</div>
+
+<script>
+  function initFilter() {
+    const filterBtns = document.querySelectorAll('[data-filter]');
+    const cards = document.querySelectorAll('[data-project-card]');
+    const grid = document.querySelector('[data-project-grid]');
+
+    if (!grid || filterBtns.length === 0) return;
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const tag = btn.getAttribute('data-filter');
+        filterBtns.forEach((b) => {
+          b.classList.remove('border-accent/30', 'bg-accent/10', 'text-accent');
+          if (tag === 'all' && b.getAttribute('data-filter') === 'all') {
+            b.classList.add('border-accent/30', 'bg-accent/10', 'text-accent');
+          } else if (tag !== 'all' && b.getAttribute('data-filter') === tag) {
+            b.classList.add('border-accent/30', 'bg-accent/10', 'text-accent');
+          }
+        });
+
+        cards.forEach((card) => {
+          const cardTags = (card.getAttribute('data-tags') ?? '').split(',').map((t) => t.trim());
+          const show = tag === 'all' || cardTags.includes(tag ?? '');
+          (card as HTMLElement).style.display = show ? '' : 'none';
+        });
+      });
+    });
+  }
+  initFilter();
+</script>

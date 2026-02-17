@@ -1,0 +1,29 @@
+---
+import PostLayout from '../../layouts/PostLayout.astro';
+import { getCollection, render } from 'astro:content';
+import CodeCopy from '../../components/CodeCopy.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+const readingTime = Math.max(1, Math.ceil(post.body.split(/\s+/).length / 200));
+---
+
+<PostLayout
+  title={post.data.title}
+  description={post.data.summary}
+  pubDate={post.data.pubDate}
+  readingTimeMinutes={readingTime}
+  headings={headings.map((h) => ({ depth: h.depth, slug: h.slug, text: h.text }))}
+>
+  <CodeCopy client:load>
+    <Content />
+  </CodeCopy>
+</PostLayout>

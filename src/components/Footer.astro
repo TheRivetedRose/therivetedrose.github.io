@@ -1,0 +1,18 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-border bg-surface-elevated">
+  <div class="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+    <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
+      <p class="text-sm text-muted">
+        © {currentYear} TheRivetedRose. No trackers. Built with Astro.
+      </p>
+      <div class="flex gap-6">
+        <a href="https://github.com/therivetedrose" class="text-sm text-muted hover:text-accent" target="_blank" rel="noopener noreferrer">
+          GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

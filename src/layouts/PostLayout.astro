@@ -1,0 +1,41 @@
+---
+import PageLayout from './PageLayout.astro';
+import TOC from '../components/TOC.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  pubDate: Date;
+  readingTimeMinutes: number;
+  headings?: { depth: number; slug: string; text: string }[];
+}
+
+const { title, description, pubDate, readingTimeMinutes, headings = [] } = Astro.props;
+const showTOC = headings.length >= 3;
+const formattedDate = pubDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<PageLayout title={title} description={description}>
+  <article class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
+    <header class="mb-8">
+      <h1 class="section-heading mb-2">{title}</h1>
+      <p class="text-sm text-muted">
+        {formattedDate} · {readingTimeMinutes} min read
+      </p>
+    </header>
+    <div class={showTOC ? 'lg:grid lg:grid-cols-[1fr_200px] lg:gap-12' : ''}>
+      <div class="prose-custom">
+        <slot />
+      </div>
+      {showTOC && (
+        <aside class="hidden lg:block">
+          <TOC headings={headings} />
+        </aside>
+      )}
+    </div>
+  </article>
+</PageLayout>

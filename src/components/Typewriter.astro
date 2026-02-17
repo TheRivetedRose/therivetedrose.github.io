@@ -1,0 +1,60 @@
+---
+interface Props {
+  phrases: string[];
+  class?: string;
+}
+
+const { phrases, class: className } = Astro.props;
+const firstPhrase = phrases[0] ?? 'Software Engineer';
+---
+
+<span class:list={[className]} data-typewriter data-phrases={JSON.stringify(phrases)}>
+  {firstPhrase}
+</span>
+
+<script>
+  function initTypewriter() {
+    const el = document.querySelector('[data-typewriter]');
+    if (!el || !el.textContent) return;
+
+    let phrases: string[];
+    try {
+      phrases = JSON.parse(el.getAttribute('data-phrases') ?? '[]');
+    } catch {
+      return;
+    }
+    if (phrases.length < 2) return;
+
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typeSpeed = 80;
+    const deleteSpeed = 50;
+    const pauseTime = 2000;
+
+    function type() {
+      const current = phrases[phraseIndex] ?? '';
+      if (isDeleting) {
+        el.textContent = current.slice(0, charIndex - 1);
+        charIndex--;
+      } else {
+        el.textContent = current.slice(0, charIndex + 1);
+        charIndex++;
+      }
+
+      let delay = isDeleting ? deleteSpeed : typeSpeed;
+      if (!isDeleting && charIndex === current.length) {
+        delay = pauseTime;
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        delay = 500;
+      }
+      setTimeout(type, delay);
+    }
+    setTimeout(type, 500);
+  }
+
+  initTypewriter();
+</script>
