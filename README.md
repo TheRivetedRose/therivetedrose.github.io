@@ -23,9 +23,9 @@ Open [http://localhost:4321](http://localhost:4321).
 npm run build
 ```
 
-Output goes to `dist/`. For GitHub Pages:
+Output goes to `docs/`. For GitHub Pages:
 
-1. Push to the `main` branch — the workflow builds and pushes to the `gh-pages` branch.
+1. Push to the `main` branch — the workflow builds and pushes the site to the `gh-pages` branch.
 2. In repo **Settings → Pages**, set **Source** to "Deploy from a branch", **Branch** to `gh-pages`, **Folder** to `/ (root)`.
 
 ## Adding Content

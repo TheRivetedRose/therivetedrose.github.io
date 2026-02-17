@@ -6,6 +6,7 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   site: 'https://therivetedrose.github.io',
   trailingSlash: 'always',
+  outDir: 'docs',
   integrations: [
     tailwind({
       applyBaseStyles: false,
