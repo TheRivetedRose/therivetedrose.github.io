@@ -187,13 +187,13 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%) rotate(-45deg);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Ccircle cx='12' cy='12' r='3' fill='%23888' opacity='0.09'/%3E%3Ccircle cx='36' cy='12' r='3' fill='%23888' opacity='0.09'/%3E%3Ccircle cx='12' cy='36' r='3' fill='%23888' opacity='0.09'/%3E%3Ccircle cx='36' cy='36' r='3' fill='%23888' opacity='0.09'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Ccircle cx='12' cy='12' r='3' fill='%23888' opacity='0.12'/%3E%3Ccircle cx='36' cy='12' r='3' fill='%23888' opacity='0.12'/%3E%3Ccircle cx='12' cy='36' r='3' fill='%23888' opacity='0.12'/%3E%3Ccircle cx='36' cy='36' r='3' fill='%23888' opacity='0.12'/%3E%3C/svg%3E");
     background-repeat: repeat;
     pointer-events: none;
   }
 
   .dark .polka-strip-subtle::before {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Ccircle cx='12' cy='12' r='3' fill='%23fff' opacity='0.08'/%3E%3Ccircle cx='36' cy='12' r='3' fill='%23fff' opacity='0.08'/%3E%3Ccircle cx='12' cy='36' r='3' fill='%23fff' opacity='0.08'/%3E%3Ccircle cx='36' cy='36' r='3' fill='%23fff' opacity='0.08'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Ccircle cx='12' cy='12' r='3' fill='%23fff' opacity='0.06'/%3E%3Ccircle cx='36' cy='12' r='3' fill='%23fff' opacity='0.06'/%3E%3Ccircle cx='12' cy='36' r='3' fill='%23fff' opacity='0.06'/%3E%3Ccircle cx='36' cy='36' r='3' fill='%23fff' opacity='0.06'/%3E%3C/svg%3E");
   }
 
   /* Vertical strip for footer - centered between text and icons */
