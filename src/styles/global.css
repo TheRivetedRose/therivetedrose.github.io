@@ -5,8 +5,8 @@
 /* Design tokens - light mode default (Rosie cream from less saturated vintage posters) */
 @layer base {
   :root {
-    --c-accent: 219 39 119;
-    --c-accent-muted: 236 72 153;
+    --c-accent: 175 85 95;
+    --c-accent-muted: 155 70 82;
     --c-surface: 245 240 230;
     --c-surface-elevated: 248 244 235;
     --c-muted: 115 115 115;
@@ -34,6 +34,8 @@
     --c-rosie-yellow: 244 208 63;
     --c-rosie-red: 196 30 58;
     --c-rosie-navy: 27 54 93;
+    --c-accent: 196 30 58;
+    --c-accent-muted: 216 45 70;
     /* Hero hexagon rivets - pure black in dark mode */
     --hex-stroke: rgb(0, 0, 0);
     --hex-fill: rgb(0, 0, 0);
