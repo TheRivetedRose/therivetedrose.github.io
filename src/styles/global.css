@@ -34,6 +34,10 @@
     --c-rosie-yellow: 244 208 63;
     --c-rosie-red: 196 30 58;
     --c-rosie-navy: 27 54 93;
+    /* Hero hexagon rivets - pure black in dark mode */
+    --hex-stroke: rgb(0, 0, 0);
+    --hex-fill: rgb(0, 0, 0);
+    --hex-opacity: 1;
   }
 
   html {
@@ -126,16 +130,4 @@
     }
   }
 
-}
-
-/* Hero hexagon rivets - pure black in dark mode */
-html.dark .hero-hex__outline,
-html.dark .hero-hex__inner-outline {
-  stroke: rgb(0, 0, 0) !important;
-  opacity: 1 !important;
-}
-html.dark .hero-hex__solid-center,
-html.dark .hero-hex__solid {
-  fill: rgb(0, 0, 0) !important;
-  opacity: 1 !important;
 }
