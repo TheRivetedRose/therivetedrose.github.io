@@ -126,7 +126,7 @@
     }
   }
 
-  /* Hero polka dots - same color as adjacent section background, rotated 45° */
+  /* Hero polka dots - same color as adjacent section background, rotated 45°, fade to solid with scattered effect */
   .hero-polka {
     position: relative;
   }
@@ -134,14 +134,26 @@
     content: "";
     position: absolute;
     inset: -100%;
-    background-image: radial-gradient(
-      circle,
-      rgb(var(--c-surface)) 0.47rem,
-      transparent 0.47rem
-    );
-    background-size: 1.5rem 1.5rem;
-    background-position: 0 0;
+    --dot-color: rgb(var(--c-surface));
+    --dot-size: 0.47rem;
+    background-image: radial-gradient(circle, var(--dot-color) var(--dot-size), transparent var(--dot-size)),
+      radial-gradient(circle, var(--dot-color) var(--dot-size), transparent var(--dot-size)),
+      radial-gradient(circle, var(--dot-color) var(--dot-size), transparent var(--dot-size));
+    background-size: 1.5rem 1.5rem, 1.5rem 1.5rem, 1.5rem 1.5rem;
+    background-position: 0 0, 0.75rem 0.5rem, 0.5rem 0.75rem;
     transform: rotate(45deg);
+    mask-image: radial-gradient(
+      ellipse 75% 55% at center,
+      transparent 0%,
+      rgba(0, 0, 0, 0.4) 35%,
+      black 100%
+    );
+    -webkit-mask-image: radial-gradient(
+      ellipse 75% 55% at center,
+      transparent 0%,
+      rgba(0, 0, 0, 0.4) 35%,
+      black 100%
+    );
     pointer-events: none;
     z-index: 0;
   }
