@@ -21,7 +21,7 @@ const typewriterPhrases = [
   "Home Lab Security Architect",
 ];
 
-const typewritersubheadline = [
+const typewriterSubheadlines = [
   "TCP/IP Fundamentals • Linux CLI Proficiency • Identity & Access Concepts • Security Control Implementation",
   "SIEM Experimentation • Alert Triage Practice • NIST Incident Response • MITRE ATT&CK Mapping",
   "Log Collection • Packet Analysis • Vulnerability Scanning • Network Traffic Analysis",
@@ -45,9 +45,13 @@ const typewritersubheadline = [
         >
           Hi, I'm <span class="text-accent">TheRivetedRose</span>
         </h1>
-        <p class="text-xl text-muted">
-          <Typewriter client:load phrases={typewriterPhrases} />
-        </p>
+        <div class="text-xl text-muted">
+          <Typewriter
+            client:load
+            phrases={typewriterPhrases}
+            subheadlines={typewriterSubheadlines}
+          />
+        </div>
         <p class="mt-6 max-w-2xl text-muted">
           I build secure systems, document architecture, and experiment with lab
           environments. This site showcases my projects and technical writing.

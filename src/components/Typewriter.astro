@@ -1,59 +1,122 @@
 ---
 interface Props {
   phrases: string[];
+  subheadlines?: string[];
   class?: string;
 }
 
-const { phrases, class: className } = Astro.props;
-const firstPhrase = phrases[0] ?? 'Software Engineer';
+const { phrases, subheadlines = [], class: className } = Astro.props;
+const firstPhrase = phrases[0] ?? "";
+const firstSubheadline = subheadlines[0] ?? "";
 ---
 
-<span class:list={[className]} data-typewriter data-phrases={JSON.stringify(phrases)}>
-  {firstPhrase}
-</span>
+<div class:list={[className]} data-typewriter data-phrases={JSON.stringify(phrases)} data-subheadlines={JSON.stringify(subheadlines)}>
+  <span data-typewriter-phrase>{firstPhrase}</span>
+  {subheadlines.length > 0 && (
+    <p class="mt-2 text-base text-muted" data-typewriter-subheadline>
+      {firstSubheadline}
+    </p>
+  )}
+</div>
 
 <script>
   function initTypewriter() {
-    const el = document.querySelector('[data-typewriter]');
-    if (!el || !el.textContent) return;
+    const container = document.querySelector("[data-typewriter]");
+    const phraseEl = container?.querySelector("[data-typewriter-phrase]");
+    const subheadlineEl = container?.querySelector("[data-typewriter-subheadline]");
+    if (!phraseEl) return;
 
     let phrases: string[];
+    let subheadlines: string[];
     try {
-      phrases = JSON.parse(el.getAttribute('data-phrases') ?? '[]');
+      phrases = JSON.parse(container?.getAttribute("data-phrases") ?? "[]");
+      subheadlines = JSON.parse(
+        container?.getAttribute("data-subheadlines") ?? "[]"
+      );
     } catch {
       return;
     }
     if (phrases.length < 2) return;
 
+    const hasSubheadlines = subheadlines.length > 0;
+    const minPhraseDelay = 3000;
+
     let phraseIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    const typeSpeed = 80;
-    const deleteSpeed = 50;
-    const pauseTime = 2000;
+    let phraseCharIndex = 0;
+    let subheadlineCharIndex = 0;
+    let phase: "phrase" | "subheadline" | "pause" = "phrase";
+    let isDeletingPhrase = false;
 
-    function type() {
-      const current = phrases[phraseIndex] ?? '';
-      if (isDeleting) {
-        el.textContent = current.slice(0, charIndex - 1);
-        charIndex--;
-      } else {
-        el.textContent = current.slice(0, charIndex + 1);
-        charIndex++;
+    const phraseTypeSpeed = 80;
+    const phraseDeleteSpeed = 50;
+    const subheadlineTypeSpeed = 40;
+
+    function run() {
+      const currentPhrase = phrases[phraseIndex] ?? "";
+      const currentSubheadline = hasSubheadlines
+        ? subheadlines[phraseIndex] ?? ""
+        : "";
+
+      if (phase === "phrase") {
+        if (isDeletingPhrase) {
+          phraseEl!.textContent = currentPhrase.slice(0, phraseCharIndex - 1);
+          phraseCharIndex--;
+          if (phraseCharIndex === 0) {
+            isDeletingPhrase = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            phase = "phrase";
+            setTimeout(run, 500);
+            return;
+          }
+          setTimeout(run, phraseDeleteSpeed);
+        } else {
+          phraseEl!.textContent = currentPhrase.slice(0, phraseCharIndex + 1);
+          phraseCharIndex++;
+          if (phraseCharIndex === currentPhrase.length) {
+            if (hasSubheadlines && currentSubheadline) {
+              phase = "subheadline";
+              subheadlineCharIndex = 0;
+              if (subheadlineEl) subheadlineEl.textContent = "";
+              setTimeout(run, 200);
+            } else {
+              phase = "pause";
+              setTimeout(run, minPhraseDelay);
+            }
+            return;
+          }
+          setTimeout(run, phraseTypeSpeed);
+        }
+        return;
       }
 
-      let delay = isDeleting ? deleteSpeed : typeSpeed;
-      if (!isDeleting && charIndex === current.length) {
-        delay = pauseTime;
-        isDeleting = true;
-      } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        phraseIndex = (phraseIndex + 1) % phrases.length;
-        delay = 500;
+      if (phase === "subheadline") {
+        const nextSubheadline = subheadlines[phraseIndex] ?? "";
+        if (subheadlineEl) {
+          subheadlineEl.textContent = nextSubheadline.slice(
+            0,
+            subheadlineCharIndex + 1
+          );
+        }
+        subheadlineCharIndex++;
+        if (subheadlineCharIndex >= nextSubheadline.length) {
+          phase = "pause";
+          setTimeout(run, minPhraseDelay);
+          return;
+        }
+        setTimeout(run, subheadlineTypeSpeed);
+        return;
       }
-      setTimeout(type, delay);
+
+      if (phase === "pause") {
+        if (subheadlineEl) subheadlineEl.textContent = "";
+        subheadlineCharIndex = 0;
+        isDeletingPhrase = true;
+        phase = "phrase";
+        setTimeout(run, 500);
+      }
     }
-    setTimeout(type, 500);
+
+    setTimeout(run, 500);
   }
 
   initTypewriter();
