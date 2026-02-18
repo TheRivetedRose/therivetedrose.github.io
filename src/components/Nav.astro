@@ -10,23 +10,24 @@ const currentPath = Astro.url.pathname;
 ---
 
 <nav class="sticky top-0 z-50 border-b border-border bg-surface/95 backdrop-blur supports-[backdrop-filter]:bg-surface/80" aria-label="Main navigation">
-  <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-y-2 gap-x-4 pl-5 pr-8 py-4 sm:flex-nowrap sm:gap-0 sm:px-6 lg:px-8">
-    <a href="/" class="shrink-0 text-lg font-semibold text-[rgb(var(--c-text))] transition-colors hover:text-rosie-yellow">
+  <div class="mx-auto flex max-w-5xl items-center justify-between gap-4 pl-5 pr-8 py-4 sm:gap-0 sm:px-6 lg:px-8">
+    <a href="/" class="shrink-0 text-lg font-semibold text-rosie-red transition-colors hover:text-rosie-yellow">
       TheRivetedRose
     </a>
-    <ul class="flex shrink-0 items-center gap-2 sm:gap-6" role="list">
+    <ul class="flex min-w-0 shrink items-center gap-2 overflow-x-auto sm:gap-6" role="list">
       {navLinks.map((link, i) => {
         const isActive = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
+        const isHome = link.href === '/';
         return (
-          <li class="flex items-center gap-2 sm:gap-0">
+          <li class={`flex items-center gap-2 sm:gap-0 ${isHome ? 'hidden sm:flex' : ''}`}>
             <a
               href={link.href}
-              class={`text-sm font-medium transition-colors hover:text-rosie-yellow ${isActive ? 'text-rosie-yellow' : 'text-muted'}`}
+              class={`text-sm font-medium transition-colors hover:text-rosie-yellow ${isActive ? (isHome ? 'text-rosie-red' : 'text-rosie-yellow') : 'text-muted'}`}
             >
               {link.label}
             </a>
             {i < navLinks.length - 1 && (
-              <span class="text-muted sm:hidden" aria-hidden="true">|</span>
+              <span class={`text-muted sm:hidden ${isHome ? 'max-sm:hidden' : ''}`} aria-hidden="true">|</span>
             )}
           </li>
         );
