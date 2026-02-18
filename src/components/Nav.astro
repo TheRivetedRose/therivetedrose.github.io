@@ -19,7 +19,7 @@ const currentPath = Astro.url.pathname;
         const isActive = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
         const isHome = link.href === '/';
         return (
-          <li class={`flex items-center gap-2 sm:gap-0 ${isHome ? 'hidden sm:flex' : ''}`}>
+          <li class={`items-center gap-2 sm:gap-0 ${isHome ? 'max-sm:hidden sm:flex' : 'flex'}`}>
             <a
               href={link.href}
               class={`text-sm font-medium transition-colors hover:text-rosie-yellow ${isActive ? (isHome ? 'text-rosie-red' : 'text-rosie-yellow') : 'text-muted'}`}
