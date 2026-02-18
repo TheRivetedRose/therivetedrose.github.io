@@ -132,10 +132,10 @@
     inset: -100%;
     background-image: radial-gradient(
       circle,
-      rgb(var(--c-surface)) 0.94rem,
-      transparent 0.94rem
+      rgb(var(--c-surface)) 0.47rem,
+      transparent 0.47rem
     );
-    background-size: 3rem 3rem;
+    background-size: 1.5rem 1.5rem;
     background-position: 0 0;
     transform: rotate(45deg);
     pointer-events: none;
