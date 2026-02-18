@@ -8,7 +8,6 @@ interface Props {
 
 const { phrases, subheadlines = [], class: className, subheadlineClass = "text-muted" } = Astro.props;
 const firstPhrase = phrases[0] ?? "";
-const firstSubheadline = subheadlines[0] ?? "";
 ---
 
 <div
@@ -21,7 +20,6 @@ const firstSubheadline = subheadlines[0] ?? "";
   {
     subheadlines.length > 0 && (
       <p class={`mt-2 text-base ${subheadlineClass}`} data-typewriter-subheadline>
-        {firstSubheadline}
       </p>
     )
   }
