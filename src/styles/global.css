@@ -127,3 +127,15 @@
   }
 
 }
+
+/* Hero hexagon rivets - pure black in dark mode */
+html.dark .hero-hex__outline,
+html.dark .hero-hex__inner-outline {
+  stroke: rgb(0, 0, 0) !important;
+  opacity: 1 !important;
+}
+html.dark .hero-hex__solid-center,
+html.dark .hero-hex__solid {
+  fill: rgb(0, 0, 0) !important;
+  opacity: 1 !important;
+}
