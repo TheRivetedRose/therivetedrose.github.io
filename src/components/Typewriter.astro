@@ -10,20 +10,29 @@ const firstPhrase = phrases[0] ?? "";
 const firstSubheadline = subheadlines[0] ?? "";
 ---
 
-<div class:list={[className]} data-typewriter data-phrases={JSON.stringify(phrases)} data-subheadlines={JSON.stringify(subheadlines)}>
+<div
+  class:list={[className]}
+  data-typewriter
+  data-phrases={JSON.stringify(phrases)}
+  data-subheadlines={JSON.stringify(subheadlines)}
+>
   <span data-typewriter-phrase>{firstPhrase}</span>
-  {subheadlines.length > 0 && (
-    <p class="mt-2 text-base text-muted" data-typewriter-subheadline>
-      {firstSubheadline}
-    </p>
-  )}
+  {
+    subheadlines.length > 0 && (
+      <p class="mt-2 text-base text-muted" data-typewriter-subheadline>
+        {firstSubheadline}
+      </p>
+    )
+  }
 </div>
 
 <script>
   function initTypewriter() {
     const container = document.querySelector("[data-typewriter]");
     const phraseEl = container?.querySelector("[data-typewriter-phrase]");
-    const subheadlineEl = container?.querySelector("[data-typewriter-subheadline]");
+    const subheadlineEl = container?.querySelector(
+      "[data-typewriter-subheadline]",
+    );
     if (!phraseEl) return;
 
     let phrases: string[];
@@ -31,7 +40,7 @@ const firstSubheadline = subheadlines[0] ?? "";
     try {
       phrases = JSON.parse(container?.getAttribute("data-phrases") ?? "[]");
       subheadlines = JSON.parse(
-        container?.getAttribute("data-subheadlines") ?? "[]"
+        container?.getAttribute("data-subheadlines") ?? "[]",
       );
     } catch {
       return;
@@ -39,22 +48,24 @@ const firstSubheadline = subheadlines[0] ?? "";
     if (phrases.length < 2) return;
 
     const hasSubheadlines = subheadlines.length > 0;
-    const minPhraseDelay = 3000;
+    const minPhraseDelay = 1500;
 
     let phraseIndex = 0;
     let phraseCharIndex = 0;
     let subheadlineCharIndex = 0;
-    let phase: "phrase" | "subheadline" | "pause" = "phrase";
+    let phase: "phrase" | "subheadline" | "deletingSubheadline" | "pause" =
+      "phrase";
     let isDeletingPhrase = false;
 
     const phraseTypeSpeed = 80;
     const phraseDeleteSpeed = 50;
-    const subheadlineTypeSpeed = 40;
+    const subheadlineTypeSpeed = 70;
+    const subheadlineDeleteSpeed = 40;
 
     function run() {
       const currentPhrase = phrases[phraseIndex] ?? "";
       const currentSubheadline = hasSubheadlines
-        ? subheadlines[phraseIndex] ?? ""
+        ? (subheadlines[phraseIndex] ?? "")
         : "";
 
       if (phase === "phrase") {
@@ -94,7 +105,7 @@ const firstSubheadline = subheadlines[0] ?? "";
         if (subheadlineEl) {
           subheadlineEl.textContent = nextSubheadline.slice(
             0,
-            subheadlineCharIndex + 1
+            subheadlineCharIndex + 1,
           );
         }
         subheadlineCharIndex++;
@@ -107,12 +118,37 @@ const firstSubheadline = subheadlines[0] ?? "";
         return;
       }
 
+      if (phase === "deletingSubheadline") {
+        const nextSubheadline = subheadlines[phraseIndex] ?? "";
+        if (subheadlineEl) {
+          subheadlineEl.textContent = nextSubheadline.slice(
+            0,
+            subheadlineCharIndex - 1,
+          );
+        }
+        subheadlineCharIndex--;
+        if (subheadlineCharIndex <= 0) {
+          if (subheadlineEl) subheadlineEl.textContent = "";
+          subheadlineCharIndex = 0;
+          isDeletingPhrase = true;
+          phase = "phrase";
+          setTimeout(run, 500);
+          return;
+        }
+        setTimeout(run, subheadlineDeleteSpeed);
+        return;
+      }
+
       if (phase === "pause") {
-        if (subheadlineEl) subheadlineEl.textContent = "";
-        subheadlineCharIndex = 0;
-        isDeletingPhrase = true;
-        phase = "phrase";
-        setTimeout(run, 500);
+        if (hasSubheadlines && subheadlineEl) {
+          phase = "deletingSubheadline";
+          subheadlineCharIndex = (subheadlines[phraseIndex] ?? "").length;
+          setTimeout(run, 200);
+        } else {
+          isDeletingPhrase = true;
+          phase = "phrase";
+          setTimeout(run, 500);
+        }
       }
     }
 
