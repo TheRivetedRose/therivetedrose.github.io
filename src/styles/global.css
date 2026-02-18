@@ -15,6 +15,10 @@
     --c-text-muted: 64 64 64;
     --c-github: 15 191 62;
     --c-linkedin: 10 102 194;
+    /* Rosie the Riveter palette (saturated poster) */
+    --c-rosie-yellow: 244 208 63;
+    --c-rosie-red: 196 30 58;
+    --c-rosie-navy: 27 54 93;
     --font-sans: 'DM Sans', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   }
@@ -67,6 +71,10 @@
     @apply text-2xl font-semibold tracking-tight text-[rgb(var(--c-text))] md:text-3xl;
   }
 
+  .section-heading-rosie {
+    @apply section-heading border-l-4 border-rosie-navy pl-4;
+  }
+
   .prose-custom {
     @apply prose prose-neutral dark:prose-invert max-w-none;
     @apply prose-headings:font-semibold prose-headings:tracking-tight;
@@ -112,5 +120,14 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  /* Rosie polka dot pattern - grayscale, subtle accent */
+  .polka-dots {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='6' cy='6' r='1.5' fill='%23888' opacity='0.12'/%3E%3Ccircle cx='18' cy='6' r='1.5' fill='%23888' opacity='0.12'/%3E%3Ccircle cx='6' cy='18' r='1.5' fill='%23888' opacity='0.12'/%3E%3Ccircle cx='18' cy='18' r='1.5' fill='%23888' opacity='0.12'/%3E%3C/svg%3E");
+  }
+
+  .dark .polka-dots {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='6' cy='6' r='1.5' fill='%23fff' opacity='0.06'/%3E%3Ccircle cx='18' cy='6' r='1.5' fill='%23fff' opacity='0.06'/%3E%3Ccircle cx='6' cy='18' r='1.5' fill='%23fff' opacity='0.06'/%3E%3Ccircle cx='18' cy='18' r='1.5' fill='%23fff' opacity='0.06'/%3E%3C/svg%3E");
   }
 }

@@ -3,9 +3,10 @@ interface Props {
   phrases: string[];
   subheadlines?: string[];
   class?: string;
+  subheadlineClass?: string;
 }
 
-const { phrases, subheadlines = [], class: className } = Astro.props;
+const { phrases, subheadlines = [], class: className, subheadlineClass = "text-muted" } = Astro.props;
 const firstPhrase = phrases[0] ?? "";
 const firstSubheadline = subheadlines[0] ?? "";
 ---
@@ -19,7 +20,7 @@ const firstSubheadline = subheadlines[0] ?? "";
   <span data-typewriter-phrase>{firstPhrase}</span>
   {
     subheadlines.length > 0 && (
-      <p class="mt-2 text-base text-muted" data-typewriter-subheadline>
+      <p class={`mt-2 text-base ${subheadlineClass}`} data-typewriter-subheadline>
         {firstSubheadline}
       </p>
     )

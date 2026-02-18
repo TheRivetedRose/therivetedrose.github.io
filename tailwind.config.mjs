@@ -15,6 +15,11 @@ export default {
         'surface-elevated': 'rgb(var(--c-surface-elevated) / <alpha-value>)',
         muted: 'rgb(var(--c-muted) / <alpha-value>)',
         border: 'rgb(var(--c-border) / <alpha-value>)',
+        rosie: {
+          yellow: 'rgb(var(--c-rosie-yellow) / <alpha-value>)',
+          red: 'rgb(var(--c-rosie-red) / <alpha-value>)',
+          navy: 'rgb(var(--c-rosie-navy) / <alpha-value>)',
+        },
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
