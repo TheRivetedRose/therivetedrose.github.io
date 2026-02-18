@@ -10,7 +10,7 @@ Site requirements (high level)
 - All pages must be visually cohesive (same layout, typography, tokens) and match the landing page vibe similar to https://snehavish595.github.io/Portfolio-Template/ but with my content and stylistic constraints.
 - Implement scroll-triggered reveal animations (IntersectionObserver) as a small, reusable JS “island” component. Animations must be subtle and accessible (reduced-motion respect).
 - Use Markdown (or MDX) for project and blog content, but render inside custom layouts so posts/pages do NOT look like raw markdown.
-- Provide a strict design system: centralized tokens (CSS variables), Tailwind config, a small global stylesheet with component classes (`.card`, `.btn-primary`, `.badge`, etc.). Avoid arbitrary utility values. Use `@apply` for component classes where useful.
+- Provide a strict design system: centralized tokens (CSS variables), Tailwind config, a small global stylesheet with component classes (`.card`, `.btn-solid-red`, `.badge`, etc.). Avoid arbitrary utility values. Use `@apply` for component classes where useful.
 - Progressive enhancement: site must be usable with JS disabled for core content (because Astro prerenders HTML). JS islands provide enhancements only.
 - Dark-mode support via `html.dark` toggled by a small `theme.js` island; persist to localStorage and respect `prefers-color-scheme` on first load.
 - Zero third-party trackers — only Tailwind and required minimal libs (no analytics).

@@ -7,20 +7,36 @@
   :root {
     --c-accent: 175 85 95;
     --c-accent-muted: 155 70 82;
-    --c-surface: 245 240 230;
-    --c-surface-elevated: 248 244 235;
-    --c-muted: 115 115 115;
-    --c-border: 229 229 229;
-    --c-text: 23 23 23;
-    --c-text-muted: 64 64 64;
+    --c-surface: 250 245 232;
+    --c-surface-elevated: 252 248 238;
+    --c-muted: 100 100 100;
+    --c-border: 220 212 195;
+    --c-text: 20 20 20;
+    --c-text-muted: 55 55 55;
     --c-github: 15 191 62;
     --c-linkedin: 10 102 194;
-    /* Rosie the Riveter palette (less saturated, vintage) */
-    --c-rosie-yellow: 220 200 140;
-    --c-rosie-red: 175 85 95;
-    --c-rosie-navy: 55 80 115;
+    /* Rosie the Riveter palette (more saturated) */
+    --c-rosie-yellow: 235 210 120;
+    --c-rosie-red: 185 70 80;
+    --c-rosie-navy: 45 70 105;
     --font-sans: 'DM Sans', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    /* Card hover glow for light theme (between light and dark yellow) */
+    --card-hover-shadow-light: 0 0 24px rgba(208, 182, 95, 0.33);
+    --card-hover-shadow-red-light: 0 0 24px rgba(185, 70, 80, 0.28);
+  }
+
+  .language-card:hover,
+  .platform-card:hover,
+  .project-card:hover {
+    box-shadow: var(--card-hover-shadow-light) !important;
+    border-color: rgb(208, 182, 95) !important;
+  }
+
+  .tool-card:hover,
+  .blog-card:hover {
+    box-shadow: var(--card-hover-shadow-red-light) !important;
+    border-color: rgb(var(--c-rosie-red)) !important;
   }
 
   .dark {
@@ -40,6 +56,22 @@
     --hex-stroke: rgb(0, 0, 0);
     --hex-fill: rgb(0, 0, 0);
     --hex-opacity: 1;
+    /* Card hover glow for dark theme */
+    --card-hover-shadow: 0 0 24px rgba(244, 208, 63, 0.22);
+    --card-hover-shadow-red: 0 0 24px rgba(196, 30, 58, 0.3);
+  }
+
+  .dark .language-card:hover,
+  .dark .platform-card:hover,
+  .dark .project-card:hover {
+    box-shadow: var(--card-hover-shadow) !important;
+    border-color: rgb(var(--c-rosie-yellow)) !important;
+  }
+
+  .dark .tool-card:hover,
+  .dark .blog-card:hover {
+    box-shadow: var(--card-hover-shadow-red) !important;
+    border-color: rgb(var(--c-rosie-red)) !important;
   }
 
   html {
@@ -57,8 +89,12 @@
     @apply rounded-xl border border-border bg-surface-elevated p-6 shadow-sm transition-shadow hover:shadow-md;
   }
 
-  .btn-primary {
-    @apply inline-flex items-center justify-center rounded-lg bg-rosie-red px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-rosie-red/90 focus:outline-none focus:ring-2 focus:ring-rosie-red focus:ring-offset-2 focus:ring-offset-surface;
+  .btn-solid-red {
+    @apply inline-flex items-center justify-center rounded-lg bg-rosie-red px-4 py-2 text-sm font-medium text-[rgb(var(--c-surface))] dark:text-white transition-all hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-rosie-red focus:ring-offset-2 focus:ring-offset-surface;
+  }
+
+  .btn-solid-yellow {
+    @apply inline-flex items-center justify-center rounded-lg bg-rosie-yellow px-4 py-2 text-sm font-medium text-black transition-all hover:brightness-105 focus:outline-none focus:ring-2 focus:ring-rosie-yellow focus:ring-offset-2 focus:ring-offset-surface;
   }
 
   .btn-secondary {
@@ -90,6 +126,8 @@
     @apply prose-headings:font-semibold prose-headings:tracking-tight;
     @apply prose-a:text-rosie-red prose-a:no-underline hover:prose-a:underline;
     @apply [&_a.btn-github]:!text-white [&_a.btn-linkedin]:!text-white;
+    @apply [&_a.btn-solid-red]:!text-[rgb(var(--c-surface))] dark:[&_a.btn-solid-red]:!text-white;
+    @apply [&_a.btn-solid-yellow]:!text-black;
     @apply prose-code:rounded prose-code:bg-surface-elevated prose-code:px-1.5 prose-code:py-0.5 prose-code:before:content-none prose-code:after:content-none;
     @apply prose-pre:rounded-xl prose-pre:border prose-pre:border-border;
   }

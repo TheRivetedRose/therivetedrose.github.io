@@ -30,7 +30,7 @@ Centralized variables for consistent styling. Defined in `src/styles/global.css`
 | Class | Use |
 |-------|-----|
 | `.card` | Project/post cards, elevated containers |
-| `.btn-primary` | Primary actions |
+| `.btn-solid-red` | Primary/solid red actions |
 | `.btn-secondary` | Secondary actions |
 | `.btn-github` | GitHub link button (green, with logo) |
 | `.btn-linkedin` | LinkedIn link button (blue, with logo) |

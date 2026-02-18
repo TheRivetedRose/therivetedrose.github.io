@@ -11,6 +11,7 @@ import RevealOnScroll from "../components/RevealOnScroll.astro";
 import HeroHexRivets from "../components/HeroHexRivets.astro";
 import { getCollection } from "astro:content";
 import { tools } from "../data/tools";
+import { platforms } from "../data/platforms";
 import { languages } from "../data/languages";
 
 const projects = await getCollection("projects");
@@ -53,28 +54,28 @@ const typewriterSubheadlines = [
         >
           Hi, I'm <GlitchName client:load class="text-rosie-yellow" />
         </h1>
-        <div class="min-h-[8rem] text-xl text-black/85 dark:text-white/85">
+        <div class="min-h-[8rem] text-xl text-black dark:text-white/85">
           <Typewriter
             client:load
             phrases={typewriterPhrases}
             subheadlines={typewriterSubheadlines}
-            subheadlineClass="text-black/70 dark:text-white/70"
+            subheadlineClass="text-black dark:text-white/70"
           />
         </div>
-        <p class="mt-6 max-w-2xl text-black/75 dark:text-white/75">
+        <p class="mt-6 max-w-2xl text-black dark:text-white/75">
           I build secure systems, document architecture, and experiment with lab
           environments. This site showcases my projects and technical writing.
         </p>
         <div class="mt-8 flex gap-4">
           <a
             href="/projects/"
-            class="inline-flex items-center justify-center rounded-lg bg-rosie-yellow px-4 py-2 text-sm font-medium text-rosie-navy transition-colors hover:bg-rosie-yellow/90 focus:outline-none focus:ring-2 focus:ring-rosie-yellow focus:ring-offset-2 focus:ring-offset-rosie-navy"
+            class="btn-solid-yellow focus:ring-offset-rosie-navy"
           >
             View Projects
           </a>
           <a
             href="/about/"
-            class="inline-flex items-center justify-center rounded-lg border-2 border-rosie-red bg-rosie-red px-4 py-2 text-sm font-medium text-black dark:text-white transition-colors hover:bg-rosie-red/90 focus:outline-none focus:ring-2 focus:ring-rosie-red focus:ring-offset-2 focus:ring-offset-rosie-navy"
+            class="btn-solid-red border-2 border-rosie-red focus:ring-offset-rosie-navy"
           >
             About Me
           </a>
@@ -101,7 +102,7 @@ const typewriterSubheadlines = [
         analysis, and log collection. I believe in repeatable deployments and
         clear documentation.
       </p>
-      <a href="/about/" class="btn-secondary mt-4">Learn more</a>
+      <a href="/about/" class="btn-solid-red mt-4">Learn More</a>
     </RevealOnScroll>
   </section>
 
@@ -115,6 +116,7 @@ const typewriterSubheadlines = [
               name={lang.name}
               path={lang.icon.path}
               color={lang.icon.hex}
+              variant="language"
             />
           ))}
         </div>
@@ -124,17 +126,36 @@ const typewriterSubheadlines = [
 
   <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
     <RevealOnScroll>
-      <h2 class="section-heading-rosie mb-8">Tools & Platforms</h2>
+      <h2 class="section-heading-rosie mb-8">Tools</h2>
       <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
         {tools.map((tool) => (
           <ToolCard
             name={tool.name}
             path={tool.icon.path}
             color={tool.icon.hex}
+            variant="tool"
           />
         ))}
       </div>
     </RevealOnScroll>
+  </section>
+
+  <section class="border-t border-rosie-navy/20 bg-surface-elevated">
+    <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+      <RevealOnScroll>
+        <h2 class="section-heading-rosie mb-8">Platforms</h2>
+        <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+          {platforms.map((platform) => (
+            <ToolCard
+              name={platform.name}
+              path={platform.icon.path}
+              color={platform.icon.hex}
+              variant="platform"
+            />
+          ))}
+        </div>
+      </RevealOnScroll>
+    </div>
   </section>
 
   <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
@@ -165,7 +186,7 @@ const typewriterSubheadlines = [
                 ))
         }
       </div>
-      <a href="/projects/" class="btn-secondary mt-8">All projects</a>
+      <a href="/projects/" class="btn-solid-yellow mt-8">All Projects</a>
     </RevealOnScroll>
   </section>
 
@@ -188,8 +209,8 @@ const typewriterSubheadlines = [
         </div>
         {
           blogPosts.length > 0 && (
-            <a href="/blog/" class="btn-secondary mt-8">
-              All posts
+            <a href="/blog/" class="btn-solid-red mt-8">
+              All Posts
             </a>
           )
         }

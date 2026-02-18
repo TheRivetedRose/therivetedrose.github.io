@@ -3,13 +3,20 @@ interface Props {
   name: string;
   path: string;
   color: string;
+  variant?: "language" | "platform" | "tool";
 }
 
-const { name, path, color } = Astro.props;
+const { name, path, color, variant = "tool" } = Astro.props;
+const cardClass =
+  variant === "language"
+    ? "language-card"
+    : variant === "platform"
+      ? "platform-card"
+      : "tool-card";
 ---
 
 <div
-  class="flex min-h-[88px] flex-col items-center justify-center gap-2 rounded-xl border border-border bg-surface-elevated p-4 transition-shadow hover:shadow-md"
+  class={`${cardClass} flex min-h-[88px] flex-col items-center justify-center gap-2 rounded-xl border border-border bg-surface-elevated p-4 transition-shadow hover:shadow-md`}
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
