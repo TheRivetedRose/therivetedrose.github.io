@@ -122,8 +122,14 @@
     }
   }
 
-  /* Hero polka dots - same color as adjacent section background */
+  /* Hero polka dots - same color as adjacent section background, rotated 45° */
   .hero-polka {
+    position: relative;
+  }
+  .hero-polka::before {
+    content: "";
+    position: absolute;
+    inset: -50%;
     background-image: radial-gradient(
       circle,
       rgb(var(--c-surface)) 1.25rem,
@@ -131,5 +137,12 @@
     );
     background-size: 4rem 4rem;
     background-position: 0 0;
+    transform: rotate(45deg);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-polka > * {
+    position: relative;
+    z-index: 1;
   }
 }
