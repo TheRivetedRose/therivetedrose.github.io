@@ -84,30 +84,22 @@ const {
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       const htmlEl = el as HTMLElement;
-      htmlEl.style.transition = "opacity 0.6s ease";
+      const fadeDuration = 1000;
+      htmlEl.textContent = initial;
+      htmlEl.style.opacity = "0";
+      htmlEl.style.transition = `opacity ${fadeDuration}ms ease`;
 
-      function typeInitialReduced(callback: () => void) {
-        htmlEl.textContent = "";
-        let idx = 0;
-        function typeNext() {
-          htmlEl.textContent = initial.slice(0, idx + 1);
-          idx++;
-          if (idx < initial.length) {
-            setTimeout(typeNext, typeSpeed);
-          } else {
-            setTimeout(callback, 400);
-          }
-        }
-        setTimeout(typeNext, initialDelay);
-      }
+      requestAnimationFrame(() => {
+        htmlEl.style.opacity = "1";
+      });
 
-      typeInitialReduced(() => {
+      setTimeout(() => {
         htmlEl.style.opacity = "0";
         setTimeout(() => {
           htmlEl.textContent = final;
           htmlEl.style.opacity = "1";
-        }, 600);
-      });
+        }, fadeDuration);
+      }, fadeDuration + 1000);
 
       document.addEventListener("glitch-name-trigger", () => {
         htmlEl.style.opacity = "0";
@@ -120,9 +112,9 @@ const {
               htmlEl.textContent = final;
               htmlEl.style.opacity = "1";
               document.dispatchEvent(new CustomEvent("glitch-name-complete"));
-            }, 600);
-          }, 1400);
-        }, 600);
+            }, fadeDuration);
+          }, fadeDuration + 1000);
+        }, fadeDuration);
       });
       return;
     }
