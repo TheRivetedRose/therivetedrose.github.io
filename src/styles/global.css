@@ -52,11 +52,11 @@
   }
 
   .btn-github {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-[rgb(var(--c-github))] px-4 py-2 text-sm font-medium text-white transition-colors hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[rgb(var(--c-github))] focus:ring-offset-2 focus:ring-offset-surface;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-[rgb(var(--c-github))] px-4 py-2 text-sm font-medium !text-white transition-colors hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[rgb(var(--c-github))] focus:ring-offset-2 focus:ring-offset-surface;
   }
 
   .btn-linkedin {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-[rgb(var(--c-linkedin))] px-4 py-2 text-sm font-medium text-white transition-colors hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[rgb(var(--c-linkedin))] focus:ring-offset-2 focus:ring-offset-surface;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-[rgb(var(--c-linkedin))] px-4 py-2 text-sm font-medium !text-white transition-colors hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[rgb(var(--c-linkedin))] focus:ring-offset-2 focus:ring-offset-surface;
   }
 
   .badge {
@@ -71,6 +71,7 @@
     @apply prose prose-neutral dark:prose-invert max-w-none;
     @apply prose-headings:font-semibold prose-headings:tracking-tight;
     @apply prose-a:text-accent prose-a:no-underline hover:prose-a:underline;
+    @apply [&_a.btn-github]:!text-white [&_a.btn-linkedin]:!text-white;
     @apply prose-code:rounded prose-code:bg-surface-elevated prose-code:px-1.5 prose-code:py-0.5 prose-code:before:content-none prose-code:after:content-none;
     @apply prose-pre:rounded-xl prose-pre:border prose-pre:border-border;
   }

@@ -2,8 +2,6 @@
 import PageLayout from '../../layouts/PageLayout.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 import ProjectFilter from '../../components/ProjectFilter.astro';
-import GitHubIcon from '../../components/icons/GitHubIcon.astro';
-import LinkedInIcon from '../../components/icons/LinkedInIcon.astro';
 import { getCollection } from 'astro:content';
 
 const projects = (await getCollection('projects')).sort((a, b) => {
@@ -29,29 +27,5 @@ const allTags = [...new Set(projects.flatMap((p) => p.data.tags))].sort();
         />
       ))}
     </div>
-    <section class="mt-16 border-t border-border pt-12">
-      <h2 class="section-heading mb-4">Connect</h2>
-      <p class="mb-4 text-muted">Find me on GitHub and LinkedIn.</p>
-      <div class="flex flex-wrap gap-4">
-        <a
-          href="https://github.com/therivetedrose"
-          class="btn-github"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <GitHubIcon size={18} />
-          GitHub
-        </a>
-        <a
-          href="https://www.linkedin.com/in/rosefr"
-          class="btn-linkedin"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <LinkedInIcon size={18} />
-          LinkedIn
-        </a>
-      </div>
-    </section>
   </div>
 </PageLayout>
