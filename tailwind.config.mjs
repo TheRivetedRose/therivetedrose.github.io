@@ -19,6 +19,7 @@ export default {
           yellow: 'rgb(var(--c-rosie-yellow) / <alpha-value>)',
           red: 'rgb(var(--c-rosie-red) / <alpha-value>)',
           navy: 'rgb(var(--c-rosie-navy) / <alpha-value>)',
+          'navy-bright': 'rgb(var(--c-rosie-navy-bright) / <alpha-value>)',
         },
       },
       fontFamily: {

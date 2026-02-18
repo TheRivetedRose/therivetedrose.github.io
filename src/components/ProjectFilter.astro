@@ -9,13 +9,13 @@ const { tags } = Astro.props;
 <div class="mb-8 flex flex-wrap gap-2" data-project-filter>
   <button
     type="button"
-    class="badge cursor-pointer border-rosie-red/30 bg-rosie-red/10 text-rosie-red"
+    class="badge cursor-pointer border-rosie-navy-bright/40 bg-rosie-navy-bright/15 text-rosie-navy-bright"
     data-filter="all"
   >
     All
   </button>
   {tags.map((tag) => (
-    <button type="button" class="badge cursor-pointer hover:border-rosie-red/30 hover:bg-rosie-red/10 hover:text-rosie-red" data-filter={tag}>
+    <button type="button" class="badge cursor-pointer hover:border-rosie-navy-bright/40 hover:bg-rosie-navy-bright/15 hover:text-rosie-navy-bright" data-filter={tag}>
       {tag}
     </button>
   ))}
@@ -33,11 +33,11 @@ const { tags } = Astro.props;
       btn.addEventListener('click', () => {
         const tag = btn.getAttribute('data-filter');
         filterBtns.forEach((b) => {
-          b.classList.remove('border-rosie-red/30', 'bg-rosie-red/10', 'text-rosie-red');
+          b.classList.remove('border-rosie-navy-bright/40', 'bg-rosie-navy-bright/15', 'text-rosie-navy-bright');
           if (tag === 'all' && b.getAttribute('data-filter') === 'all') {
-            b.classList.add('border-rosie-red/30', 'bg-rosie-red/10', 'text-rosie-red');
+            b.classList.add('border-rosie-navy-bright/40', 'bg-rosie-navy-bright/15', 'text-rosie-navy-bright');
           } else if (tag !== 'all' && b.getAttribute('data-filter') === tag) {
-            b.classList.add('border-rosie-red/30', 'bg-rosie-red/10', 'text-rosie-red');
+            b.classList.add('border-rosie-navy-bright/40', 'bg-rosie-navy-bright/15', 'text-rosie-navy-bright');
           }
         });
 

@@ -7,16 +7,12 @@ interface Props {
   svg?: string;
   /** Slug for theme-specific icon color overrides (e.g. "github", "macos") */
   iconSlug?: string;
-  variant?: "language" | "platform" | "tool";
+  variant?: "language" | "platform" | "tool" | "ai";
 }
 
 const { name, path, color, svg, iconSlug, variant = "tool" } = Astro.props;
 const cardClass =
-  variant === "language"
-    ? "language-card"
-    : variant === "platform"
-      ? "platform-card"
-      : "tool-card";
+  variant === "language" || variant === "ai" ? "language-card" : "tool-card";
 const iconClass = iconSlug ? `icon-${iconSlug}` : "";
 ---
 

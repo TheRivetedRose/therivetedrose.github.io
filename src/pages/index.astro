@@ -11,6 +11,7 @@ import RevealOnScroll from "../components/RevealOnScroll.astro";
 import HeroHexRivets from "../components/HeroHexRivets.astro";
 import { getCollection } from "astro:content";
 import { tools } from "../data/tools";
+import { ai } from "../data/ai";
 import { platforms } from "../data/platforms";
 import { languages } from "../data/languages";
 
@@ -43,9 +44,7 @@ const typewriterSubheadlines = [
   title="Home"
   description="TheRivetedRose — Portfolio, technical writing, and security lab projects"
 >
-  <section
-    class="hero relative overflow-hidden bg-rosie-navy"
-  >
+  <section class="hero relative overflow-hidden bg-rosie-navy">
     <HeroHexRivets />
     <div class="relative z-10 mx-auto max-w-5xl px-4 py-24 sm:px-6 lg:px-8">
       <RevealOnScroll>
@@ -111,15 +110,17 @@ const typewriterSubheadlines = [
       <RevealOnScroll>
         <h2 class="section-heading-rosie mb-8">Languages</h2>
         <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-          {languages.map((lang) => (
-            <ToolCard
-              name={lang.name}
-              path={"path" in lang.icon ? lang.icon.path : undefined}
-              color={"hex" in lang.icon ? lang.icon.hex : undefined}
-              svg={"path" in lang.icon ? undefined : lang.icon.svg}
-              variant="language"
-            />
-          ))}
+          {
+            languages.map((lang) => (
+              <ToolCard
+                name={lang.name}
+                path={"path" in lang.icon ? lang.icon.path : undefined}
+                color={"hex" in lang.icon ? lang.icon.hex : undefined}
+                svg={"path" in lang.icon ? undefined : lang.icon.svg}
+                variant="language"
+              />
+            ))
+          }
         </div>
       </RevealOnScroll>
     </div>
@@ -129,15 +130,17 @@ const typewriterSubheadlines = [
     <RevealOnScroll>
       <h2 class="section-heading-rosie mb-8">Tools</h2>
       <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-        {tools.map((tool) => (
-          <ToolCard
-            name={tool.name}
-            path={tool.icon.path}
-            color={tool.icon.hex}
-            iconSlug={"iconSlug" in tool ? tool.iconSlug : undefined}
-            variant="tool"
-          />
-        ))}
+        {
+          tools.map((tool) => (
+            <ToolCard
+              name={tool.name}
+              path={tool.icon.path}
+              color={tool.icon.hex}
+              iconSlug={"iconSlug" in tool ? tool.iconSlug : undefined}
+              variant="tool"
+            />
+          ))
+        }
       </div>
     </RevealOnScroll>
   </section>
@@ -145,9 +148,30 @@ const typewriterSubheadlines = [
   <section class="border-t border-rosie-navy/20 bg-surface-elevated">
     <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
       <RevealOnScroll>
-        <h2 class="section-heading-rosie mb-8">Platforms</h2>
+        <h2 class="section-heading-rosie mb-8">AI Tools & Agents</h2>
         <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-          {platforms.map((platform) => (
+          {
+            ai.map((item) => (
+              <ToolCard
+                name={item.name}
+                path={item.icon.path}
+                color={item.icon.hex}
+                iconSlug={"iconSlug" in item ? item.iconSlug : undefined}
+                variant="ai"
+              />
+            ))
+          }
+        </div>
+      </RevealOnScroll>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+    <RevealOnScroll>
+      <h2 class="section-heading-rosie mb-8">Platforms</h2>
+      <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+        {
+          platforms.map((platform) => (
             <ToolCard
               name={platform.name}
               path={platform.icon.path}
@@ -155,10 +179,10 @@ const typewriterSubheadlines = [
               iconSlug={"iconSlug" in platform ? platform.iconSlug : undefined}
               variant="platform"
             />
-          ))}
-        </div>
-      </RevealOnScroll>
-    </div>
+          ))
+        }
+      </div>
+    </RevealOnScroll>
   </section>
 
   <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
