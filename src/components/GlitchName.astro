@@ -4,6 +4,8 @@ interface Props {
   finalName?: string;
   initialDelay?: number;
   glitchDuration?: number;
+  typeSpeed?: number;
+  deleteSpeed?: number;
   class?: string;
 }
 
@@ -12,6 +14,8 @@ const {
   finalName = "TheRivetedRose",
   initialDelay = 1200,
   glitchDuration = 600,
+  typeSpeed = 60,
+  deleteSpeed = 40,
   class: className = "text-accent",
 } = Astro.props;
 ---
@@ -23,6 +27,8 @@ const {
   data-final={finalName}
   data-initial-delay={initialDelay}
   data-glitch-duration={glitchDuration}
+  data-type-speed={typeSpeed}
+  data-delete-speed={deleteSpeed}
 >
   {initialName}
 </span>
@@ -61,7 +67,8 @@ const {
       return;
     }
 
-    const initial = el.getAttribute("data-initial") ?? "Roselie Freixas";
+    const initial =
+      el.getAttribute("data-initial") ?? "Roselie Freixas";
     const final = el.getAttribute("data-final") ?? "TheRivetedRose";
     const initialDelay = parseInt(
       el.getAttribute("data-initial-delay") ?? "1200",
@@ -69,6 +76,14 @@ const {
     );
     const glitchDuration = parseInt(
       el.getAttribute("data-glitch-duration") ?? "600",
+      10
+    );
+    const typeSpeed = parseInt(
+      el.getAttribute("data-type-speed") ?? "60",
+      10
+    );
+    const deleteSpeed = parseInt(
+      el.getAttribute("data-delete-speed") ?? "40",
       10
     );
 
@@ -85,8 +100,8 @@ const {
         .join("");
     }
 
-    setTimeout(() => {
-      el.classList.add("glitch-active");
+    function runGlitch(callback?: () => void) {
+      el!.classList.add("glitch-active");
       const iterations = Math.max(10, Math.floor(glitchDuration / 50));
       const interval = glitchDuration / iterations;
       let count = 0;
@@ -95,19 +110,59 @@ const {
         count++;
         const progress = count / iterations;
         if (progress < 0.5) {
-          el.textContent = scramble(initial, progress * 1.2);
+          el!.textContent = scramble(initial, progress * 1.2);
         } else if (progress < 0.85) {
-          el.textContent = scramble(final, (1 - progress) * 1.5);
+          el!.textContent = scramble(final, (1 - progress) * 1.5);
         } else {
-          el.textContent = final;
+          el!.textContent = final;
         }
 
         if (count >= iterations) {
           clearInterval(glitchInterval);
-          el.classList.remove("glitch-active");
-          el.textContent = final;
+          el!.classList.remove("glitch-active");
+          el!.textContent = final;
+          callback?.();
         }
       }, interval);
+    }
+
+    function runLoopCycle() {
+      if (!el) return;
+      el.textContent = final;
+      let idx = final.length;
+
+      function deleteNext() {
+        idx--;
+        el!.textContent = final.slice(0, idx);
+        if (idx > 0) {
+          setTimeout(deleteNext, deleteSpeed);
+        } else {
+          idx = 0;
+          typeNext();
+        }
+      }
+
+      function typeNext() {
+        el!.textContent = initial.slice(0, idx + 1);
+        idx++;
+        if (idx < initial.length) {
+          setTimeout(typeNext, typeSpeed);
+        } else {
+          setTimeout(() => {
+            runGlitch(() => {
+              document.dispatchEvent(new CustomEvent("glitch-name-complete"));
+            });
+          }, 300);
+        }
+      }
+
+      setTimeout(deleteNext, 200);
+    }
+
+    document.addEventListener("glitch-name-trigger", runLoopCycle);
+
+    setTimeout(() => {
+      runGlitch();
     }, initialDelay);
   }
 

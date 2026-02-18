@@ -73,8 +73,13 @@ const firstSubheadline = subheadlines[0] ?? "";
           phraseEl!.textContent = currentPhrase.slice(0, phraseCharIndex - 1);
           phraseCharIndex--;
           if (phraseCharIndex === 0) {
+            const nextIndex = (phraseIndex + 1) % phrases.length;
+            if (nextIndex === 0) {
+              document.dispatchEvent(new CustomEvent("typewriter-complete"));
+              return;
+            }
             isDeletingPhrase = false;
-            phraseIndex = (phraseIndex + 1) % phrases.length;
+            phraseIndex = nextIndex;
             phase = "phrase";
             setTimeout(run, 500);
             return;
@@ -152,6 +157,17 @@ const firstSubheadline = subheadlines[0] ?? "";
       }
     }
 
+    function restart() {
+      phraseIndex = 0;
+      phraseCharIndex = 0;
+      subheadlineCharIndex = 0;
+      phase = "phrase";
+      isDeletingPhrase = false;
+      if (subheadlineEl) subheadlineEl.textContent = "";
+      setTimeout(run, 500);
+    }
+
+    document.addEventListener("typewriter-restart", restart);
     setTimeout(run, 500);
   }
 

@@ -65,6 +65,15 @@ const typewriterSubheadlines = [
     </div>
   </section>
 
+  <script>
+    document.addEventListener("typewriter-complete", () => {
+      document.dispatchEvent(new CustomEvent("glitch-name-trigger"));
+    });
+    document.addEventListener("glitch-name-complete", () => {
+      document.dispatchEvent(new CustomEvent("typewriter-restart"));
+    });
+  </script>
+
   <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
     <RevealOnScroll>
       <h2 class="section-heading mb-8">About</h2>
