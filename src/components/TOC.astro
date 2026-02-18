@@ -13,7 +13,7 @@ const { headings } = Astro.props;
       <li>
         <a
           href={`#${h.slug}`}
-          class={`block text-sm text-muted hover:text-accent ${h.depth === 3 ? 'pl-2' : ''}`}
+          class={`block text-sm text-muted hover:text-rosie-red ${h.depth === 3 ? 'pl-2' : ''}`}
           style={h.depth === 3 ? { marginLeft: '0' } : {}}
         >
           {h.text}

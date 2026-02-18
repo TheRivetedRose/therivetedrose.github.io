@@ -58,7 +58,7 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-accent-muted focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-surface;
+    @apply inline-flex items-center justify-center rounded-lg bg-rosie-red px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-rosie-red/90 focus:outline-none focus:ring-2 focus:ring-rosie-red focus:ring-offset-2 focus:ring-offset-surface;
   }
 
   .btn-secondary {
@@ -88,7 +88,7 @@
   .prose-custom {
     @apply prose prose-neutral dark:prose-invert max-w-none;
     @apply prose-headings:font-semibold prose-headings:tracking-tight;
-    @apply prose-a:text-accent prose-a:no-underline hover:prose-a:underline;
+    @apply prose-a:text-rosie-red prose-a:no-underline hover:prose-a:underline;
     @apply [&_a.btn-github]:!text-white [&_a.btn-linkedin]:!text-white;
     @apply prose-code:rounded prose-code:bg-surface-elevated prose-code:px-1.5 prose-code:py-0.5 prose-code:before:content-none prose-code:after:content-none;
     @apply prose-pre:rounded-xl prose-pre:border prose-pre:border-border;
