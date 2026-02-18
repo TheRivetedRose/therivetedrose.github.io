@@ -1,6 +1,8 @@
 ---
 import PageLayout from './PageLayout.astro';
 import TOC from '../components/TOC.astro';
+import GitHubIcon from '../components/icons/GitHubIcon.astro';
+import LinkedInIcon from '../components/icons/LinkedInIcon.astro';
 
 interface Props {
   title: string;
@@ -17,6 +19,29 @@ const showTOC = headings.length >= 3;
     <div class={showTOC ? 'lg:grid lg:grid-cols-[1fr_200px] lg:gap-12' : ''}>
       <div>
         <slot />
+        <section class="mt-12 border-t border-border pt-8">
+          <h2 class="text-lg font-semibold mb-4">Connect</h2>
+          <div class="flex flex-wrap gap-4">
+            <a
+              href="https://github.com/therivetedrose"
+              class="btn-github"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <GitHubIcon size={18} />
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/rosefr"
+              class="btn-linkedin"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <LinkedInIcon size={18} />
+              LinkedIn
+            </a>
+          </div>
+        </section>
       </div>
       {showTOC && (
         <aside class="hidden lg:block">

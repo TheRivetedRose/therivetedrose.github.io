@@ -1,4 +1,7 @@
 ---
+import GitHubIcon from "./icons/GitHubIcon.astro";
+import LinkedInIcon from "./icons/LinkedInIcon.astro";
+
 const currentYear = new Date().getFullYear();
 ---
 
@@ -8,9 +11,26 @@ const currentYear = new Date().getFullYear();
       <p class="text-sm text-muted">
         © {currentYear} TheRivetedRose. No trackers. Built with Astro.
       </p>
-      <div class="flex gap-6">
-        <a href="https://github.com/therivetedrose" class="text-sm text-muted hover:text-accent" target="_blank" rel="noopener noreferrer">
+      <div class="flex items-center gap-6">
+        <a
+          href="https://github.com/therivetedrose"
+          class="flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-[rgb(var(--c-github))]"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
+        >
+          <GitHubIcon size={18} />
           GitHub
+        </a>
+        <a
+          href="https://www.linkedin.com/in/rosefr"
+          class="flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-[rgb(var(--c-linkedin))]"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+        >
+          <LinkedInIcon size={18} />
+          LinkedIn
         </a>
       </div>
     </div>

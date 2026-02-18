@@ -14,6 +14,8 @@ Centralized variables for consistent styling. Defined in `src/styles/global.css`
 | `--c-border` | `229 229 229` | `64 64 64` | Borders |
 | `--c-text` | `23 23 23` | `250 250 250` | Primary text |
 | `--c-text-muted` | `64 64 64` | `163 163 163` | Muted text |
+| `--c-github` | `15 191 62` | same | GitHub green (#0FBF3E) |
+| `--c-linkedin` | `10 102 194` | same | LinkedIn blue (#0A66C2) |
 | `--font-sans` | DM Sans | — | Body font |
 | `--font-mono` | JetBrains Mono | — | Code font |
 
@@ -30,6 +32,8 @@ Centralized variables for consistent styling. Defined in `src/styles/global.css`
 | `.card` | Project/post cards, elevated containers |
 | `.btn-primary` | Primary actions |
 | `.btn-secondary` | Secondary actions |
+| `.btn-github` | GitHub link button (green, with logo) |
+| `.btn-linkedin` | LinkedIn link button (blue, with logo) |
 | `.badge` | Tags, labels |
 | `.section-heading` | Section titles |
 | `.prose-custom` | Markdown content styling |

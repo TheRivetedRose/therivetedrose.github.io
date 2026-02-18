@@ -1,6 +1,8 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 import RevealOnScroll from '../components/RevealOnScroll.astro';
+import GitHubIcon from '../components/icons/GitHubIcon.astro';
+import LinkedInIcon from '../components/icons/LinkedInIcon.astro';
 ---
 
 <PageLayout title="About" description="About TheRivetedRose — background, skills, and interests">
@@ -30,6 +32,27 @@ import RevealOnScroll from '../components/RevealOnScroll.astro';
         <p>
           Security lab design, automation, detection development, and writing clear technical guides.
         </p>
+        <h2 class="text-xl font-semibold">Connect</h2>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href="https://github.com/therivetedrose"
+            class="btn-github"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <GitHubIcon size={18} />
+            GitHub
+          </a>
+          <a
+            href="https://www.linkedin.com/in/rosefr"
+            class="btn-linkedin"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <LinkedInIcon size={18} />
+            LinkedIn
+          </a>
+        </div>
       </div>
     </RevealOnScroll>
   </div>

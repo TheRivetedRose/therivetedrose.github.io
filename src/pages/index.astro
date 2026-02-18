@@ -4,6 +4,8 @@ import ProjectCard from "../components/ProjectCard.astro";
 import PostCard from "../components/PostCard.astro";
 import Typewriter from "../components/Typewriter.astro";
 import GlitchName from "../components/GlitchName.astro";
+import GitHubIcon from "../components/icons/GitHubIcon.astro";
+import LinkedInIcon from "../components/icons/LinkedInIcon.astro";
 import RevealOnScroll from "../components/RevealOnScroll.astro";
 import { getCollection } from "astro:content";
 
@@ -175,19 +177,21 @@ const typewriterSubheadlines = [
       <p class="max-w-2xl text-muted">Checkout my work on GitHub.</p>
       <a
         href="https://github.com/therivetedrose"
-        class="btn-primary mt-4"
+        class="btn-github mt-4"
         target="_blank"
         rel="noopener noreferrer"
       >
+        <GitHubIcon size={18} />
         GitHub
       </a>
-      <p>Reach out to me on LinkedIn.</p>
+      <p class="mt-6 text-muted">Reach out to me on LinkedIn.</p>
       <a
         href="https://www.linkedin.com/in/rosefr"
-        class="btn-secondary mt-4"
+        class="btn-linkedin mt-4"
         target="_blank"
         rel="noopener noreferrer"
       >
+        <LinkedInIcon size={18} />
         LinkedIn
       </a>
     </RevealOnScroll>

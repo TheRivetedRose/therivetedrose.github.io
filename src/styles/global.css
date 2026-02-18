@@ -13,6 +13,8 @@
     --c-border: 229 229 229;
     --c-text: 23 23 23;
     --c-text-muted: 64 64 64;
+    --c-github: 15 191 62;
+    --c-linkedin: 10 102 194;
     --font-sans: 'DM Sans', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   }
@@ -47,6 +49,14 @@
 
   .btn-secondary {
     @apply inline-flex items-center justify-center rounded-lg border border-border bg-surface px-4 py-2 text-sm font-medium text-[rgb(var(--c-text))] transition-colors hover:bg-surface-elevated focus:outline-none focus:ring-2 focus:ring-border focus:ring-offset-2 focus:ring-offset-surface;
+  }
+
+  .btn-github {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-[rgb(var(--c-github))] px-4 py-2 text-sm font-medium text-white transition-colors hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[rgb(var(--c-github))] focus:ring-offset-2 focus:ring-offset-surface;
+  }
+
+  .btn-linkedin {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-[rgb(var(--c-linkedin))] px-4 py-2 text-sm font-medium text-white transition-colors hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[rgb(var(--c-linkedin))] focus:ring-offset-2 focus:ring-offset-surface;
   }
 
   .badge {

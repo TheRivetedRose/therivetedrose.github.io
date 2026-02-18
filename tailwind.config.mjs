@@ -9,6 +9,8 @@ export default {
       colors: {
         accent: 'rgb(var(--c-accent) / <alpha-value>)',
         'accent-muted': 'rgb(var(--c-accent-muted) / <alpha-value>)',
+        github: 'rgb(var(--c-github) / <alpha-value>)',
+        linkedin: 'rgb(var(--c-linkedin) / <alpha-value>)',
         surface: 'rgb(var(--c-surface) / <alpha-value>)',
         'surface-elevated': 'rgb(var(--c-surface-elevated) / <alpha-value>)',
         muted: 'rgb(var(--c-muted) / <alpha-value>)',
