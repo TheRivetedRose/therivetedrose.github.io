@@ -8,8 +8,8 @@ Centralized variables for consistent styling. Defined in `src/styles/global.css`
 |----------|-------|------|-----|
 | `--c-accent` | `219 39 119` | same | Primary accent (rose) |
 | `--c-accent-muted` | `236 72 153` | same | Hover/active accent |
-| `--c-surface` | `255 255 255` | `23 23 23` | Page background |
-| `--c-surface-elevated` | `250 250 250` | `38 38 38` | Cards, elevated surfaces |
+| `--c-surface` | `245 240 230` (Rosie cream) | `23 23 23` | Page background |
+| `--c-surface-elevated` | `248 244 235` | `38 38 38` | Cards, elevated surfaces |
 | `--c-muted` | `115 115 115` | `163 163 163` | Secondary text |
 | `--c-border` | `229 229 229` | `64 64 64` | Borders |
 | `--c-text` | `23 23 23` | `250 250 250` | Primary text |
