@@ -34,25 +34,25 @@
     <style>
       .hero-hex__outline {
         fill: none;
-        stroke: rgb(var(--c-surface));
+        stroke: var(--hex-stroke, rgb(var(--c-surface)));
         stroke-width: 1.5;
-        opacity: 0.4;
+        opacity: var(--hex-opacity, 0.4);
       }
       .hero-hex__inner-outline {
         fill: none;
-        stroke: rgb(var(--c-surface));
+        stroke: var(--hex-stroke, rgb(var(--c-surface)));
         stroke-width: 1;
-        opacity: 0.25;
+        opacity: var(--hex-opacity, 0.25);
       }
       .hero-hex__solid-center {
-        fill: rgb(var(--c-surface));
+        fill: var(--hex-fill, rgb(var(--c-surface)));
         stroke: none;
-        opacity: 0.5;
+        opacity: var(--hex-opacity, 0.5);
       }
       .hero-hex__solid {
-        fill: rgb(var(--c-surface));
+        fill: var(--hex-fill, rgb(var(--c-surface)));
         stroke: none;
-        opacity: 0.45;
+        opacity: var(--hex-opacity, 0.45);
       }
     </style>
   </defs>
