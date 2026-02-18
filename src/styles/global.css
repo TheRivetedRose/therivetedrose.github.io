@@ -61,17 +61,36 @@
     --card-hover-shadow-red: 0 0 24px rgba(196, 30, 58, 0.3);
   }
 
+  .dark .language-card,
+  .dark .platform-card,
+  .dark .project-card,
+  .dark .tool-card,
+  .dark .blog-card {
+    transition: box-shadow 0.2s, border-color 0.2s, background-color 0.2s;
+  }
+
   .dark .language-card:hover,
   .dark .platform-card:hover,
   .dark .project-card:hover {
     box-shadow: var(--card-hover-shadow) !important;
     border-color: rgb(var(--c-rosie-yellow)) !important;
+    background-color: rgb(52 52 52) !important;
   }
 
   .dark .tool-card:hover,
   .dark .blog-card:hover {
     box-shadow: var(--card-hover-shadow-red) !important;
     border-color: rgb(var(--c-rosie-red)) !important;
+    background-color: rgb(52 52 52) !important;
+  }
+
+  /* Dark theme: GitHub green, macOS moon silver */
+  .dark .tool-card.icon-github svg {
+    fill: rgb(var(--c-github)) !important;
+  }
+
+  .dark .platform-card.icon-macos svg {
+    fill: #c7c7cc !important;
   }
 
   html {

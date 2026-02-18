@@ -1,32 +1,41 @@
 ---
 interface Props {
   name: string;
-  path: string;
-  color: string;
+  path?: string;
+  color?: string;
+  /** Full SVG string for multi-color icons (e.g. Python). When set, path/color are ignored. */
+  svg?: string;
+  /** Slug for theme-specific icon color overrides (e.g. "github", "macos") */
+  iconSlug?: string;
   variant?: "language" | "platform" | "tool";
 }
 
-const { name, path, color, variant = "tool" } = Astro.props;
+const { name, path, color, svg, iconSlug, variant = "tool" } = Astro.props;
 const cardClass =
   variant === "language"
     ? "language-card"
     : variant === "platform"
       ? "platform-card"
       : "tool-card";
+const iconClass = iconSlug ? `icon-${iconSlug}` : "";
 ---
 
 <div
-  class={`${cardClass} flex min-h-[88px] flex-col items-center justify-center gap-2 rounded-xl border border-border bg-surface-elevated p-4 transition-shadow hover:shadow-md`}
+  class={`${cardClass} ${iconClass} flex min-h-[88px] flex-col items-center justify-center gap-2 rounded-xl border border-border bg-surface-elevated p-4 transition-shadow hover:shadow-md`}
 >
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill={`#${color}`}
-    class="h-7 w-7 shrink-0"
-    aria-hidden="true"
-  >
-    <path d={path} />
-  </svg>
+  {svg ? (
+    <div class="h-7 w-7 shrink-0 [&_svg]:h-full [&_svg]:w-full" set:html={svg} />
+  ) : path && color ? (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill={`#${color}`}
+      class="h-7 w-7 shrink-0"
+      aria-hidden="true"
+    >
+      <path d={path} />
+    </svg>
+  ) : null}
   <span class="text-center text-sm font-medium text-[rgb(var(--c-text))]">
     {name}
   </span>
