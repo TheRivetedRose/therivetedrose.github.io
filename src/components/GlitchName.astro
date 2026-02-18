@@ -1,0 +1,115 @@
+---
+interface Props {
+  initialName?: string;
+  finalName?: string;
+  initialDelay?: number;
+  glitchDuration?: number;
+  class?: string;
+}
+
+const {
+  initialName = "Roselie Freixas",
+  finalName = "TheRivetedRose",
+  initialDelay = 1200,
+  glitchDuration = 600,
+  class: className = "text-accent",
+} = Astro.props;
+---
+
+<span
+  class:list={[className]}
+  data-glitch-name
+  data-initial={initialName}
+  data-final={finalName}
+  data-initial-delay={initialDelay}
+  data-glitch-duration={glitchDuration}
+>
+  {initialName}
+</span>
+
+<style>
+  .glitch-active {
+    animation: glitch-flicker 0.1s steps(2) infinite;
+  }
+
+  @keyframes glitch-flicker {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.85;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .glitch-active {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  const GLITCH_CHARS = "!@#$%^&*01[]{}|/~`";
+
+  function initGlitchName() {
+    const el = document.querySelector("[data-glitch-name]");
+    if (!el) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      el.textContent = el.getAttribute("data-final") ?? "TheRivetedRose";
+      return;
+    }
+
+    const initial = el.getAttribute("data-initial") ?? "Roselie Freixas";
+    const final = el.getAttribute("data-final") ?? "TheRivetedRose";
+    const initialDelay = parseInt(
+      el.getAttribute("data-initial-delay") ?? "1200",
+      10
+    );
+    const glitchDuration = parseInt(
+      el.getAttribute("data-glitch-duration") ?? "600",
+      10
+    );
+
+    function randomChar() {
+      return GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)];
+    }
+
+    function scramble(str: string, intensity: number): string {
+      return str
+        .split("")
+        .map((c) =>
+          c === " " ? " " : Math.random() < intensity ? randomChar() : c
+        )
+        .join("");
+    }
+
+    setTimeout(() => {
+      el.classList.add("glitch-active");
+      const iterations = Math.max(10, Math.floor(glitchDuration / 50));
+      const interval = glitchDuration / iterations;
+      let count = 0;
+
+      const glitchInterval = setInterval(() => {
+        count++;
+        const progress = count / iterations;
+        if (progress < 0.5) {
+          el.textContent = scramble(initial, progress * 1.2);
+        } else if (progress < 0.85) {
+          el.textContent = scramble(final, (1 - progress) * 1.5);
+        } else {
+          el.textContent = final;
+        }
+
+        if (count >= iterations) {
+          clearInterval(glitchInterval);
+          el.classList.remove("glitch-active");
+          el.textContent = final;
+        }
+      }, interval);
+    }, initialDelay);
+  }
+
+  initGlitchName();
+</script>
