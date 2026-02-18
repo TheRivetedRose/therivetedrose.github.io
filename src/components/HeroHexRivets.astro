@@ -1,0 +1,121 @@
+---
+---
+<svg
+  class="hero-hex-rivets absolute inset-0 h-full w-full pointer-events-none"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 1200 400"
+  preserveAspectRatio="xMidYMid slice"
+  aria-hidden="true"
+>
+  <defs>
+    <!-- Hexagon path: flat-top, radius ~10, centered at origin -->
+    <path
+      id="hex-path"
+      d="M 0,-10 L 8.66,-5 L 8.66,5 L 0,10 L -8.66,5 L -8.66,-5 Z"
+    />
+    <!-- Variant 1: Outlined only -->
+    <g id="hex-outline">
+      <use href="#hex-path" class="hero-hex__outline" />
+    </g>
+    <!-- Variant 2: Double outline -->
+    <g id="hex-double">
+      <use href="#hex-path" class="hero-hex__outline" />
+      <use href="#hex-path" class="hero-hex__inner-outline" transform="scale(0.65)" />
+    </g>
+    <!-- Variant 3: Bullseye - outline with solid center -->
+    <g id="hex-bullseye">
+      <use href="#hex-path" class="hero-hex__outline" />
+      <use href="#hex-path" class="hero-hex__solid-center" transform="scale(0.4)" />
+    </g>
+    <!-- Variant 4: Solid filled -->
+    <g id="hex-solid">
+      <use href="#hex-path" class="hero-hex__solid" />
+    </g>
+    <style>
+      .hero-hex__outline {
+        fill: none;
+        stroke: rgb(var(--c-surface));
+        stroke-width: 1.5;
+        opacity: 0.4;
+      }
+      .hero-hex__inner-outline {
+        fill: none;
+        stroke: rgb(var(--c-surface));
+        stroke-width: 1;
+        opacity: 0.25;
+      }
+      .hero-hex__solid-center {
+        fill: rgb(var(--c-surface));
+        stroke: none;
+        opacity: 0.5;
+      }
+      .hero-hex__solid {
+        fill: rgb(var(--c-surface));
+        stroke: none;
+        opacity: 0.45;
+      }
+      .dark .hero-hex__outline,
+      .dark .hero-hex__inner-outline,
+      .dark .hero-hex__solid-center,
+      .dark .hero-hex__solid {
+        opacity: 1;
+      }
+    </style>
+  </defs>
+
+  <!-- Top row: outline, double, bullseye, solid, repeat -->
+  <g class="hero-hex__rivets-top">
+    <use href="#hex-outline" x="40" y="25" class="hero-hex__rivet" />
+    <use href="#hex-double" x="120" y="25" class="hero-hex__rivet" />
+    <use href="#hex-bullseye" x="200" y="25" class="hero-hex__rivet" />
+    <use href="#hex-solid" x="280" y="25" class="hero-hex__rivet" />
+    <use href="#hex-outline" x="360" y="25" class="hero-hex__rivet" />
+    <use href="#hex-double" x="440" y="25" class="hero-hex__rivet" />
+    <use href="#hex-bullseye" x="520" y="25" class="hero-hex__rivet" />
+    <use href="#hex-solid" x="600" y="25" class="hero-hex__rivet" />
+    <use href="#hex-outline" x="680" y="25" class="hero-hex__rivet" />
+    <use href="#hex-double" x="760" y="25" class="hero-hex__rivet" />
+    <use href="#hex-bullseye" x="840" y="25" class="hero-hex__rivet" />
+    <use href="#hex-solid" x="920" y="25" class="hero-hex__rivet" />
+    <use href="#hex-outline" x="1000" y="25" class="hero-hex__rivet" />
+    <use href="#hex-double" x="1080" y="25" class="hero-hex__rivet" />
+    <use href="#hex-bullseye" x="1160" y="25" class="hero-hex__rivet" />
+  </g>
+
+  <!-- Bottom row -->
+  <g class="hero-hex__rivets-bottom">
+    <use href="#hex-solid" x="40" y="375" class="hero-hex__rivet" />
+    <use href="#hex-outline" x="120" y="375" class="hero-hex__rivet" />
+    <use href="#hex-double" x="200" y="375" class="hero-hex__rivet" />
+    <use href="#hex-bullseye" x="280" y="375" class="hero-hex__rivet" />
+    <use href="#hex-solid" x="360" y="375" class="hero-hex__rivet" />
+    <use href="#hex-outline" x="440" y="375" class="hero-hex__rivet" />
+    <use href="#hex-double" x="520" y="375" class="hero-hex__rivet" />
+    <use href="#hex-bullseye" x="600" y="375" class="hero-hex__rivet" />
+    <use href="#hex-solid" x="680" y="375" class="hero-hex__rivet" />
+    <use href="#hex-outline" x="760" y="375" class="hero-hex__rivet" />
+    <use href="#hex-double" x="840" y="375" class="hero-hex__rivet" />
+    <use href="#hex-bullseye" x="920" y="375" class="hero-hex__rivet" />
+    <use href="#hex-solid" x="1000" y="375" class="hero-hex__rivet" />
+    <use href="#hex-outline" x="1080" y="375" class="hero-hex__rivet" />
+    <use href="#hex-double" x="1160" y="375" class="hero-hex__rivet" />
+  </g>
+
+  <!-- Left column -->
+  <g class="hero-hex__rivets-left">
+    <use href="#hex-outline" x="25" y="60" class="hero-hex__rivet" />
+    <use href="#hex-bullseye" x="25" y="140" class="hero-hex__rivet" />
+    <use href="#hex-solid" x="25" y="220" class="hero-hex__rivet" />
+    <use href="#hex-double" x="25" y="300" class="hero-hex__rivet" />
+    <use href="#hex-outline" x="25" y="340" class="hero-hex__rivet" />
+  </g>
+
+  <!-- Right column -->
+  <g class="hero-hex__rivets-right">
+    <use href="#hex-double" x="1175" y="60" class="hero-hex__rivet" />
+    <use href="#hex-solid" x="1175" y="140" class="hero-hex__rivet" />
+    <use href="#hex-outline" x="1175" y="220" class="hero-hex__rivet" />
+    <use href="#hex-bullseye" x="1175" y="300" class="hero-hex__rivet" />
+    <use href="#hex-double" x="1175" y="340" class="hero-hex__rivet" />
+  </g>
+</svg>
