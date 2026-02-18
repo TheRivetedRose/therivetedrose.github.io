@@ -1,0 +1,26 @@
+---
+interface Props {
+  name: string;
+  path: string;
+  color: string;
+}
+
+const { name, path, color } = Astro.props;
+---
+
+<div
+  class="flex min-h-[88px] flex-col items-center justify-center gap-2 rounded-xl border border-border bg-surface-elevated p-4 transition-shadow hover:shadow-md"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill={`#${color}`}
+    class="h-7 w-7 shrink-0"
+    aria-hidden="true"
+  >
+    <path d={path} />
+  </svg>
+  <span class="text-center text-sm font-medium text-[rgb(var(--c-text))]">
+    {name}
+  </span>
+</div>
