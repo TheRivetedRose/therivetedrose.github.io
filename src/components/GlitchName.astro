@@ -12,9 +12,9 @@ interface Props {
 const {
   initialName = "Roselie Freixas",
   finalName = "TheRivetedRose",
-  initialDelay = 1200,
+  initialDelay = 500,
   glitchDuration = 600,
-  typeSpeed = 60,
+  typeSpeed = 120,
   deleteSpeed = 40,
   class: className = "text-accent",
 } = Astro.props;
@@ -30,7 +30,7 @@ const {
   data-type-speed={typeSpeed}
   data-delete-speed={deleteSpeed}
 >
-  {initialName}
+
 </span>
 
 <style>
@@ -161,9 +161,22 @@ const {
 
     document.addEventListener("glitch-name-trigger", runLoopCycle);
 
-    setTimeout(() => {
-      runGlitch();
-    }, initialDelay);
+    function typeInitial(callback: () => void) {
+      el!.textContent = "";
+      let idx = 0;
+      function typeNext() {
+        el!.textContent = initial.slice(0, idx + 1);
+        idx++;
+        if (idx < initial.length) {
+          setTimeout(typeNext, typeSpeed);
+        } else {
+          setTimeout(callback, 400);
+        }
+      }
+      setTimeout(typeNext, initialDelay);
+    }
+
+    typeInitial(() => runGlitch());
   }
 
   initGlitchName();
