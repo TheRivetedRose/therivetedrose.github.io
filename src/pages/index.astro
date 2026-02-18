@@ -42,7 +42,7 @@ const typewriterSubheadlines = [
   description="TheRivetedRose — Portfolio, technical writing, and security lab projects"
 >
   <section
-    class="hero relative overflow-hidden border-b border-rosie-navy/50 bg-rosie-navy polka-dots"
+    class="hero relative overflow-hidden bg-rosie-navy"
   >
     <div class="mx-auto max-w-5xl px-4 py-24 sm:px-6 lg:px-8">
       <RevealOnScroll>
@@ -51,7 +51,7 @@ const typewriterSubheadlines = [
         >
           Hi, I'm <GlitchName client:load class="text-rosie-yellow" />
         </h1>
-        <div class="text-xl text-white/85">
+        <div class="min-h-[8rem] text-xl text-white/85">
           <Typewriter
             client:load
             phrases={typewriterPhrases}
@@ -79,6 +79,7 @@ const typewriterSubheadlines = [
         </div>
       </RevealOnScroll>
     </div>
+    <div class="polka-strip-subtle border-b border-rosie-navy/50" aria-hidden="true"></div>
   </section>
 
   <script>
@@ -101,9 +102,10 @@ const typewriterSubheadlines = [
       </p>
       <a href="/about/" class="btn-secondary mt-4">Learn more</a>
     </RevealOnScroll>
+    <div class="polka-strip mt-16" aria-hidden="true"></div>
   </section>
 
-  <section class="border-t border-rosie-navy/20 bg-surface-elevated polka-dots">
+  <section class="border-t border-rosie-navy/20 bg-surface-elevated">
     <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
       <RevealOnScroll>
         <h2 class="section-heading-rosie mb-8">Languages</h2>
@@ -118,6 +120,7 @@ const typewriterSubheadlines = [
         </div>
       </RevealOnScroll>
     </div>
+    <div class="polka-strip-subtle" aria-hidden="true"></div>
   </section>
 
   <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
@@ -133,6 +136,7 @@ const typewriterSubheadlines = [
         ))}
       </div>
     </RevealOnScroll>
+    <div class="polka-strip" aria-hidden="true"></div>
   </section>
 
   <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
@@ -165,9 +169,10 @@ const typewriterSubheadlines = [
       </div>
       <a href="/projects/" class="btn-secondary mt-8">All projects</a>
     </RevealOnScroll>
+    <div class="polka-strip" aria-hidden="true"></div>
   </section>
 
-  <section class="border-t border-rosie-navy/20 bg-surface-elevated polka-dots">
+  <section class="border-t border-rosie-navy/20 bg-surface-elevated">
     <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
       <RevealOnScroll>
         <h2 class="section-heading-rosie mb-8">Latest Blog</h2>
@@ -193,6 +198,7 @@ const typewriterSubheadlines = [
         }
       </RevealOnScroll>
     </div>
+    <div class="polka-strip-subtle" aria-hidden="true"></div>
   </section>
 
   <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
@@ -219,5 +225,6 @@ const typewriterSubheadlines = [
         LinkedIn
       </a>
     </RevealOnScroll>
+    <div class="polka-strip" aria-hidden="true"></div>
   </section>
 </PageLayout>
