@@ -62,11 +62,6 @@ const {
     const el = document.querySelector("[data-glitch-name]");
     if (!el) return;
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      el.textContent = el.getAttribute("data-final") ?? "TheRivetedRose";
-      return;
-    }
-
     const initial =
       el.getAttribute("data-initial") ?? "Roselie Freixas";
     const final = el.getAttribute("data-final") ?? "TheRivetedRose";
@@ -86,6 +81,37 @@ const {
       el.getAttribute("data-delete-speed") ?? "40",
       10
     );
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const htmlEl = el as HTMLElement;
+      htmlEl.textContent = initial;
+      htmlEl.style.transition = "opacity 0.6s ease";
+
+      setTimeout(() => {
+        htmlEl.style.opacity = "0";
+        setTimeout(() => {
+          htmlEl.textContent = final;
+          htmlEl.style.opacity = "1";
+        }, 600);
+      }, 800);
+
+      document.addEventListener("glitch-name-trigger", () => {
+        htmlEl.style.opacity = "0";
+        setTimeout(() => {
+          htmlEl.textContent = initial;
+          htmlEl.style.opacity = "1";
+          setTimeout(() => {
+            htmlEl.style.opacity = "0";
+            setTimeout(() => {
+              htmlEl.textContent = final;
+              htmlEl.style.opacity = "1";
+              document.dispatchEvent(new CustomEvent("glitch-name-complete"));
+            }, 600);
+          }, 1400);
+        }, 600);
+      });
+      return;
+    }
 
     function randomChar() {
       return GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)];
