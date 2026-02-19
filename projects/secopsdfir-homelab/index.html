@@ -10,16 +10,10 @@ View Repository
 <p>The architecture and workflow are intentionally aligned to:</p>
 <ul>
 <li>
-<p><strong>NIST Special Publication (SP) 800-61 Revision 3 – Computer Security Incident Handling Guide</strong></p>
-<ul>
-<li><a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf" target="_blank" rel="noopener noreferrer">NIST 800-61 Revision 3</a></li>
-</ul>
+<p><strong><a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf" target="_blank" rel="noopener noreferrer">NIST Special Publication (SP) 800-61 Revision 3</a> – Computer Security Incident Handling Guide</strong></p>
 </li>
 <li>
-<p><strong>MITRE ATT&#x26;CK (Adversarial Tactics, Techniques, and Common Knowledge) Framework</strong></p>
-<ul>
-<li><a href="https://attack.mitre.org/" target="_blank" rel="noopener noreferrer">MITRE ATT&#x26;CK Framework</a></li>
-</ul>
+<p><strong><a href="https://attack.mitre.org/" target="_blank" rel="noopener noreferrer">MITRE ATT&#x26;CK (Adversarial Tactics, Techniques, and Common Knowledge) Framework</a></strong></p>
 </li>
 </ul>
 <p>This phase formalizes structured research, design decisions, threat modeling, and implementation planning prior to deployment.</p>
@@ -84,24 +78,19 @@ View Repository
 <h4 id="virtual-environment">Virtual Environment</h4>
 <ul>
 <li>
-<p><strong>Windows Virtual Machine</strong> – Target system for telemetry and endpoint detection practice</p>
+<p><strong><a href="https://www.microsoft.com/en-us/evalcenter/" target="_blank" rel="noopener noreferrer">Windows Virtual Machine</a></strong> – Target system for telemetry and endpoint detection practice</p>
 <ul>
-<li><a href="https://www.microsoft.com/en-us/evalcenter/" target="_blank" rel="noopener noreferrer">Windows VM</a></li>
+<li>Windows provides enterprise-relevant log generation.</li>
 </ul>
 </li>
 <li>
-<p><strong>Kali Linux Virtual Machine</strong> – Controlled adversary simulation platform</p>
+<p><strong><a href="https://www.kali.org/" target="_blank" rel="noopener noreferrer">Kali Linux Virtual Machine</a><a></a></strong><a> – Controlled adversary simulation platform</a></p><a>
 <ul>
-<li>
-<p><a href="https://www.kali.org/" target="_blank" rel="noopener noreferrer">Kali Linux VM</a></p>
-</li>
-<li>
-<p>Windows provides enterprise-relevant log generation. Kali supports structured adversary technique simulation.</p>
-</li>
+<li>Kali supports structured adversary technique simulation.</li>
 </ul>
-</li>
-</ul>
-<p><a href="/blog/HomeLab-OS-Selection/">Blog Post: Operating System &#x26; Hypervisor Selection Rationale</a></p>
+</a></li><a>
+</a></ul><a>
+</a><p><a></a><a href="/blog/HomeLab-OS-Selection/">Blog Post: Operating System &#x26; Hypervisor Selection Rationale</a></p>
 <hr>
 <h3 id="network-segmentation-model">Network Segmentation Model</h3>
 <p>The lab will utilize a NAT-based isolated internal network within VirtualBox.</p>
@@ -142,33 +131,21 @@ View Repository
 <p>A centralized Security Information and Event Management platform will function as the operational core of the lab, enabling log normalization, correlation, and alert development consistent with enterprise SOC workflows.</p>
 <p>Initial telemetry sources:</p>
 <ul>
-<li>
-<p>Windows Event Logs</p>
-</li>
-<li>
-<p>Sysmon (System Monitor)<br>
-<a href="https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon" target="_blank" rel="noopener noreferrer">Sysmon</a></p>
-</li>
-<li>
-<p>Linux authentication logs</p>
-</li>
-<li>
-<p>Network traffic capture</p>
-</li>
+<li>Windows Event Logs</li>
+<li><a href="https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon" target="_blank" rel="noopener noreferrer">Sysmon</a> (System Monitor)</li>
+<li>Linux authentication logs</li>
+<li>Network traffic capture</li>
 </ul>
 <p>Planned log centralization tools under evaluation:</p>
 <ul>
 <li>
-<p>Wazuh (Open Source Security Platform)<br>
-<a href="https://wazuh.com/" target="_blank" rel="noopener noreferrer">Wazuh</a></p>
+<p><a href="https://wazuh.com/" target="_blank" rel="noopener noreferrer">Wazuh</a> (Open Source Security Platform)</p>
 </li>
 <li>
-<p>Elastic Stack (Elasticsearch, Logstash, Kibana)<br>
-<a href="https://www.elastic.co/" target="_blank" rel="noopener noreferrer">Elastic Stack</a></p>
+<p><a href="https://www.elastic.co/" target="_blank" rel="noopener noreferrer">Elastic Stack</a> (Elasticsearch, Logstash, Kibana)</p>
 </li>
 <li>
-<p>Security Onion (Open-Source Threat Hunting Platform)<br>
-<a href="https://securityonion.net/" target="_blank" rel="noopener noreferrer">Security Onion</a></p>
+<p><a href="https://securityonion.net/" target="_blank" rel="noopener noreferrer">Security Onion</a> (Open-Source Threat Hunting Platform)</p>
 </li>
 </ul>
 <p>Tool selection will be based on:</p>
@@ -207,16 +184,13 @@ View Repository
 <h3 id="planned-forensic-tooling">Planned Forensic Tooling</h3>
 <ul>
 <li>
-<p>Autopsy (Digital Forensics Platform)<br>
-<a href="https://www.autopsy.com/" target="_blank" rel="noopener noreferrer">Autopsy</a></p>
+<p><a href="https://www.autopsy.com/" target="_blank" rel="noopener noreferrer">Autopsy</a> (Digital Forensics Platform)</p>
 </li>
 <li>
-<p>Volatility (Memory Forensics Framework)<br>
-<a href="https://www.volatilityfoundation.org/" target="_blank" rel="noopener noreferrer">Volatility</a></p>
+<p><a href="https://www.volatilityfoundation.org/" target="_blank" rel="noopener noreferrer">Volatility</a> (Memory Forensics Framework)</p>
 </li>
 <li>
-<p>FTK Imager (Free Edition)<br>
-<a href="https://www.exterro.com/digital-forensics-software/ftk-imager" target="_blank" rel="noopener noreferrer">FTK Imager</a></p>
+<p><a href="https://www.exterro.com/digital-forensics-software/ftk-imager" target="_blank" rel="noopener noreferrer">FTK Imager</a> (Free Edition)</p>
 </li>
 </ul>
 <p>These tools support foundational artifact acquisition and analysis practice.</p>
