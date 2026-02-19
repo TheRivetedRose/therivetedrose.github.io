@@ -90,13 +90,13 @@ Reference:
 #### Host Environment
 
 - **Secondary Operating System:** Ubuntu Long-Term Support (LTS)
-  <a href="https://ubuntu.com/" target="_blank" rel="noopener noreferrer">Ubuntu</a>
+  - <a href="https://ubuntu.com/" target="_blank" rel="noopener noreferrer">Ubuntu</a>
   - Ubuntu LTS was selected for its stability, security patch cadence, and compatibility with open-source security tooling.
   - For further security segmentation, this OS will be installed on a dedicated SSD (Solid State Drive), separate from primary OS.
   - The secondary OS will be used as this home lab's control center for managing VMs.
 
 - **Hypervisor:** VMware Workstation Pro
-  <a href="https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion#overview" target="_blank" rel="noopener noreferrer">VMware Workstation Pro (download and documentation)</a>
+  - <a href="https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion#overview" target="_blank" rel="noopener noreferrer">VMware Workstation Pro (download and documentation)</a>
   - VMware Workstation Pro was selected for its advanced snapshot management, robust virtual networking controls, and alignment with enterprise virtualization standards.
   - As of March 2025, VMare Workstation Pro and all it's previous paid features are now free for all use cases.
 
@@ -104,13 +104,13 @@ Reference:
 
 #### Virtual Environment
 
-- **Windows Virtual Machine** – Target system for telemetry and endpoint detection practice  
-  <a href="https://www.microsoft.com/en-us/evalcenter/" target="_blank" rel="noopener noreferrer">Windows VM</a>
+- **Windows Virtual Machine** – Target system for telemetry and endpoint detection practice
+  - <a href="https://www.microsoft.com/en-us/evalcenter/" target="_blank" rel="noopener noreferrer">Windows VM</a>
 
-- **Kali Linux Virtual Machine** – Controlled adversary simulation platform  
-  <a href="https://www.kali.org/" target="_blank" rel="noopener noreferrer">Kali Linux VM</a>
+- **Kali Linux Virtual Machine** – Controlled adversary simulation platform
+  - <a href="https://www.kali.org/" target="_blank" rel="noopener noreferrer">Kali Linux VM</a>
 
-Windows provides enterprise-relevant log generation. Kali supports structured adversary technique simulation.
+  - Windows provides enterprise-relevant log generation. Kali supports structured adversary technique simulation.
 
 [Blog Post: Operating System & Hypervisor Selection Rationale](/blog/HomeLab-OS-Selection/)
 
