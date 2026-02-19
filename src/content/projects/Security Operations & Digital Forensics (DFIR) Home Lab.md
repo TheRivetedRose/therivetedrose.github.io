@@ -99,8 +99,6 @@ Ubuntu LTS was selected for stability, security patch cadence, and compatibility
 
 VirtualBox was selected due to cost constraints (free), documentation maturity, and network isolation capabilities.
 
-[Blog Post: Operating System & Hypervisor Selection Rationale](#)
-
 ---
 
 #### Virtual Environment
@@ -113,7 +111,7 @@ VirtualBox was selected due to cost constraints (free), documentation maturity, 
 
 Windows provides enterprise-relevant log generation. Kali supports structured adversary technique simulation.
 
-[Blog Post: Windows & Kali Version Selection Rationale](#)
+[Blog Post: Operating System & Hypervisor Selection Rationale](/blog/HomeLab-OS-Selection/)
 
 ---
 
@@ -130,7 +128,7 @@ Planned controls:
 
 This design minimizes risk to the primary system while enabling controlled adversary simulation.
 
-[Blog Post: Network Segmentation & Isolation Design](#)
+[Blog Post: Network Segmentation & Isolation Design](/blog/HomeLab-Networking-Segmentation-Modeling/)
 
 ---
 
@@ -192,7 +190,7 @@ Tool selection will be based on:
 - Community support
 - Portability of skillset
 
-[Blog Post: SIEM & Telemetry Tool Selection Research](#)
+[Blog Post: SIEM & Telemetry Tool Selection Research](/blog/SIEM-Scaffolding-for-HomeLab/)
 
 ---
 
@@ -221,7 +219,7 @@ This initial threat model is intentionally lightweight and will evolve as the la
 
 This lightweight threat model informs detection and logging priorities.
 
-[Blog Post: Threat Modeling Process & Assumptions](#)
+[Blog Post: Threat Modeling Process & Assumptions](/blog/HomeLab-Threat-Modeling/)
 
 ---
 
@@ -252,7 +250,7 @@ These tools support foundational artifact acquisition and analysis practice.
 
 Baseline state documentation will precede adversary simulation.
 
-[Building a SOC Lab with Zero Budget: Phase 2 Implementation](#)
+[Building a SOC Lab on a Budget: Phase 2 Implementation](/blog/Building-Budget-HomeLab/)
 
 ---
 
