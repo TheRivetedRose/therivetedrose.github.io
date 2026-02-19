@@ -79,8 +79,9 @@ Examples of planned technique simulations:
 - T1547 – Boot or Logon Autostart Execution
 - T1562 – Impair Defenses
 
-Reference:  
-https://attack.mitre.org/techniques/
+Reference:
+
+<a href="https://attack.mitre.org/techniques/" target="_blank" rel="noopener noreferrer">ATT&CK Techniques</a>
 
 ---
 
