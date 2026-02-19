@@ -27,24 +27,12 @@ The architecture and workflow are intentionally aligned to:
 
 - **NIST Special Publication (SP) 800-61 Revision 3 – Computer Security Incident Handling Guide**
 
-<a
-    href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf"
-    target="_blank"
-    rel="noopener noreferrer"
-> 
-    NIST 800-61 Revision 3
-</a>
+<a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf" target="_blank" rel="noopener noreferrer"> NIST 800-61 Revision 3</a>
 
 
 - **MITRE ATT&CK (Adversarial Tactics, Techniques, and Common Knowledge) Framework**
   
-<a
-    href="https://attack.mitre.org/"
-    target="_blank"
-    rel="noopener noreferrer"
->
-    MITRE ATT&CK Framework
-</a>
+<a href="https://attack.mitre.org/" target="_blank" rel="noopener noreferrer">MITRE ATT&CK Framework</a>
 
 
 This phase formalizes structured research, design decisions, threat modeling, and implementation planning prior to deployment.
