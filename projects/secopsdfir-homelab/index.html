@@ -9,13 +9,19 @@ View Repository
 <p>This project documents the research, planning, and architectural design of a personal SOC (Security Operations Center) and DFIR (Digital Forensics and Incident Response) lab environment. The lab is designed to simulate a small enterprise network with centralized monitoring and incident response capabilities using free and open-source tooling.</p>
 <p>The architecture and workflow are intentionally aligned to:</p>
 <ul>
-<li><strong>NIST Special Publication (SP) 800-61 Revision 3 – Computer Security Incident Handling Guide</strong></li>
-</ul>
-<p><a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf" target="_blank" rel="noopener noreferrer">NIST 800-61 Revision 3</a></p>
+<li>
+<p><strong>NIST Special Publication (SP) 800-61 Revision 3 – Computer Security Incident Handling Guide</strong></p>
 <ul>
-<li><strong>MITRE ATT&#x26;CK (Adversarial Tactics, Techniques, and Common Knowledge) Framework</strong></li>
+<li><a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf" target="_blank" rel="noopener noreferrer">NIST 800-61 Revision 3</a></li>
 </ul>
-<p><a href="https://attack.mitre.org/" target="_blank" rel="noopener noreferrer">MITRE ATT&#x26;CK Framework</a></p>
+</li>
+<li>
+<p><strong>MITRE ATT&#x26;CK (Adversarial Tactics, Techniques, and Common Knowledge) Framework</strong></p>
+<ul>
+<li><a href="https://attack.mitre.org/" target="_blank" rel="noopener noreferrer">MITRE ATT&#x26;CK Framework</a></li>
+</ul>
+</li>
+</ul>
 <p>This phase formalizes structured research, design decisions, threat modeling, and implementation planning prior to deployment.</p>
 <hr>
 <h3 id="strategic-objectives">Strategic Objectives</h3>
@@ -59,18 +65,18 @@ View Repository
 <h4 id="host-environment">Host Environment</h4>
 <ul>
 <li>
-<p><strong>Secondary Operating System:</strong> Ubuntu Long-Term Support (LTS)
-<a href="https://ubuntu.com/" target="_blank" rel="noopener noreferrer">Ubuntu</a></p>
+<p><strong>Secondary Operating System:</strong> Ubuntu Long-Term Support (LTS)</p>
 <ul>
+<li><a href="https://ubuntu.com/" target="_blank" rel="noopener noreferrer">Ubuntu</a></li>
 <li>Ubuntu LTS was selected for its stability, security patch cadence, and compatibility with open-source security tooling.</li>
 <li>For further security segmentation, this OS will be installed on a dedicated SSD (Solid State Drive), separate from primary OS.</li>
 <li>The secondary OS will be used as this home lab’s control center for managing VMs.</li>
 </ul>
 </li>
 <li>
-<p><strong>Hypervisor:</strong> VMware Workstation Pro
-<a href="https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion#overview" target="_blank" rel="noopener noreferrer">VMware Workstation Pro (download and documentation)</a></p>
+<p><strong>Hypervisor:</strong> VMware Workstation Pro</p>
 <ul>
+<li><a href="https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion#overview" target="_blank" rel="noopener noreferrer">VMware Workstation Pro (download and documentation)</a></li>
 <li>VMware Workstation Pro was selected for its advanced snapshot management, robust virtual networking controls, and alignment with enterprise virtualization standards.</li>
 <li>As of March 2025, VMare Workstation Pro and all it’s previous paid features are now free for all use cases.</li>
 </ul>
@@ -80,15 +86,23 @@ View Repository
 <h4 id="virtual-environment">Virtual Environment</h4>
 <ul>
 <li>
-<p><strong>Windows Virtual Machine</strong> – Target system for telemetry and endpoint detection practice<br>
-<a href="https://www.microsoft.com/en-us/evalcenter/" target="_blank" rel="noopener noreferrer">Windows VM</a></p>
+<p><strong>Windows Virtual Machine</strong> – Target system for telemetry and endpoint detection practice</p>
+<ul>
+<li><a href="https://www.microsoft.com/en-us/evalcenter/" target="_blank" rel="noopener noreferrer">Windows VM</a></li>
+</ul>
 </li>
 <li>
-<p><strong>Kali Linux Virtual Machine</strong> – Controlled adversary simulation platform<br>
-<a href="https://www.kali.org/" target="_blank" rel="noopener noreferrer">Kali Linux VM</a></p>
+<p><strong>Kali Linux Virtual Machine</strong> – Controlled adversary simulation platform</p>
+<ul>
+<li>
+<p><a href="https://www.kali.org/" target="_blank" rel="noopener noreferrer">Kali Linux VM</a></p>
+</li>
+<li>
+<p>Windows provides enterprise-relevant log generation. Kali supports structured adversary technique simulation.</p>
 </li>
 </ul>
-<p>Windows provides enterprise-relevant log generation. Kali supports structured adversary technique simulation.</p>
+</li>
+</ul>
 <p><a href="/blog/HomeLab-OS-Selection/">Blog Post: Operating System &#x26; Hypervisor Selection Rationale</a></p>
 <hr>
 <h3 id="network-segmentation-model">Network Segmentation Model</h3>
