@@ -8,7 +8,7 @@ tags:
   - dual-boot
   - blue-team
 featured: true
-repoUrl: https://github.com/therivetedrose/home-lab-architecture
+repoUrl: https://github.com/therivetedrose/home-lab-architecture2
 image: /img/projects/home-lab-architecture.svg
 pubDate: 2026-02-01
 ---
@@ -21,11 +21,11 @@ Running security lab workloads (attack simulation, packet capture, log collectio
 
 ### Host Architecture
 
-| Role | System |
-|------|--------|
-| Primary OS | Windows (daily-use environment) |
-| Lab OS | Ubuntu 22.04 LTS (dual-boot partition) |
-| Virtualization | VirtualBox (installed only on Ubuntu) |
+| Role           | System                                 |
+| -------------- | -------------------------------------- |
+| Primary OS     | Windows (daily-use environment)        |
+| Lab OS         | Ubuntu 22.04 LTS (dual-boot partition) |
+| Virtualization | VirtualBox (installed only on Ubuntu)  |
 
 ### Virtual Machines
 
