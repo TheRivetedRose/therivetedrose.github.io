@@ -89,15 +89,16 @@ Reference:
 
 #### Host Environment
 
-- **Primary Operating System:** Ubuntu Long-Term Support (LTS)  
+- **Secondary Operating System:** Ubuntu Long-Term Support (LTS)
   <a href="https://ubuntu.com/" target="_blank" rel="noopener noreferrer">Ubuntu</a>
+  - Ubuntu LTS was selected for its stability, security patch cadence, and compatibility with open-source security tooling.
+  - For further security segmentation, this OS will be installed on a dedicated SSD (Solid State Drive), separate from primary OS.
+  - The secondary OS will be used as this home lab's control center for managing VMs.
 
-- **Hypervisor:** Oracle VirtualBox  
-  <a href="https://www.virtualbox.org/" target="_blank" rel="noopener noreferrer">VirtualBox</a>
-
-Ubuntu LTS was selected for stability, security patch cadence, and compatibility with open-source security tooling. For further security segmentation, this OS will be installed on a dedicated SSD (Solid State Drive), separate from my main OS.
-
-VirtualBox was selected due to cost constraints (free), documentation maturity, and network isolation capabilities.
+- **Hypervisor:** VMware Workstation Pro
+  <a href="https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion#overview" target="_blank" rel="noopener noreferrer">VMware Workstation Pro (download and documentation)</a>
+  - VMware Workstation Pro was selected for its advanced snapshot management, robust virtual networking controls, and alignment with enterprise virtualization standards.
+  - As of March 2025, VMare Workstation Pro and all it's previous paid features are now free for all use cases.
 
 ---
 
