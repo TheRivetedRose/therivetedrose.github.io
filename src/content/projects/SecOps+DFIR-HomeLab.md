@@ -25,11 +25,9 @@ This project documents the research, planning, and architectural design of a per
 
 The architecture and workflow are intentionally aligned to:
 
-- **NIST Special Publication (SP) 800-61 Revision 3 – Computer Security Incident Handling Guide**
-  - <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf" target="_blank" rel="noopener noreferrer">NIST 800-61 Revision 3</a>
+- **<a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf" target="_blank" rel="noopener noreferrer">NIST Special Publication (SP) 800-61 Revision 3</a> – Computer Security Incident Handling Guide**
 
-- **MITRE ATT&CK (Adversarial Tactics, Techniques, and Common Knowledge) Framework**
-  - <a href="https://attack.mitre.org/" target="_blank" rel="noopener noreferrer">MITRE ATT&CK Framework</a>
+- **<a href="https://attack.mitre.org/" target="_blank" rel="noopener noreferrer">MITRE ATT&CK (Adversarial Tactics, Techniques, and Common Knowledge) Framework</a>**
 
 This phase formalizes structured research, design decisions, threat modeling, and implementation planning prior to deployment.
 
@@ -100,13 +98,11 @@ Reference:
 
 #### Virtual Environment
 
-- **Windows Virtual Machine** – Target system for telemetry and endpoint detection practice
-  - <a href="https://www.microsoft.com/en-us/evalcenter/" target="_blank" rel="noopener noreferrer">Windows VM</a>
+- **<a href="https://www.microsoft.com/en-us/evalcenter/" target="_blank" rel="noopener noreferrer">Windows Virtual Machine</a>** – Target system for telemetry and endpoint detection practice
+  - Windows provides enterprise-relevant log generation.
 
-- **Kali Linux Virtual Machine** – Controlled adversary simulation platform
-  - <a href="https://www.kali.org/" target="_blank" rel="noopener noreferrer">Kali Linux VM</a>
-
-  - Windows provides enterprise-relevant log generation. Kali supports structured adversary technique simulation.
+- **<a href="https://www.kali.org/" target="_blank" rel="noopener noreferrer">Kali Linux Virtual Machine<a>** – Controlled adversary simulation platform
+  - Kali supports structured adversary technique simulation.
 
 [Blog Post: Operating System & Hypervisor Selection Rationale](/blog/HomeLab-OS-Selection/)
 
@@ -163,22 +159,17 @@ A centralized Security Information and Event Management platform will function a
 Initial telemetry sources:
 
 - Windows Event Logs
-- Sysmon (System Monitor)  
-  <a href="https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon" target="_blank" rel="noopener noreferrer">Sysmon</a>
-
+- <a href="https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon" target="_blank" rel="noopener noreferrer">Sysmon</a> (System Monitor)
 - Linux authentication logs
 - Network traffic capture
 
 Planned log centralization tools under evaluation:
 
-- Wazuh (Open Source Security Platform)  
-  <a href="https://wazuh.com/" target="_blank" rel="noopener noreferrer">Wazuh</a>
+- <a href="https://wazuh.com/" target="_blank" rel="noopener noreferrer">Wazuh</a> (Open Source Security Platform)
 
-- Elastic Stack (Elasticsearch, Logstash, Kibana)  
-  <a href="https://www.elastic.co/" target="_blank" rel="noopener noreferrer">Elastic Stack</a>
+- <a href="https://www.elastic.co/" target="_blank" rel="noopener noreferrer">Elastic Stack</a> (Elasticsearch, Logstash, Kibana)
 
-- Security Onion (Open-Source Threat Hunting Platform)  
-  <a href="https://securityonion.net/" target="_blank" rel="noopener noreferrer">Security Onion</a>
+- <a href="https://securityonion.net/" target="_blank" rel="noopener noreferrer">Security Onion</a> (Open-Source Threat Hunting Platform)
 
 Tool selection will be based on:
 
@@ -222,14 +213,11 @@ This lightweight threat model informs detection and logging priorities.
 
 ### Planned Forensic Tooling
 
-- Autopsy (Digital Forensics Platform)  
-  <a href="https://www.autopsy.com/" target="_blank" rel="noopener noreferrer">Autopsy</a>
+- <a href="https://www.autopsy.com/" target="_blank" rel="noopener noreferrer">Autopsy</a> (Digital Forensics Platform)
 
-- Volatility (Memory Forensics Framework)  
-  <a href="https://www.volatilityfoundation.org/" target="_blank" rel="noopener noreferrer">Volatility</a>
+- <a href="https://www.volatilityfoundation.org/" target="_blank" rel="noopener noreferrer">Volatility</a> (Memory Forensics Framework)
 
-- FTK Imager (Free Edition)  
-  <a href="https://www.exterro.com/digital-forensics-software/ftk-imager" target="_blank" rel="noopener noreferrer">FTK Imager</a>
+- <a href="https://www.exterro.com/digital-forensics-software/ftk-imager" target="_blank" rel="noopener noreferrer">FTK Imager</a> (Free Edition)
 
 These tools support foundational artifact acquisition and analysis practice.
 
