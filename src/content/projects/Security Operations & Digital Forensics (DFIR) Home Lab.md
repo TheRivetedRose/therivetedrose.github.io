@@ -27,7 +27,7 @@ The architecture and workflow are intentionally aligned to:
 
 - **NIST Special Publication (SP) 800-61 Revision 3 – Computer Security Incident Handling Guide**
 
-<a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf" target="_blank" rel="noopener noreferrer"> NIST 800-61 Revision 3</a>
+<a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf" target="_blank" rel="noopener noreferrer">NIST 800-61 Revision 3</a>
 
 - **MITRE ATT&CK (Adversarial Tactics, Techniques, and Common Knowledge) Framework**
 
@@ -90,10 +90,10 @@ Reference:
 #### Host Environment
 
 - **Primary Operating System:** Ubuntu Long-Term Support (LTS)  
-  https://ubuntu.com/
+  <a href="https://ubuntu.com/" target="_blank" rel="noopener noreferrer">Ubuntu</a>
 
 - **Hypervisor:** Oracle VirtualBox  
-  https://www.virtualbox.org/
+  <a href="https://www.virtualbox.org/" target="_blank" rel="noopener noreferrer">VirtualBox</a>
 
 Ubuntu LTS was selected for stability, security patch cadence, and compatibility with open-source security tooling. For further security segmentation, this OS will be installed on a dedicated SSD (Solid State Drive), separate from my main OS.
 
@@ -104,10 +104,10 @@ VirtualBox was selected due to cost constraints (free), documentation maturity, 
 #### Virtual Environment
 
 - **Windows Virtual Machine** – Target system for telemetry and endpoint detection practice  
-  https://www.microsoft.com/en-us/evalcenter/
+  <a href="https://www.microsoft.com/en-us/evalcenter/" target="_blank" rel="noopener noreferrer">Windows VM</a>
 
 - **Kali Linux Virtual Machine** – Controlled adversary simulation platform  
-  https://www.kali.org/
+  <a href="https://www.kali.org/" target="_blank" rel="noopener noreferrer">Kali Linux VM</a>
 
 Windows provides enterprise-relevant log generation. Kali supports structured adversary technique simulation.
 
@@ -167,7 +167,7 @@ Initial telemetry sources:
 
 - Windows Event Logs
 - Sysmon (System Monitor)  
-  https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon
+  <a href="https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon" target="_blank" rel="noopener noreferrer">Sysmon</a>
 
 - Linux authentication logs
 - Network traffic capture
@@ -175,13 +175,13 @@ Initial telemetry sources:
 Planned log centralization tools under evaluation:
 
 - Wazuh (Open Source Security Platform)  
-  https://wazuh.com/
+  <a href="https://wazuh.com/" target="_blank" rel="noopener noreferrer">Wazuh</a>
 
 - Elastic Stack (Elasticsearch, Logstash, Kibana)  
-  https://www.elastic.co/
+  <a href="https://www.elastic.co/" target="_blank" rel="noopener noreferrer">Elastic Stack</a>
 
 - Security Onion (Open-Source Threat Hunting Platform)  
-  https://securityonion.net/
+  <a href="https://securityonion.net/" target="_blank" rel="noopener noreferrer">Security Onion</a>
 
 Tool selection will be based on:
 
@@ -226,13 +226,13 @@ This lightweight threat model informs detection and logging priorities.
 ### Planned Forensic Tooling
 
 - Autopsy (Digital Forensics Platform)  
-  https://www.autopsy.com/
+  <a href="https://www.autopsy.com/" target="_blank" rel="noopener noreferrer">Autopsy</a>
 
 - Volatility (Memory Forensics Framework)  
-  https://www.volatilityfoundation.org/
+  <a href="https://www.volatilityfoundation.org/" target="_blank" rel="noopener noreferrer">Volatility</a>
 
 - FTK Imager (Free Edition)  
-  https://www.exterro.com/digital-forensics-software/ftk-imager
+  <a href="https://www.exterro.com/digital-forensics-software/ftk-imager" target="_blank" rel="noopener noreferrer">FTK Imager</a>
 
 These tools support foundational artifact acquisition and analysis practice.
 
