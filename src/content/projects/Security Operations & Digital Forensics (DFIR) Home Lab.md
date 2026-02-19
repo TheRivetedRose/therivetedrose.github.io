@@ -25,11 +25,27 @@ This project documents the research, planning, and architectural design of a per
 
 The architecture and workflow are intentionally aligned to:
 
-- **NIST Special Publication (SP) 800-61 Revision 3 – Computer Security Incident Handling Guide**  
-  https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf
+- **NIST Special Publication (SP) 800-61 Revision 3 – Computer Security Incident Handling Guide**
 
-- **MITRE ATT&CK (Adversarial Tactics, Techniques, and Common Knowledge) Framework**  
-  https://attack.mitre.org/
+<a
+    href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf"
+    target="_blank"
+    rel="noopener noreferrer"
+> 
+    NIST 800-61 Revision 3
+</a>
+
+
+- **MITRE ATT&CK (Adversarial Tactics, Techniques, and Common Knowledge) Framework**
+  
+<a
+    href="https://attack.mitre.org/"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+    MITRE ATT&CK Framework
+</a>
+
 
 This phase formalizes structured research, design decisions, threat modeling, and implementation planning prior to deployment.
 
@@ -62,9 +78,6 @@ The lab architecture is structured to support the incident response lifecycle de
 5. **Post-Incident Activity** – Documentation, lessons learned, and detection tuning
 
 This ensures the lab reflects realistic SOC operational processes rather than an isolated technical experiment.
-
-Reference:  
-https://csrc.nist.gov/publications/detail/sp/800-61/rev-3/final
 
 ---
 
