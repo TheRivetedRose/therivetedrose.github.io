@@ -160,7 +160,15 @@
   .prose-custom {
     @apply prose prose-neutral dark:prose-invert max-w-none;
     @apply prose-headings:font-semibold prose-headings:tracking-tight;
-    @apply prose-a:text-rosie-red prose-a:no-underline hover:prose-a:underline;
+    @apply prose-a:no-underline hover:prose-a:underline;
+    /* Internal links default: red */
+    @apply [&_a[href^="/"]]:!text-rosie-red [&_a[href^="/"]]:hover:!text-rosie-red;
+    /* External links: bright navy */
+    @apply [&_a[href^="http"]]:!text-rosie-navy-bright [&_a[href^="http"]]:hover:!text-rosie-navy-bright;
+    /* Internal blog links: red (explicit) */
+    @apply [&_a[href^="/blog/"]]:!text-rosie-red [&_a[href^="/blog/"]]:hover:!text-rosie-red;
+    /* Internal project links: yellow (overrides default) */
+    @apply [&_a[href^="/projects/"]]:!text-rosie-yellow [&_a[href^="/projects/"]]:hover:!text-rosie-yellow;
     @apply [&_a.btn-github]:!text-white [&_a.btn-linkedin]:!text-white;
     @apply [&_a.btn-solid-red]:!text-[rgb(var(--c-surface))] dark:[&_a.btn-solid-red]:!text-white;
     @apply [&_a.btn-solid-yellow]:!text-black;

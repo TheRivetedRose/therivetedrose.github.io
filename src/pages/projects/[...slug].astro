@@ -22,11 +22,13 @@ const { Content, headings } = await render(project);
 >
   <header class="mb-8">
     <h1 class="section-heading mb-4">{project.data.title}</h1>
-    <p class="mb-4 text-muted">{project.data.summary}</p>
-    <div class="flex flex-wrap gap-2">
-      {project.data.tags.map((tag) => (
-        <span class="badge">{tag}</span>
-      ))}
+    <div class="project-meta">
+      <p class="mb-4 text-rosie-yellow">{project.data.summary}</p>
+      <div class="flex flex-wrap gap-2">
+        {project.data.tags.map((tag) => (
+          <span class="badge border-rosie-yellow/50 bg-rosie-yellow/15 text-rosie-yellow">{tag}</span>
+        ))}
+      </div>
     </div>
     {project.data.repoUrl && (
       <a href={project.data.repoUrl} class="btn-solid-red mt-4" target="_blank" rel="noopener noreferrer">
