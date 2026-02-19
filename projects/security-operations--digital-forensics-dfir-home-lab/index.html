@@ -1,0 +1,256 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="This project documents the research and design of a personal Security Operations and DFIR (Digital Forensics Incident Response) lab built to simulate an enterprise environment using open-source and freely available tooling."><meta name="generator" content="Astro v5.17.2"><link rel="canonical" href="https://therivetedrose.github.io/projects/security-operations--digital-forensics-dfir-home-lab/"><script>
+      (function(){var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.classList.toggle('dark',t==='dark')})();
+    </script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><title>Security Operations &amp; DFIR Home Lab | TheRivetedRose</title><link rel="stylesheet" href="/_astro/_slug_.BObfk69F.css"></head> <body class="font-sans">  <nav class="sticky top-0 z-50 border-b border-border bg-surface/95 backdrop-blur supports-[backdrop-filter]:bg-surface/80" aria-label="Main navigation"> <div class="mx-auto flex max-w-5xl items-center justify-between gap-4 pl-5 pr-8 py-4 sm:gap-0 sm:px-6 lg:px-8"> <a href="/" class="shrink-0 text-lg font-semibold text-rosie-red transition-colors hover:text-rosie-yellow">
+TheRivetedRose
+</a> <ul class="flex min-w-0 shrink items-center gap-2 overflow-x-auto sm:gap-6" role="list"> <li class="items-center gap-2 sm:gap-0 max-sm:hidden sm:flex"> <a href="/" class="text-sm font-medium transition-colors hover:text-rosie-yellow text-muted"> Home </a> <span class="text-muted sm:hidden max-sm:hidden" aria-hidden="true">|</span> </li><li class="items-center gap-2 sm:gap-0 flex"> <a href="/about/" class="text-sm font-medium transition-colors hover:text-rosie-yellow text-muted"> About </a> <span class="text-muted sm:hidden " aria-hidden="true">|</span> </li><li class="items-center gap-2 sm:gap-0 flex"> <a href="/projects/" class="text-sm font-medium transition-colors hover:text-rosie-yellow text-rosie-yellow"> Projects </a> <span class="text-muted sm:hidden " aria-hidden="true">|</span> </li><li class="items-center gap-2 sm:gap-0 flex"> <a href="/blog/" class="text-sm font-medium transition-colors hover:text-rosie-yellow text-muted"> Blog </a>  </li> </ul> </div> </nav> <main class="min-h-screen">  <article class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8"> <div class="lg:grid lg:grid-cols-[1fr_200px] lg:gap-12"> <div>  <header class="mb-8"> <h1 class="section-heading mb-4">Security Operations &amp; DFIR Home Lab</h1> <p class="mb-4 text-muted">This project documents the research and design of a personal Security Operations and DFIR (Digital Forensics Incident Response) lab built to simulate an enterprise environment using open-source and freely available tooling.</p> <div class="flex flex-wrap gap-2"> <span class="badge">homelab</span><span class="badge">virtualization</span><span class="badge">network</span><span class="badge">architecture</span><span class="badge">NIST</span><span class="badge">MITRE</span><span class="badge">ATT&amp;CK</span><span class="badge">SIEM</span> </div> <a href="https://github.com/therivetedrose/home-lab-architecture" class="btn-solid-red mt-4" target="_blank" rel="noopener noreferrer">
+View Repository
+</a> </header> <div data-code-copy-container>  <div class="prose-custom"> <h2 id="phase-1--research-design-and-architecture-planning">Phase 1 – Research, Design, and Architecture Planning</h2>
+<h3 id="executive-overview">Executive Overview</h3>
+<p>This project documents the research, planning, and architectural design of a personal SOC (Security Operations Center) and DFIR (Digital Forensics and Incident Response) lab environment. The lab is designed to simulate a small enterprise network with centralized monitoring and incident response capabilities using free and open-source tooling.</p>
+<p>The architecture and workflow are intentionally aligned to:</p>
+<ul>
+<li>
+<p><strong>NIST Special Publication (SP) 800-61 Revision 3 – Computer Security Incident Handling Guide</strong><br>
+<a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf</a></p>
+</li>
+<li>
+<p><strong>MITRE ATT&#x26;CK (Adversarial Tactics, Techniques, and Common Knowledge) Framework</strong><br>
+<a href="https://attack.mitre.org/">https://attack.mitre.org/</a></p>
+</li>
+</ul>
+<p>This phase formalizes structured research, design decisions, threat modeling, and implementation planning prior to deployment.</p>
+<hr>
+<h3 id="strategic-objectives">Strategic Objectives</h3>
+<h4 id="the-lab-is-being-designed-to-support-the-following-goals">The lab is being designed to support the following goals:</h4>
+<ul>
+<li>Develop practical SOC detection and triage workflows</li>
+<li>Execute incident response activities aligned to NIST SP 800-61r3</li>
+<li>Simulate adversary behavior mapped to MITRE ATT&#x26;CK techniques</li>
+<li>Centralize and analyze system and network telemetry</li>
+<li>Conduct foundational forensic artifact collection and analysis</li>
+<li>Establish measurable metrics MTTD (Mean Time to Detect) , MTTC (Mean Time to Contain)</li>
+<li>Design and deploy a centralized SIEM (Security Information and Event Management) platform for log aggregation, correlation, and alert generation</li>
+</ul>
+<p>This environment will function as a repeatable blue team training platform.</p>
+<hr>
+<h3 id="framework-alignment">Framework Alignment</h3>
+<p>The lab architecture is structured to support the incident response lifecycle defined in NIST SP 800-61 Revision 3:</p>
+<ol>
+<li><strong>Preparation</strong> – Logging enablement, baseline creation, and system hardening</li>
+<li><strong>Detection &#x26; Analysis</strong> – Alert generation, log correlation, and event validation</li>
+<li><strong>Containment</strong> – Short-term and long-term containment strategies</li>
+<li><strong>Eradication &#x26; Recovery</strong> – Removal of malicious artifacts and system validation</li>
+<li><strong>Post-Incident Activity</strong> – Documentation, lessons learned, and detection tuning</li>
+</ol>
+<p>This ensures the lab reflects realistic SOC operational processes rather than an isolated technical experiment.</p>
+<p>Reference:<br>
+<a href="https://csrc.nist.gov/publications/detail/sp/800-61/rev-3/final">https://csrc.nist.gov/publications/detail/sp/800-61/rev-3/final</a></p>
+<hr>
+<h4 id="mitre-attck">MITRE ATT&#x26;CK</h4>
+<p>Planned adversary simulations will be mapped to ATT&#x26;CK technique identifiers to ensure behavioral detection coverage.</p>
+<p>Examples of planned technique simulations:</p>
+<ul>
+<li>T1059 – Command and Scripting Interpreter</li>
+<li>T1003 – OS (Operating System) Credential Dumping</li>
+<li>T1021 – Remote Services</li>
+<li>T1547 – Boot or Logon Autostart Execution</li>
+<li>T1562 – Impair Defenses</li>
+</ul>
+<p>Reference:<br>
+<a href="https://attack.mitre.org/techniques/">https://attack.mitre.org/techniques/</a></p>
+<hr>
+<h3 id="architecture-design">Architecture Design</h3>
+<h4 id="host-environment">Host Environment</h4>
+<ul>
+<li>
+<p><strong>Primary Operating System:</strong> Ubuntu Long-Term Support (LTS)<br>
+<a href="https://ubuntu.com/">https://ubuntu.com/</a></p>
+</li>
+<li>
+<p><strong>Hypervisor:</strong> Oracle VirtualBox<br>
+<a href="https://www.virtualbox.org/">https://www.virtualbox.org/</a></p>
+</li>
+</ul>
+<p>Ubuntu LTS was selected for stability, security patch cadence, and compatibility with open-source security tooling. For further security segmentation, this OS will be installed on a dedicated SSD (Solid State Drive), separate from my main OS.</p>
+<p>VirtualBox was selected due to cost constraints (free), documentation maturity, and network isolation capabilities.</p>
+<p><a href="#">Blog Post: Operating System &#x26; Hypervisor Selection Rationale</a></p>
+<hr>
+<h4 id="virtual-environment">Virtual Environment</h4>
+<ul>
+<li>
+<p><strong>Windows Virtual Machine</strong> – Target system for telemetry and endpoint detection practice<br>
+<a href="https://www.microsoft.com/en-us/evalcenter/">https://www.microsoft.com/en-us/evalcenter/</a></p>
+</li>
+<li>
+<p><strong>Kali Linux Virtual Machine</strong> – Controlled adversary simulation platform<br>
+<a href="https://www.kali.org/">https://www.kali.org/</a></p>
+</li>
+</ul>
+<p>Windows provides enterprise-relevant log generation. Kali supports structured adversary technique simulation.</p>
+<p><a href="#">Blog Post: Windows &#x26; Kali Version Selection Rationale</a></p>
+<hr>
+<h3 id="network-segmentation-model">Network Segmentation Model</h3>
+<p>The lab will utilize a NAT-based isolated internal network within VirtualBox.</p>
+<p>Planned controls:</p>
+<ul>
+<li>Internal-only VM (virtual Machine) communication</li>
+<li>No direct exposure of lab systems to the public internet</li>
+<li>Logical separation between host OS and lab network</li>
+<li>Snapshot capability for rapid rollback</li>
+</ul>
+<p>This design minimizes risk to the primary system while enabling controlled adversary simulation.</p>
+<p><a href="#">Blog Post: Network Segmentation &#x26; Isolation Design</a></p>
+<hr>
+<h3 id="high-level-architecture-diagram">High-Level Architecture Diagram</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>+-------------------------------------------------------+</span></span>
+<span class="line"><span>| Host Machine (Physical) |</span></span>
+<span class="line"><span>| |</span></span>
+<span class="line"><span>| Ubuntu LTS (Secondary OS) |</span></span>
+<span class="line"><span>| +-----------------------------------------------+ |</span></span>
+<span class="line"><span>| | VirtualBox Hypervisor | |</span></span>
+<span class="line"><span>| | | |</span></span>
+<span class="line"><span>| | Internal NAT Network (Isolated) | |</span></span>
+<span class="line"><span>| | ----------------------------------------- | |</span></span>
+<span class="line"><span>| | | | | |</span></span>
+<span class="line"><span>| | | Windows VM (Target System) | | |</span></span>
+<span class="line"><span>| | | - Sysmon | | |</span></span>
+<span class="line"><span>| | | - Windows Event Logs | | |</span></span>
+<span class="line"><span>| | | | | |</span></span>
+<span class="line"><span>| | | Kali Linux VM (Adversary) | | |</span></span>
+<span class="line"><span>| | | - Technique Simulation | | |</span></span>
+<span class="line"><span>| | | | | |</span></span>
+<span class="line"><span>| | ----------------------------------------- | |</span></span>
+<span class="line"><span>| | | |</span></span>
+<span class="line"><span>| | IEM VM (Planned Centralized Log Aggregation &#x26; Correlation Node) | |</span></span>
+<span class="line"><span>| +-----------------------------------------------+ |</span></span>
+<span class="line"><span>+-------------------------------------------------------+</span></span></code></pre>
+<h3 id="logging-telemetry--siem-architecture-planned">Logging, Telemetry &#x26; SIEM Architecture (Planned)</h3>
+<p>A centralized Security Information and Event Management platform will function as the operational core of the lab, enabling log normalization, correlation, and alert development consistent with enterprise SOC workflows.</p>
+<p>Initial telemetry sources:</p>
+<ul>
+<li>
+<p>Windows Event Logs</p>
+</li>
+<li>
+<p>Sysmon (System Monitor)<br>
+<a href="https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon">https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon</a></p>
+</li>
+<li>
+<p>Linux authentication logs</p>
+</li>
+<li>
+<p>Network traffic capture</p>
+</li>
+</ul>
+<p>Planned log centralization tools under evaluation:</p>
+<ul>
+<li>
+<p>Wazuh (Open Source Security Platform)<br>
+<a href="https://wazuh.com/">https://wazuh.com/</a></p>
+</li>
+<li>
+<p>Elastic Stack (Elasticsearch, Logstash, Kibana)<br>
+<a href="https://www.elastic.co/">https://www.elastic.co/</a></p>
+</li>
+<li>
+<p>Security Onion (Open-Source Threat Hunting Platform)<br>
+<a href="https://securityonion.net/">https://securityonion.net/</a></p>
+</li>
+</ul>
+<p>Tool selection will be based on:</p>
+<ul>
+<li>Hardware resource constraints</li>
+<li>Industry relevance</li>
+<li>Community support</li>
+<li>Portability of skillset</li>
+</ul>
+<p><a href="#">Blog Post: SIEM &#x26; Telemetry Tool Selection Research</a></p>
+<hr>
+<h3 id="threat-model-initial">Threat Model (Initial)</h3>
+<p>This initial threat model is intentionally lightweight and will evolve as the lab matures.</p>
+<h4 id="assets">Assets</h4>
+<ul>
+<li>Windows endpoint VM</li>
+<li>Administrative credentials</li>
+<li>Authentication events</li>
+<li>Network communications</li>
+</ul>
+<h4 id="assumed-threat-behaviors">Assumed Threat Behaviors</h4>
+<ul>
+<li>Credential harvesting</li>
+<li>Lateral movement</li>
+<li>Persistence mechanisms</li>
+<li>Defense evasion</li>
+</ul>
+<h4 id="trust-boundaries">Trust Boundaries</h4>
+<ul>
+<li>Host OS vs. internal lab network</li>
+<li>VM-to-VM internal communications</li>
+</ul>
+<p>This lightweight threat model informs detection and logging priorities.</p>
+<p><a href="#">Blog Post: Threat Modeling Process &#x26; Assumptions</a></p>
+<hr>
+<h3 id="planned-forensic-tooling">Planned Forensic Tooling</h3>
+<ul>
+<li>
+<p>Autopsy (Digital Forensics Platform)<br>
+<a href="https://www.autopsy.com/">https://www.autopsy.com/</a></p>
+</li>
+<li>
+<p>Volatility (Memory Forensics Framework)<br>
+<a href="https://www.volatilityfoundation.org/">https://www.volatilityfoundation.org/</a></p>
+</li>
+<li>
+<p>FTK Imager (Free Edition)<br>
+<a href="https://www.exterro.com/digital-forensics-software/ftk-imager">https://www.exterro.com/digital-forensics-software/ftk-imager</a></p>
+</li>
+</ul>
+<p>These tools support foundational artifact acquisition and analysis practice.</p>
+<hr>
+<h2 id="implementation-roadmap-phase-2">Implementation Roadmap (Phase 2)</h2>
+<ol>
+<li>Install and harden Ubuntu dual boot</li>
+<li>Deploy VirtualBox</li>
+<li>Provision Windows and Kali VMs</li>
+<li>Validate network isolation</li>
+<li>Enable logging and telemetry</li>
+<li>Generate benign baseline activity</li>
+<li>Verify centralized log visibility</li>
+</ol>
+<p>Baseline state documentation will precede adversary simulation.</p>
+<p><a href="#">Building a SOC Lab with Zero Budget: Phase 2 Implementation</a></p>
+<hr>
+<h2 id="success-criteria-phase-3">Success Criteria (Phase 3)</h2>
+<p>The lab will be considered operational when:</p>
+<ul>
+<li>Logs are centrally aggregated, normalized, and searchable through the SIEM</li>
+<li>Time synchronization across systems is verified</li>
+<li>Baseline activity is documented</li>
+<li>Initial detection rules trigger expected alerts</li>
+</ul>
+<p>Future performance tracking:</p>
+<ul>
+<li>Mean Time to Detect (MTTD)</li>
+<li>Mean Time to Contain (MTTC)</li>
+<li>Alert fidelity improvement over time</li>
+</ul>
+<hr>
+<h2 id="planned-expansion-phase-4">Planned Expansion (Phase 4)</h2>
+<ul>
+<li>Formal ATT&#x26;CK coverage matrix</li>
+<li>Memory acquisition workflow documentation</li>
+<li>Disk imaging and evidence preservation procedures</li>
+<li>Standardized incident documentation templates</li>
+<li>Detection engineering rule library</li>
+</ul>
+<p>This lab is being designed as a structured capability-building platform aligned to enterprise SOC and DFIR operational standards.</p> </div>  </div> <script type="module">function n(){const r=document.querySelector("[data-code-copy-container]");r&&r.querySelectorAll("pre").forEach(e=>{if(e.closest("[data-copy-wrapper]"))return;const o=document.createElement("div");o.className="group relative",o.setAttribute("data-copy-wrapper",""),e.parentNode?.insertBefore(o,e),o.appendChild(e);const t=document.createElement("button");t.type="button",t.className="absolute right-2 top-2 rounded border border-[rgb(var(--c-border))] bg-[rgb(var(--c-surface-elevated))] px-2 py-1 text-xs text-muted opacity-0 transition-opacity hover:bg-[rgb(var(--c-surface))] hover:text-rosie-red group-hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-rosie-red",t.setAttribute("aria-label","Copy code"),t.setAttribute("data-copy-btn",""),t.textContent="Copy",e.classList.add("!pr-12"),o.appendChild(t),t.addEventListener("click",async()=>{const a=e.querySelector("code")?.textContent??e.textContent??"";try{await navigator.clipboard.writeText(a),t.textContent="Copied!",setTimeout(()=>t.textContent="Copy",2e3)}catch{t.textContent="Failed"}})})}n();</script>  <section class="mt-12 border-t border-border pt-8"> <h2 class="text-lg font-semibold mb-4">Connect</h2> <div class="flex flex-wrap gap-4"> <a href="https://github.com/therivetedrose" class="btn-github" target="_blank" rel="noopener noreferrer"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"> <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path> </svg>
+GitHub
+</a> <a href="https://www.linkedin.com/in/rosefr" class="btn-linkedin" target="_blank" rel="noopener noreferrer"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"> <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path> </svg>
+LinkedIn
+</a> </div> </section> </div> <aside class="hidden lg:block"> <nav class="sticky top-24" aria-label="Table of contents"> <h2 class="mb-3 text-sm font-semibold uppercase tracking-wider text-muted">On this page</h2> <ul class="space-y-2 border-l-2 border-border pl-4"> <li> <a href="#phase-1--research-design-and-architecture-planning" class="block text-sm text-muted hover:text-rosie-red " style=""> Phase 1 – Research, Design, and Architecture Planning </a> </li><li> <a href="#executive-overview" class="block text-sm text-muted hover:text-rosie-red pl-2" style="margin-left:0"> Executive Overview </a> </li><li> <a href="#strategic-objectives" class="block text-sm text-muted hover:text-rosie-red pl-2" style="margin-left:0"> Strategic Objectives </a> </li><li> <a href="#the-lab-is-being-designed-to-support-the-following-goals" class="block text-sm text-muted hover:text-rosie-red " style=""> The lab is being designed to support the following goals: </a> </li><li> <a href="#framework-alignment" class="block text-sm text-muted hover:text-rosie-red pl-2" style="margin-left:0"> Framework Alignment </a> </li><li> <a href="#mitre-attck" class="block text-sm text-muted hover:text-rosie-red " style=""> MITRE ATT&amp;CK </a> </li><li> <a href="#architecture-design" class="block text-sm text-muted hover:text-rosie-red pl-2" style="margin-left:0"> Architecture Design </a> </li><li> <a href="#host-environment" class="block text-sm text-muted hover:text-rosie-red " style=""> Host Environment </a> </li><li> <a href="#virtual-environment" class="block text-sm text-muted hover:text-rosie-red " style=""> Virtual Environment </a> </li><li> <a href="#network-segmentation-model" class="block text-sm text-muted hover:text-rosie-red pl-2" style="margin-left:0"> Network Segmentation Model </a> </li><li> <a href="#high-level-architecture-diagram" class="block text-sm text-muted hover:text-rosie-red pl-2" style="margin-left:0"> High-Level Architecture Diagram </a> </li><li> <a href="#logging-telemetry--siem-architecture-planned" class="block text-sm text-muted hover:text-rosie-red pl-2" style="margin-left:0"> Logging, Telemetry &amp; SIEM Architecture (Planned) </a> </li><li> <a href="#threat-model-initial" class="block text-sm text-muted hover:text-rosie-red pl-2" style="margin-left:0"> Threat Model (Initial) </a> </li><li> <a href="#assets" class="block text-sm text-muted hover:text-rosie-red " style=""> Assets </a> </li><li> <a href="#assumed-threat-behaviors" class="block text-sm text-muted hover:text-rosie-red " style=""> Assumed Threat Behaviors </a> </li><li> <a href="#trust-boundaries" class="block text-sm text-muted hover:text-rosie-red " style=""> Trust Boundaries </a> </li><li> <a href="#planned-forensic-tooling" class="block text-sm text-muted hover:text-rosie-red pl-2" style="margin-left:0"> Planned Forensic Tooling </a> </li><li> <a href="#implementation-roadmap-phase-2" class="block text-sm text-muted hover:text-rosie-red " style=""> Implementation Roadmap (Phase 2) </a> </li><li> <a href="#success-criteria-phase-3" class="block text-sm text-muted hover:text-rosie-red " style=""> Success Criteria (Phase 3) </a> </li><li> <a href="#planned-expansion-phase-4" class="block text-sm text-muted hover:text-rosie-red " style=""> Planned Expansion (Phase 4) </a> </li> </ul> </nav> </aside> </div> </article>  </main> <footer class="border-t border-rosie-navy/30 bg-surface-elevated"> <div class="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8"> <div class="flex flex-col items-center justify-between gap-4 sm:flex-row"> <p class="text-sm text-muted">
+© 2026 TheRivetedRose. No trackers. Built with Astro.
+</p> <div class="flex items-center gap-6"> <a href="https://github.com/therivetedrose" class="flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-[rgb(var(--c-github))]" target="_blank" rel="noopener noreferrer" aria-label="GitHub"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"> <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path> </svg>
+GitHub
+</a> <a href="https://www.linkedin.com/in/rosefr" class="flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-[rgb(var(--c-linkedin))]" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"> <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path> </svg>
+LinkedIn
+</a> </div> </div> </div> </footer> <button type="button" id="theme-toggle" aria-label="Toggle dark mode" class="fixed bottom-6 right-6 z-50 rounded-full border border-border bg-surface-elevated p-2.5 shadow-lg transition-colors hover:bg-surface focus:outline-none focus:ring-2 focus:ring-rosie-red" data-astro-cid-x3pjskd3> <span class="theme-icon-light" aria-hidden="true" data-astro-cid-x3pjskd3> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-x3pjskd3> <circle cx="12" cy="12" r="4" data-astro-cid-x3pjskd3></circle> <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" data-astro-cid-x3pjskd3></path> </svg> </span> <span class="theme-icon-dark hidden" aria-hidden="true" data-astro-cid-x3pjskd3> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-x3pjskd3> <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" data-astro-cid-x3pjskd3></path> </svg> </span> </button> <script type="module">(function(){const t="theme",r=document.getElementById("theme-toggle"),o=document.querySelector(".theme-icon-light"),n=document.querySelector(".theme-icon-dark");function a(){const e=localStorage.getItem(t);return e||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}function c(e){document.documentElement.classList.toggle("dark",e==="dark"),localStorage.setItem(t,e),o&&n&&(o.classList.toggle("hidden",e==="dark"),n.classList.toggle("hidden",e==="light"))}c(a()),r?.addEventListener("click",()=>{const e=document.documentElement.classList.contains("dark")?"dark":"light";c(e==="dark"?"light":"dark")}),window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",e=>{localStorage.getItem(t)||c(e.matches?"dark":"light")})})();</script>  </body></html>
