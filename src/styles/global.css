@@ -20,6 +20,7 @@
     --c-rosie-red: 185 70 80;
     --c-rosie-navy: 45 70 105;
     --c-rosie-navy-bright: 80 120 190;
+    --c-rosie-orange: 230 120 50;
     --font-sans: 'DM Sans', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', ui-monospace, monospace;
     /* Card hover glow for light theme (between light and dark yellow) */
@@ -52,6 +53,7 @@
     --c-rosie-red: 196 30 58;
     --c-rosie-navy: 27 54 93;
     --c-rosie-navy-bright: 100 150 220;
+    --c-rosie-orange: 255 145 60;
     --c-accent: 196 30 58;
     --c-accent-muted: 216 45 70;
     /* Hero hexagon rivets - pure black in dark mode */
@@ -158,13 +160,13 @@
   }
 
   .banner-wip {
-    @apply flex items-center justify-center gap-2 rounded-lg border-2 border-rosie-yellow bg-rosie-yellow/90 px-4 py-3 text-sm font-semibold text-black;
-    box-shadow: 0 0 16px rgb(var(--c-rosie-yellow) / 0.5);
+    @apply flex items-center justify-center gap-2 rounded-lg border-2 border-rosie-orange bg-rosie-orange/90 px-4 py-3 text-sm font-semibold text-white;
+    box-shadow: 0 0 16px rgb(var(--c-rosie-orange) / 0.5);
   }
 
   .dark .banner-wip {
-    @apply border-rosie-yellow bg-rosie-yellow/25 text-rosie-yellow;
-    box-shadow: 0 0 20px rgb(var(--c-rosie-yellow) / 0.35);
+    @apply border-rosie-orange bg-rosie-orange/25 text-rosie-orange;
+    box-shadow: 0 0 20px rgb(var(--c-rosie-orange) / 0.35);
   }
 
   .banner-wip__icon {

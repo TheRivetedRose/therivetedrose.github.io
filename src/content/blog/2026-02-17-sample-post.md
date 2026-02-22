@@ -1,4 +1,5 @@
 ---
+workInProgress: false
 title: Sample Blog Post
 summary: A short demonstration of markdown features including callouts, code blocks, and images.
 tags:
@@ -46,7 +47,7 @@ Images in markdown render with proper sizing:
 ## Lists and Structure
 
 - First item
-- Second item with **bold** and *italic*
+- Second item with **bold** and _italic_
 - Third item with `inline code`
 
 Numbered lists work as expected:

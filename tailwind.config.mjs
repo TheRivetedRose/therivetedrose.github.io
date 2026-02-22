@@ -20,6 +20,7 @@ export default {
           red: 'rgb(var(--c-rosie-red) / <alpha-value>)',
           navy: 'rgb(var(--c-rosie-navy) / <alpha-value>)',
           'navy-bright': 'rgb(var(--c-rosie-navy-bright) / <alpha-value>)',
+          orange: 'rgb(var(--c-rosie-orange) / <alpha-value>)',
         },
       },
       fontFamily: {
