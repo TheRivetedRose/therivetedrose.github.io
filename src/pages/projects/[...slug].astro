@@ -18,6 +18,7 @@ const { Content, headings } = await render(project);
 <ProjectLayout
   title={project.data.title}
   description={project.data.summary}
+  workInProgress={project.data.workInProgress}
   headings={headings.map((h) => ({ depth: h.depth, slug: h.slug, text: h.text }))}
 >
   <header class="mb-8">

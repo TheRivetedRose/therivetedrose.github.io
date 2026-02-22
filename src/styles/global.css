@@ -157,6 +157,24 @@
     @apply section-heading border-l-4 border-rosie-navy pl-4;
   }
 
+  .banner-wip {
+    @apply flex items-center justify-center gap-2 rounded-lg border-2 border-rosie-yellow bg-rosie-yellow/90 px-4 py-3 text-sm font-semibold text-black;
+    box-shadow: 0 0 16px rgb(var(--c-rosie-yellow) / 0.5);
+  }
+
+  .dark .banner-wip {
+    @apply border-rosie-yellow bg-rosie-yellow/25 text-rosie-yellow;
+    box-shadow: 0 0 20px rgb(var(--c-rosie-yellow) / 0.35);
+  }
+
+  .banner-wip__icon {
+    @apply text-base;
+  }
+
+  .banner-wip__text {
+    @apply tracking-tight;
+  }
+
   .prose-custom {
     @apply prose prose-neutral dark:prose-invert max-w-none;
     @apply prose-headings:font-semibold prose-headings:tracking-tight;

@@ -40,6 +40,7 @@ title: Project Title
 summary: One-line description
 tags: [tag1, tag2]
 featured: false
+workInProgress: false
 repoUrl: https://github.com/username/repo
 image: /img/projects/screenshot.svg
 pubDate: 2026-02-01
@@ -51,6 +52,8 @@ pubDate: 2026-02-01
 
 The **slug** is derived from the filename (e.g. `home-lab-architecture.md` → `/projects/home-lab-architecture/`).
 
+Set `workInProgress: true` to show a prominent banner on the project page indicating the content is still being developed.
+
 ### Blog Posts
 
 Create a Markdown file in `src/content/blog/`:
@@ -61,12 +64,15 @@ title: Post Title
 summary: Short description
 tags: [tag1, tag2]
 pubDate: 2026-02-17
+workInProgress: false
 ---
 
 Content here...
 ```
 
 Slug from filename (e.g. `2026-02-17-sample-post.md` → `/blog/2026-02-17-sample-post/`).
+
+Set `workInProgress: true` to show a prominent banner on the blog post indicating the content is still being developed.
 
 ## Pretty URLs
 

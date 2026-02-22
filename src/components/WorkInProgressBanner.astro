@@ -1,0 +1,16 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div
+  class={`banner-wip ${className ?? ''}`.trim()}
+  role="status"
+  aria-live="polite"
+>
+  <span class="banner-wip__icon" aria-hidden="true">⚠</span>
+  <span class="banner-wip__text">Work in progress — content may change</span>
+</div>

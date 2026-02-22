@@ -1,7 +1,7 @@
 ---
+workInProgress: true
 title: Security Operations & DFIR Home Lab
 summary: This project documents the research and design of a personal Security Operations and DFIR (Digital Forensics Incident Response) lab built to simulate an enterprise environment using open-source and freely available tooling.
-
 tags:
   - homelab
   - virtualization
@@ -27,7 +27,7 @@ The architecture and workflow are intentionally aligned to:
 
 - **<a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf" target="_blank" rel="noopener noreferrer">NIST Special Publication (SP) 800-61 Revision 3</a> – Computer Security Incident Handling Guide**
 
-- **<a href="https://attack.mitre.org/" target="_blank" rel="noopener noreferrer">MITRE ATT&CK (Adversarial Tactics, Techniques, and Common Knowledge) Framework</a>**
+- **<a href="https://attack.mitre.org/" target="_blank" rel="noopener noreferrer">MITRE ATT&CK Framework</a>**
 
 This phase formalizes structured research, design decisions, threat modeling, and implementation planning prior to deployment.
 
@@ -65,7 +65,7 @@ This ensures the lab reflects realistic SOC operational processes rather than an
 
 #### MITRE ATT&CK
 
-Planned adversary simulations will be mapped to ATT&CK technique identifiers to ensure behavioral detection coverage.
+Planned adversary simulations will be mapped to the ATT&CK (Adversarial Tactics, Techniques, and Common Knowledge)technique identifiers to ensure behavioral detection coverage.
 
 Examples of planned technique simulations:
 

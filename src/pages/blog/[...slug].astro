@@ -21,6 +21,7 @@ const readingTime = Math.max(1, Math.ceil(post.body.split(/\s+/).length / 200));
   description={post.data.summary}
   pubDate={post.data.pubDate}
   readingTimeMinutes={readingTime}
+  workInProgress={post.data.workInProgress}
   headings={headings.map((h) => ({ depth: h.depth, slug: h.slug, text: h.text }))}
 >
   <CodeCopy client:load>

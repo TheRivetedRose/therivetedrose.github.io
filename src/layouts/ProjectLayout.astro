@@ -1,21 +1,26 @@
 ---
 import PageLayout from './PageLayout.astro';
 import TOC from '../components/TOC.astro';
+import WorkInProgressBanner from '../components/WorkInProgressBanner.astro';
 import GitHubIcon from '../components/icons/GitHubIcon.astro';
 import LinkedInIcon from '../components/icons/LinkedInIcon.astro';
 
 interface Props {
   title: string;
   description?: string;
+  workInProgress?: boolean;
   headings?: { depth: number; slug: string; text: string }[];
 }
 
-const { title, description, headings = [] } = Astro.props;
+const { title, description, workInProgress = false, headings = [] } = Astro.props;
 const showTOC = headings.length >= 3;
 ---
 
 <PageLayout title={title} description={description}>
   <article class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
+    {workInProgress && (
+      <WorkInProgressBanner class="mb-6" />
+    )}
     <div class={showTOC ? 'lg:grid lg:grid-cols-[1fr_200px] lg:gap-12' : ''}>
       <div>
         <slot />
