@@ -32,10 +32,10 @@ Output goes to `docs/`. Deploys to GitHub Pages via Actions.
 ```
 src/
 ├── components/     # Astro components (Nav, Footer, cards, islands)
-├── content/       # Markdown collections (projects, blog)
-├── layouts/       # BaseLayout, PageLayout, ProjectLayout, PostLayout
-├── pages/         # Routes
-└── styles/        # global.css (tokens, component classes)
+├── content/        # Markdown collections (projects, blog)
+├── layouts/        # BaseLayout, PageLayout, ProjectLayout, PostLayout
+├── pages/          # Routes
+└── styles/         # global.css (tokens, component classes)
 ```
 
 ## Design System
