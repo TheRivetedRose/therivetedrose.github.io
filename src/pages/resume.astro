@@ -1,7 +1,12 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
 import LinkedInIcon from "../components/icons/LinkedInIcon.astro";
 import RevealOnScroll from "../components/RevealOnScroll.astro";
+import { getCollection } from "astro:content";
+
+const projects = await getCollection("projects");
+const featuredProjects = projects.filter((p) => p.data.featured).slice(0, 3);
 
 const education = [
   {
@@ -173,6 +178,42 @@ const awards = [
           <span class="badge badge-award">{award}</span>
         ))}
       </div>
+    </div>
+  </section>
+
+  <section class="border-t border-rosie-navy/20 bg-surface-elevated">
+    <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+      <RevealOnScroll>
+        <h2 class="section-heading-rosie sticky-section-heading mb-8">Featured Projects</h2>
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {
+            featuredProjects.length > 0
+              ? featuredProjects.map((project) => (
+                  <ProjectCard
+                    slug={project.slug}
+                    title={project.data.title}
+                    summary={project.data.summary}
+                    tags={project.data.tags}
+                    featured={project.data.featured}
+                    pubDate={project.data.pubDate}
+                    updatedDate={project.data.updatedDate}
+                  />
+                ))
+              : projects
+                  .slice(0, 3)
+                  .map((project) => (
+                    <ProjectCard
+                      slug={project.slug}
+                      title={project.data.title}
+                      summary={project.data.summary}
+                      tags={project.data.tags}
+                      featured={project.data.featured}
+                    />
+                  ))
+          }
+        </div>
+        <a href="/projects/" class="btn-solid-yellow mt-8">All Projects</a>
+      </RevealOnScroll>
     </div>
   </section>
 </PageLayout>
