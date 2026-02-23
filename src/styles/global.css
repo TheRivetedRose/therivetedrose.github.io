@@ -46,10 +46,19 @@
   .tech-tab.is-active.platform-card {
     box-shadow: var(--card-hover-shadow-light) !important;
     border-color: rgb(208, 182, 95) !important;
+    transition: box-shadow 0.25s ease-out, border-color 0.25s ease-out;
   }
   .tech-tab.is-active.tool-card {
     box-shadow: var(--card-hover-shadow-red-light) !important;
     border-color: rgb(var(--c-rosie-red)) !important;
+    transition: box-shadow 0.25s ease-out, border-color 0.25s ease-out;
+  }
+  /* Glow fades completely by the time subcards finish sliding out */
+  .tech-tab.is-active.tech-tab--glow-fade.language-card,
+  .tech-tab.is-active.tech-tab--glow-fade.platform-card,
+  .tech-tab.is-active.tech-tab--glow-fade.tool-card {
+    box-shadow: none !important;
+    border-color: rgb(var(--c-border)) !important;
   }
 
   .dark {
@@ -104,11 +113,20 @@
     box-shadow: var(--card-hover-shadow) !important;
     border-color: rgb(var(--c-rosie-yellow)) !important;
     background-color: rgb(52 52 52) !important;
+    transition: box-shadow 0.25s ease-out, border-color 0.25s ease-out, background-color 0.25s ease-out;
   }
   .dark .tech-tab.is-active.tool-card {
     box-shadow: var(--card-hover-shadow-red) !important;
     border-color: rgb(var(--c-rosie-red)) !important;
     background-color: rgb(52 52 52) !important;
+    transition: box-shadow 0.25s ease-out, border-color 0.25s ease-out, background-color 0.25s ease-out;
+  }
+  .dark .tech-tab.is-active.tech-tab--glow-fade.language-card,
+  .dark .tech-tab.is-active.tech-tab--glow-fade.platform-card,
+  .dark .tech-tab.is-active.tech-tab--glow-fade.tool-card {
+    box-shadow: none !important;
+    border-color: rgb(var(--c-border)) !important;
+    background-color: rgb(var(--c-surface-elevated)) !important;
   }
 
   /* Dark theme: GitHub green, macOS moon silver */

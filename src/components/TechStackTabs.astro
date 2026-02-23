@@ -252,6 +252,7 @@ function getPlatformIconProps(platform: (typeof platforms)[number]) {
         tabs.forEach((tab) => {
           const isActive = tab.getAttribute("data-category") === category;
           tab.classList.toggle("is-active", isActive);
+          tab.classList.remove("tech-tab--glow-fade");
           tab.setAttribute("aria-selected", String(isActive));
         });
         panels.forEach((panel) => {
@@ -285,6 +286,11 @@ function getPlatformIconProps(platform: (typeof platforms)[number]) {
       }
 
       if (currentGrid && currentPanel) {
+        const currentTab = container?.querySelector(
+          `.tech-tab[data-category="${activeCategory}"]`
+        );
+        currentTab?.classList.add("tech-tab--glow-fade");
+
         currentGrid.classList.remove("slide-in");
         currentGrid.classList.add("slide-out");
 
