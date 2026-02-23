@@ -1,9 +1,14 @@
 ---
-import PageLayout from '../layouts/PageLayout.astro';
+import PageLayout from "../layouts/PageLayout.astro";
 ---
 
-<PageLayout title="Page Not Found" description="The page you're looking for doesn't exist.">
-  <section class="mx-auto flex min-h-[70vh] max-w-2xl flex-col items-center justify-center px-4 py-16 text-center sm:px-6 lg:px-8">
+<PageLayout
+  title="Page Not Found"
+  description="The page you're looking for doesn't exist."
+>
+  <section
+    class="mx-auto flex min-h-[70vh] max-w-2xl flex-col items-center justify-center px-4 py-16 text-center sm:px-6 lg:px-8"
+  >
     <img
       src="/sad-rosie-404.png"
       alt="Sad Rosie the Riveter"
@@ -11,14 +16,16 @@ import PageLayout from '../layouts/PageLayout.astro';
       width="320"
       height="320"
     />
-    <h1 class="mb-4 text-3xl font-bold tracking-tight text-[rgb(var(--c-text))] sm:text-4xl">
+    <h1
+      class="mb-4 text-3xl font-bold tracking-tight text-[rgb(var(--c-text))] sm:text-4xl"
+    >
       Sorry! We can't do it!
     </h1>
     <p class="mb-8 max-w-md text-muted">
-      This page doesn't exist. Maybe it got riveted shut, or we're still building it.
+      This page doesn't exist...yet Don't worry, we'll sort it out soon.
+      <br />
+      We got this!
     </p>
-    <a href="/" class="btn-solid-yellow">
-      Back to Home
-    </a>
+    <a href="/" class="btn-solid-yellow"> Back to Home </a>
   </section>
 </PageLayout>
