@@ -18,6 +18,7 @@ const posts = (await getCollection('blog')).sort(
           title={post.data.title}
           summary={post.data.summary}
           pubDate={post.data.pubDate}
+          updatedDate={post.data.updatedDate}
           tags={post.data.tags}
         />
       ))}

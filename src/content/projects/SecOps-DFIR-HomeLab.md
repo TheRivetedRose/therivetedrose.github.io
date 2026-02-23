@@ -15,6 +15,7 @@ featured: true
 repoUrl: https://github.com/therivetedrose/home-lab-architecture
 image: /img/projects/home-lab-architecture.svg
 pubDate: 2026-02-18
+updatedDate: 2026-02-22
 ---
 
 ## Phase 1 – Research, Design, and Architecture Planning

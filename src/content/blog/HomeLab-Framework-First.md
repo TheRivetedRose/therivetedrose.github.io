@@ -12,6 +12,7 @@ tags:
   - incident-response
   - detection-engineering
 pubDate: 2026-02-19
+updatedDate: 2026-02-19
 ---
 
 ## Why start here?

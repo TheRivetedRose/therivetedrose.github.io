@@ -7,9 +7,15 @@ interface Props {
   summary: string;
   tags: string[];
   featured?: boolean;
+  pubDate?: Date;
+  updatedDate?: Date;
 }
 
-const { slug, title, summary, tags, featured = false } = Astro.props;
+const { slug, title, summary, tags, featured = false, pubDate, updatedDate } = Astro.props;
+const dateOpts: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short', day: 'numeric' };
+const formattedPubDate = pubDate?.toLocaleDateString('en-US', dateOpts);
+const formattedUpdatedDate = updatedDate?.toLocaleDateString('en-US', dateOpts);
+const showUpdated = updatedDate && pubDate && updatedDate.getTime() !== pubDate.getTime();
 const href = `/projects/${slug}/`;
 ---
 
@@ -22,6 +28,14 @@ const href = `/projects/${slug}/`;
   >
     {featured && (
       <span class="badge badge-featured mb-3">Featured</span>
+    )}
+    {(formattedPubDate || formattedUpdatedDate) && (
+      <p class="mb-2 flex flex-wrap justify-between gap-x-2 gap-y-1 text-xs text-muted">
+        {formattedPubDate && <span><span class="font-medium">Published:</span> {formattedPubDate}</span>}
+        {showUpdated && formattedUpdatedDate && (
+          <span><span class="font-medium">Updated:</span> {formattedUpdatedDate}</span>
+        )}
+      </p>
     )}
     <h3 class="mb-2 text-lg font-semibold text-[rgb(var(--c-text))]">{title}</h3>
     <p class="mb-4 text-sm text-muted line-clamp-2">{summary}</p>

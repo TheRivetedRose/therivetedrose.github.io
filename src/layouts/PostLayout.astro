@@ -9,18 +9,18 @@ interface Props {
   title: string;
   description?: string;
   pubDate: Date;
+  updatedDate?: Date;
   readingTimeMinutes: number;
   workInProgress?: boolean;
   headings?: { depth: number; slug: string; text: string }[];
 }
 
-const { title, description, pubDate, readingTimeMinutes, workInProgress = false, headings = [] } = Astro.props;
+const { title, description, pubDate, updatedDate, readingTimeMinutes, workInProgress = false, headings = [] } = Astro.props;
 const showTOC = headings.length >= 3;
-const formattedDate = pubDate.toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-});
+const dateOpts: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+const formattedPubDate = pubDate.toLocaleDateString('en-US', dateOpts);
+const formattedUpdatedDate = updatedDate?.toLocaleDateString('en-US', dateOpts);
+const showUpdated = updatedDate && updatedDate.getTime() !== pubDate.getTime();
 ---
 
 <PageLayout title={title} description={description}>
@@ -30,9 +30,15 @@ const formattedDate = pubDate.toLocaleDateString('en-US', {
     )}
     <header class="mb-8">
       <h1 class="section-heading mb-2 text-rosie-red">{title}</h1>
-      <p class="text-sm text-muted">
-        {formattedDate} · {readingTimeMinutes} min read
-      </p>
+      <div class="flex flex-wrap justify-between gap-x-4 gap-y-1 text-sm text-muted">
+        <span><span class="font-medium">Published:</span> {formattedPubDate}</span>
+        <span class="flex flex-col items-end gap-2">
+          {showUpdated && (
+            <span><span class="font-medium">Updated:</span> {formattedUpdatedDate}</span>
+          )}
+          <span>{readingTimeMinutes} min read</span>
+        </span>
+      </div>
     </header>
     <div class={showTOC ? 'lg:grid lg:grid-cols-[1fr_200px] lg:gap-12' : ''}>
       <div class="prose-custom">

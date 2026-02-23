@@ -24,6 +24,8 @@ const allTags = [...new Set(projects.flatMap((p) => p.data.tags))].sort();
           summary={project.data.summary}
           tags={project.data.tags}
           featured={project.data.featured}
+          pubDate={project.data.pubDate}
+          updatedDate={project.data.updatedDate}
         />
       ))}
     </div>

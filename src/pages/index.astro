@@ -198,6 +198,8 @@ const typewriterSubheadlines = [
                   summary={project.data.summary}
                   tags={project.data.tags}
                   featured={project.data.featured}
+                  pubDate={project.data.pubDate}
+                  updatedDate={project.data.updatedDate}
                 />
               ))
             : projects
@@ -229,6 +231,7 @@ const typewriterSubheadlines = [
                 title={post.data.title}
                 summary={post.data.summary}
                 pubDate={post.data.pubDate}
+                updatedDate={post.data.updatedDate}
                 tags={post.data.tags}
               />
             ))

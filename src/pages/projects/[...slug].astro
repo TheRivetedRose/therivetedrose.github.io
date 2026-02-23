@@ -13,6 +13,10 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content, headings } = await render(project);
+const dateOpts: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+const formattedPubDate = project.data.pubDate?.toLocaleDateString('en-US', dateOpts);
+const formattedUpdatedDate = project.data.updatedDate?.toLocaleDateString('en-US', dateOpts);
+const showUpdated = project.data.updatedDate && project.data.pubDate && project.data.updatedDate.getTime() !== project.data.pubDate.getTime();
 ---
 
 <ProjectLayout
@@ -23,6 +27,14 @@ const { Content, headings } = await render(project);
 >
   <header class="mb-8">
     <h1 class="section-heading mb-4 text-rosie-yellow">{project.data.title}</h1>
+    {(formattedPubDate || formattedUpdatedDate) && (
+      <p class="mb-4 flex flex-wrap justify-between gap-x-4 gap-y-1 text-sm text-muted">
+        {formattedPubDate && <span><span class="font-medium">Published:</span> {formattedPubDate}</span>}
+        {showUpdated && formattedUpdatedDate && (
+          <span><span class="font-medium">Updated:</span> {formattedUpdatedDate}</span>
+        )}
+      </p>
+    )}
     <p class="mb-4 text-[rgb(var(--c-text))]">{project.data.summary}</p>
     <div class="flex flex-wrap gap-2">
       {project.data.tags.map((tag) => (

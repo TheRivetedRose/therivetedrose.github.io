@@ -7,6 +7,7 @@ tags:
   - markdown
   - astro
 pubDate: 2026-02-17
+updatedDate: 2026-02-20
 ---
 
 This is a sample blog post to demonstrate the layout and markdown rendering. It includes several common patterns you'll use when writing technical content.
