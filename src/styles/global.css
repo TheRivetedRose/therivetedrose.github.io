@@ -161,6 +161,52 @@
     line-height: 1.1;
   }
 
+  /* Tech stack subcard slide animations */
+  .tech-stack-detail-grid.slide-out > * {
+    animation: techSlideOut 0.25s ease-in forwards;
+  }
+
+  .tech-stack-detail-grid.slide-in > * {
+    opacity: 0;
+    transform: translateX(-12px);
+    animation: techSlideIn 0.3s ease-out forwards;
+  }
+
+  .tech-stack-detail-grid.slide-in > *:nth-child(1) { animation-delay: 0ms; }
+  .tech-stack-detail-grid.slide-in > *:nth-child(2) { animation-delay: 40ms; }
+  .tech-stack-detail-grid.slide-in > *:nth-child(3) { animation-delay: 80ms; }
+  .tech-stack-detail-grid.slide-in > *:nth-child(4) { animation-delay: 120ms; }
+  .tech-stack-detail-grid.slide-in > *:nth-child(5) { animation-delay: 160ms; }
+  .tech-stack-detail-grid.slide-in > *:nth-child(6) { animation-delay: 200ms; }
+  .tech-stack-detail-grid.slide-in > *:nth-child(7) { animation-delay: 240ms; }
+  .tech-stack-detail-grid.slide-in > *:nth-child(8) { animation-delay: 280ms; }
+  .tech-stack-detail-grid.slide-in > *:nth-child(9) { animation-delay: 320ms; }
+  .tech-stack-detail-grid.slide-in > *:nth-child(10) { animation-delay: 360ms; }
+  .tech-stack-detail-grid.slide-in > *:nth-child(n+11) { animation-delay: 400ms; }
+
+  @keyframes techSlideIn {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes techSlideOut {
+    to {
+      opacity: 0;
+      transform: translateX(12px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tech-stack-detail-grid.slide-in > *,
+    .tech-stack-detail-grid.slide-out > * {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+
   html {
     @apply scroll-smooth;
   }

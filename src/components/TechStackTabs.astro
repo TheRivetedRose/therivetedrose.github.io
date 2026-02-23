@@ -223,17 +223,75 @@ function getPlatformIconProps(platform: (typeof platforms)[number]) {
     const tabs = container.querySelectorAll(".tech-tab");
     const panels = container.querySelectorAll(".tech-panel");
 
+    const SLIDE_OUT_DURATION = 250;
+    const SLIDE_IN_STAGGER = 40;
+    const SLIDE_IN_DURATION = 300;
+
+    let isTransitioning = false;
+    let activeCategory = "languages";
+
+    function getGrid(panel: Element): Element | null {
+      return panel.querySelector(".tech-stack-detail-grid");
+    }
+
     function setActive(category: string) {
-      tabs.forEach((tab) => {
-        const isActive = tab.getAttribute("data-category") === category;
-        tab.classList.toggle("is-active", isActive);
-        tab.setAttribute("aria-selected", String(isActive));
-      });
-      panels.forEach((panel) => {
-        const isActive = panel.getAttribute("data-panel") === category;
-        panel.classList.toggle("is-active", isActive);
-        (panel as HTMLElement).hidden = !isActive;
-      });
+      if (category === activeCategory || isTransitioning) return;
+      isTransitioning = true;
+
+      const targetPanel = container?.querySelector(
+        `[data-panel="${category}"]`
+      ) as HTMLElement;
+      const currentPanel = container?.querySelector(
+        `.tech-panel.is-active`
+      ) as HTMLElement;
+
+      const currentGrid = currentPanel && getGrid(currentPanel);
+      const targetGrid = targetPanel && getGrid(targetPanel);
+
+      function finishSwitch() {
+        tabs.forEach((tab) => {
+          const isActive = tab.getAttribute("data-category") === category;
+          tab.classList.toggle("is-active", isActive);
+          tab.setAttribute("aria-selected", String(isActive));
+        });
+        panels.forEach((panel) => {
+          const isActive = panel.getAttribute("data-panel") === category;
+          panel.classList.toggle("is-active", isActive);
+          (panel as HTMLElement).hidden = !isActive;
+        });
+        currentGrid?.classList.remove("slide-out");
+        targetGrid?.classList.remove("slide-in");
+        activeCategory = category;
+        isTransitioning = false;
+      }
+
+      function doSlideIn() {
+        if (!targetPanel || !targetGrid) {
+          finishSwitch();
+          return;
+        }
+        targetPanel.hidden = false;
+        targetPanel.classList.add("is-active");
+        currentPanel?.classList.remove("is-active");
+        (currentPanel as HTMLElement).hidden = true;
+
+        targetGrid.classList.remove("slide-in");
+        void (targetGrid as HTMLElement).offsetHeight;
+        targetGrid.classList.add("slide-in");
+
+        const childCount = targetGrid.children.length;
+        const totalDuration = (childCount - 1) * SLIDE_IN_STAGGER + SLIDE_IN_DURATION;
+        setTimeout(finishSwitch, totalDuration);
+      }
+
+      if (currentGrid && currentPanel) {
+        currentGrid.classList.remove("slide-in");
+        currentGrid.classList.add("slide-out");
+
+        setTimeout(doSlideIn, SLIDE_OUT_DURATION);
+      } else {
+        doSlideIn();
+      }
     }
 
     tabs.forEach((tab) => {
@@ -244,6 +302,17 @@ function getPlatformIconProps(platform: (typeof platforms)[number]) {
         setActive(tab.getAttribute("data-category") ?? "languages");
       });
     });
+
+    const initialPanel = container?.querySelector(".tech-panel.is-active");
+    const initialGrid = initialPanel && getGrid(initialPanel);
+    if (initialGrid) {
+      requestAnimationFrame(() => {
+        initialGrid.classList.add("slide-in");
+        const childCount = initialGrid.children.length;
+        const totalDuration = (childCount - 1) * SLIDE_IN_STAGGER + SLIDE_IN_DURATION;
+        setTimeout(() => initialGrid.classList.remove("slide-in"), totalDuration);
+      });
+    }
   }
 
   initTechStackTabs();
