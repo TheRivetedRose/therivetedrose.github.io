@@ -1,0 +1,179 @@
+---
+import RevealOnScroll from "./RevealOnScroll.astro";
+
+const education = [
+  {
+    title: "B.S. Computer Science (Cybersecurity Focus)",
+    org: "Humboldt State University",
+    location: "CA",
+    date: "Jan 2024 – Present (Expected Dec 2026)",
+    gpa: "GPA: 3.8",
+    highlights: [
+      "Coursework: Computer Security, Telecommunications & Networking, Data Structures, Algorithms, Systems Architecture",
+      "Building foundations in Python, C++, JavaScript, SQL/PL/SQL, and Linux CLI; focusing on secure coding + packet analysis",
+    ],
+  },
+  {
+    title: "A.S. Police Science",
+    org: "College of the Redwoods",
+    location: "CA",
+    date: "Jul 2016 – Dec 2021",
+    gpa: "GPA: 4.0",
+    highlights: [
+      "Graduated with highest honors; recognized for scholastic performance + community service",
+      "Completed P.O.S.T.-certified law enforcement training; appointed Class Sergeant",
+    ],
+  },
+  {
+    title: "POST Certifications",
+    org: "Santa Rosa Junior College",
+    location: "CA",
+    date: "Aug 2014 – Sep 2014",
+    gpa: null,
+    highlights: [
+      "196 hours: correctional operations, report writing, emergency response, legal compliance, ethics, courtroom testimony",
+    ],
+  },
+];
+
+const work = [
+  {
+    title: "Sales Associate / Closing Manager",
+    org: "Pierson Building Center",
+    location: "CA",
+    date: "Oct 2020 – Oct 2024",
+    highlights: [
+      "Promoted to Closing Manager; led end-of-day security controls, reconciliation, and asset protection",
+      "Monitored suspicious activity; enforced loss prevention and security protocols",
+    ],
+  },
+  {
+    title: "Deputy Sheriff (Criminal Investigation Division)",
+    org: "Humboldt County Sheriff's Office",
+    location: "CA",
+    date: "Jul 2016 – Sep 2020",
+    highlights: [
+      "Led felony investigations; managed evidence collection with strict chain-of-custody compliance",
+      "Produced warrants, investigative reports, and courtroom-ready documentation; conducted interviews and testimony",
+      "Selected for Explosive Ordnance Disposal team; recognized for valor during a hostage extraction (2018)",
+    ],
+  },
+  {
+    title: "Correctional Deputy",
+    org: "Humboldt County Sheriff's Office",
+    location: "CA",
+    date: "Jan 2014 – Jul 2016",
+    highlights: [
+      "Maintained facility safety; conducted searches for contraband and enforced regulations/statutes",
+      "Documented incidents and filed criminal complaints; coordinated bookings/transfers and transport logistics",
+      "Recommended for promotion based on procedural integrity and leadership",
+    ],
+  },
+  {
+    title: "Aerospace Propulsion Journeyman",
+    org: "United States Air Force",
+    location: null,
+    date: "Dec 2008 – Oct 2012",
+    highlights: [
+      "Maintained/inspected/repaired aircraft propulsion systems supporting combat and special operations missions",
+      "Supported time-sensitive, mission-critical maintenance; strengthened base physical security as Security Forces augmentee",
+      "Earned Air Force Achievement Medal; deployed in support of Operation Enduring Freedom (2011)",
+    ],
+  },
+];
+
+const awards = [
+  "Medal of Valor — HCSO (2018)",
+  "Air Force Achievement Medal (2011)",
+  "Afghanistan Campaign Medal (2011)",
+  "NATO Medal (ISAF) (2011)",
+];
+---
+
+<section class="border-t border-rosie-navy/20 bg-surface-elevated">
+  <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+    <RevealOnScroll>
+      <div class="sticky-section-heading mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h2 class="section-heading-rosie mb-2">Resume</h2>
+          <p class="text-muted">A quick glance at my education and work experience.</p>
+        </div>
+        <a href="/resume/" class="btn-secondary shrink-0">View Full Resume</a>
+      </div>
+
+      <div class="grid gap-8 lg:grid-cols-2">
+        <div>
+          <h3 class="sticky-section-heading mb-4 text-lg font-semibold text-[rgb(var(--c-text))]">Education</h3>
+          <div class="flex flex-col gap-4">
+            {
+              education.map((entry) => (
+                <RevealOnScroll>
+                  <article class="card project-card">
+                    <h4 class="font-bold text-[rgb(var(--c-text))]">{entry.title}</h4>
+                    <p class="text-sm text-muted">
+                      {entry.org}
+                      {entry.location ? `, ${entry.location}` : ""}
+                    </p>
+                    <p class="text-sm text-muted">
+                      {entry.date}
+                      {entry.gpa ? ` | ${entry.gpa}` : ""}
+                    </p>
+                    <ul class="resume-highlights clamp-3 mt-2 list-inside list-disc space-y-0.5 text-sm text-muted">
+                      {entry.highlights.map((h) => (
+                        <li>{h}</li>
+                      ))}
+                    </ul>
+                  </article>
+                </RevealOnScroll>
+              ))
+            }
+          </div>
+        </div>
+
+        <div>
+          <h3 class="sticky-section-heading mb-4 text-lg font-semibold text-[rgb(var(--c-text))]">Work Experience</h3>
+          <div class="flex flex-col gap-4">
+            {
+              work.map((entry) => (
+                <RevealOnScroll>
+                  <article class="card project-card">
+                    <h4 class="font-bold text-[rgb(var(--c-text))]">{entry.title}</h4>
+                    <p class="text-sm text-muted">
+                      {entry.org}
+                      {entry.location ? `, ${entry.location}` : ""}
+                    </p>
+                    <p class="text-sm text-muted">{entry.date}</p>
+                    <ul class="resume-highlights clamp-3 mt-2 list-inside list-disc space-y-0.5 text-sm text-muted">
+                      {entry.highlights.map((h) => (
+                        <li>{h}</li>
+                      ))}
+                    </ul>
+                  </article>
+                </RevealOnScroll>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 flex flex-wrap gap-2">
+        {awards.map((award) => (
+          <span class="badge badge-award">{award}</span>
+        ))}
+      </div>
+    </RevealOnScroll>
+  </div>
+</section>
+
+<style>
+  .clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .resume-highlights li {
+    display: list-item;
+  }
+</style>

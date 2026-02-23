@@ -1,0 +1,279 @@
+---
+import RevealOnScroll from "./RevealOnScroll.astro";
+import ToolCard from "./ToolCard.astro";
+import { languages } from "../data/languages";
+import { tools } from "../data/tools";
+import { platforms } from "../data/platforms";
+import { ai } from "../data/ai";
+
+function getLangIconProps(lang: (typeof languages)[number]) {
+  const icon = lang.icon as { path?: string; hex?: string; svg?: string };
+  return {
+    path: icon.path,
+    color: icon.hex,
+    svg: icon.svg,
+  };
+}
+
+function getAiIconProps(item: (typeof ai)[number]) {
+  const icon = item.icon as { path?: string; hex?: string; svg?: string };
+  return {
+    path: icon.path,
+    color: icon.hex,
+    svg: icon.svg,
+    iconSlug: "iconSlug" in item ? item.iconSlug : undefined,
+  };
+}
+
+function getToolIconProps(tool: (typeof tools)[number]) {
+  const icon = tool.icon as { path?: string; hex?: string; svg?: string };
+  return {
+    path: icon.path,
+    color: icon.hex,
+    svg: icon.svg,
+    iconSlug: "iconSlug" in tool ? tool.iconSlug : undefined,
+  };
+}
+
+function getPlatformIconProps(platform: (typeof platforms)[number]) {
+  const icon = platform.icon as {
+    path?: string;
+    hex?: string;
+    svg?: string;
+    imgSrc?: string;
+  };
+  return {
+    path: icon.path,
+    color: icon.hex,
+    svg: icon.svg,
+    imgSrc: icon.imgSrc,
+    iconSlug: "iconSlug" in platform ? platform.iconSlug : undefined,
+  };
+}
+---
+
+<!-- Content per prompt; extend data files if needed for full coverage -->
+<RevealOnScroll>
+  <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+    <h2 class="section-heading-rosie sticky-section-heading sticky-section-heading--surface mb-8">Tech Stack</h2>
+
+    <div class="tech-stack-tabs" data-tech-stack>
+      <div
+        class="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4"
+        role="tablist"
+        aria-label="Tech stack categories"
+      >
+        <button
+          type="button"
+          class="card language-card tech-tab is-active"
+          data-category="languages"
+          role="tab"
+          aria-selected="true"
+          aria-controls="panel-languages"
+          id="tab-languages"
+        >
+          Languages
+        </button>
+        <button
+          type="button"
+          class="card tool-card tech-tab"
+          data-category="tools"
+          role="tab"
+          aria-selected="false"
+          aria-controls="panel-tools"
+          id="tab-tools"
+        >
+          Tools
+        </button>
+        <button
+          type="button"
+          class="card platform-card tech-tab"
+          data-category="platforms"
+          role="tab"
+          aria-selected="false"
+          aria-controls="panel-platforms"
+          id="tab-platforms"
+        >
+          Platforms
+        </button>
+        <button
+          type="button"
+          class="card tool-card tech-tab"
+          data-category="ai"
+          role="tab"
+          aria-selected="false"
+          aria-controls="panel-ai"
+          id="tab-ai"
+        >
+          AI Agents & Tools
+        </button>
+      </div>
+
+      <div class="mt-8">
+        <div
+          id="panel-languages"
+          class="tech-panel is-active"
+          data-panel="languages"
+          role="tabpanel"
+          aria-labelledby="tab-languages"
+        >
+          <div class="tech-stack-detail-grid grid grid-cols-4 gap-4 sm:grid-cols-6 md:grid-cols-8">
+            {languages.map((lang) => {
+              const iconProps = getLangIconProps(lang);
+              return (
+                <ToolCard
+                  name={lang.name}
+                  path={iconProps.path}
+                  color={iconProps.color}
+                  svg={iconProps.svg}
+                  variant="language"
+                />
+              );
+            })}
+          </div>
+        </div>
+
+        <div
+          id="panel-tools"
+          class="tech-panel"
+          data-panel="tools"
+          role="tabpanel"
+          aria-labelledby="tab-tools"
+          hidden
+        >
+          <div class="tech-stack-detail-grid grid grid-cols-4 gap-4 sm:grid-cols-6 md:grid-cols-8">
+            {tools.map((tool) => {
+              const iconProps = getToolIconProps(tool);
+              return (
+                <ToolCard
+                  name={tool.name}
+                  path={iconProps.path}
+                  color={iconProps.color}
+                  svg={iconProps.svg}
+                  iconSlug={iconProps.iconSlug}
+                  variant="tool"
+                />
+              );
+            })}
+          </div>
+        </div>
+
+        <div
+          id="panel-platforms"
+          class="tech-panel"
+          data-panel="platforms"
+          role="tabpanel"
+          aria-labelledby="tab-platforms"
+          hidden
+        >
+          <div class="tech-stack-detail-grid grid grid-cols-4 gap-4 sm:grid-cols-6 md:grid-cols-8">
+            {platforms.map((platform) => {
+              const iconProps = getPlatformIconProps(platform);
+              return (
+                <ToolCard
+                  name={platform.name}
+                  path={iconProps.path}
+                  color={iconProps.color}
+                  svg={iconProps.svg}
+                  imgSrc={iconProps.imgSrc}
+                  iconSlug={iconProps.iconSlug}
+                  variant="platform"
+                />
+              );
+            })}
+          </div>
+        </div>
+
+        <div
+          id="panel-ai"
+          class="tech-panel"
+          data-panel="ai"
+          role="tabpanel"
+          aria-labelledby="tab-ai"
+          hidden
+        >
+          <div class="tech-stack-detail-grid grid grid-cols-4 gap-4 sm:grid-cols-6 md:grid-cols-8">
+            {ai.map((item) => {
+              const iconProps = getAiIconProps(item);
+              return (
+                <ToolCard
+                  name={item.name}
+                  path={iconProps.path}
+                  color={iconProps.color}
+                  svg={iconProps.svg}
+                  iconSlug={iconProps.iconSlug}
+                  variant="tool"
+                />
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</RevealOnScroll>
+
+<script>
+  function initTechStackTabs() {
+    const container = document.querySelector("[data-tech-stack]");
+    if (!container) return;
+
+    container.classList.add("js-enabled");
+
+    const tabs = container.querySelectorAll(".tech-tab");
+    const panels = container.querySelectorAll(".tech-panel");
+
+    function setActive(category: string) {
+      tabs.forEach((tab) => {
+        const isActive = tab.getAttribute("data-category") === category;
+        tab.classList.toggle("is-active", isActive);
+        tab.setAttribute("aria-selected", String(isActive));
+      });
+      panels.forEach((panel) => {
+        const isActive = panel.getAttribute("data-panel") === category;
+        panel.classList.toggle("is-active", isActive);
+        (panel as HTMLElement).hidden = !isActive;
+      });
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("mouseenter", () => {
+        setActive(tab.getAttribute("data-category") ?? "languages");
+      });
+      tab.addEventListener("focus", () => {
+        setActive(tab.getAttribute("data-category") ?? "languages");
+      });
+    });
+  }
+
+  initTechStackTabs();
+</script>
+
+<style>
+  .tech-panel {
+    display: none;
+  }
+
+  .tech-panel.is-active {
+    display: block;
+  }
+
+  /* No-JS fallback: show all panels stacked */
+  .tech-stack-tabs:not(.js-enabled) .tech-panel {
+    display: block;
+  }
+
+  .tech-stack-tabs:not(.js-enabled) .tech-panel + .tech-panel {
+    margin-top: 2rem;
+  }
+
+  .tech-stack-tabs.js-enabled .tech-panel {
+    display: none;
+  }
+
+  .tech-stack-tabs.js-enabled .tech-panel.is-active {
+    display: block;
+  }
+
+
+</style>

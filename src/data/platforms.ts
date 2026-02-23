@@ -1,8 +1,4 @@
-import {
-  siUbuntu,
-  siKalilinux,
-  siMacos,
-} from "simple-icons";
+import { siUbuntu, siApple } from "simple-icons";
 
 // Windows logo (4-panel) - not in simple-icons; custom path, official blue #0078D4
 const WINDOWS_ICON = {
@@ -10,9 +6,14 @@ const WINDOWS_ICON = {
   hex: "0078D4",
 };
 
+// Kali Linux: NetHunter dragon logo (™ OffSec) - more visible than text mark
+// https://www.kali.org/docs/policy/trademark/
+const KALI_DRAGON_URL =
+  "https://www.kali.org/docs/policy/trademark/kali-nethunter-dragon-tm.png";
+
 export const platforms = [
   { name: "Windows", icon: WINDOWS_ICON },
-  { name: "Ubuntu", icon: siUbuntu },
-  { name: "Kali Linux", icon: siKalilinux },
-  { name: "macOS", icon: siMacos, iconSlug: "macos" },
+  { name: "Ubuntu", icon: siUbuntu, iconSlug: "ubuntu" },
+  { name: "Kali Linux", icon: { imgSrc: KALI_DRAGON_URL }, iconSlug: "kali" },
+  { name: "macOS", icon: siApple, iconSlug: "apple" },
 ] as const;

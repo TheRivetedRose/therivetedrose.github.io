@@ -22,16 +22,62 @@ const { class: className } = Astro.props;
       return;
     }
 
+    let lastScrollY = window.scrollY;
+    let scrollDirection = 'down';
+
+    window.addEventListener(
+      'scroll',
+      () => {
+        const y = window.scrollY;
+        scrollDirection = y > lastScrollY ? 'down' : 'up';
+        lastScrollY = y;
+      },
+      { passive: true }
+    );
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('reveal--visible', 'reveal--animate');
-            observer.unobserve(entry.target);
+            const alreadyRevealed = entry.target.hasAttribute('data-revealed');
+            const el = entry.target as HTMLElement & { _revealExitHandler?: () => void };
+            if (el._revealExitHandler) {
+              el.removeEventListener('transitionend', el._revealExitHandler);
+              el._revealExitHandler = undefined;
+            }
+            entry.target.classList.remove('reveal--animate-up', 'reveal--animate-down', 'reveal--animate-up-subtle', 'reveal--animate-down-subtle', 'reveal--exit-up', 'reveal--exit-down');
+            entry.target.classList.add('reveal--visible');
+            const rect = entry.boundingClientRect;
+            const viewportMid = window.innerHeight / 2;
+            const isEnteringFromTop = rect.top < viewportMid;
+            const isScrollingDown = !isEnteringFromTop;
+            if (!alreadyRevealed) {
+              const animateClass = isScrollingDown ? 'reveal--animate-up' : 'reveal--animate-down';
+              entry.target.classList.add(animateClass);
+              entry.target.setAttribute('data-revealed', '');
+            } else {
+              const subtleClass = isScrollingDown ? 'reveal--animate-up-subtle' : 'reveal--animate-down-subtle';
+              entry.target.classList.remove(subtleClass);
+              void entry.target.offsetHeight; // force reflow so animation re-runs
+              entry.target.classList.add(subtleClass);
+            }
+          } else {
+            entry.target.classList.remove('reveal--visible', 'reveal--animate-up', 'reveal--animate-down', 'reveal--animate-up-subtle', 'reveal--animate-down-subtle');
+            const exitClass = scrollDirection === 'down' ? 'reveal--exit-up' : 'reveal--exit-down';
+            entry.target.classList.add(exitClass);
+
+            const el = entry.target as HTMLElement & { _revealExitHandler?: () => void };
+            const handler = () => {
+              el.removeEventListener('transitionend', handler);
+              el._revealExitHandler = undefined;
+              el.classList.remove('reveal--exit-up', 'reveal--exit-down');
+            };
+            el._revealExitHandler = handler;
+            el.addEventListener('transitionend', handler);
           }
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.05, rootMargin: '0px 0px 100px 0px' }
     );
 
     document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));

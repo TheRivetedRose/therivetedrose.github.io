@@ -5,21 +5,31 @@ interface Props {
   color?: string;
   /** Full SVG string for multi-color icons (e.g. Python). When set, path/color are ignored. */
   svg?: string;
+  /** Image URL for logo icons (e.g. Kali NetHunter dragon). When set, path/color/svg are ignored. */
+  imgSrc?: string;
   /** Slug for theme-specific icon color overrides (e.g. "github", "macos") */
   iconSlug?: string;
   variant?: "language" | "platform" | "tool" | "ai";
 }
 
-const { name, path, color, svg, iconSlug, variant = "tool" } = Astro.props;
+const { name, path, color, svg, imgSrc, iconSlug, variant = "tool" } = Astro.props;
 const cardClass =
-  variant === "language" || variant === "ai" ? "language-card" : "tool-card";
+  variant === "language" || variant === "ai" ? "language-card" :
+  variant === "platform" ? "platform-card" : "tool-card";
 const iconClass = iconSlug ? `icon-${iconSlug}` : "";
 ---
 
 <div
   class={`${cardClass} ${iconClass} flex min-h-[88px] flex-col items-center justify-center gap-2 rounded-xl border border-border bg-surface-elevated p-4 transition-shadow hover:shadow-md`}
 >
-  {svg ? (
+  {imgSrc ? (
+    <img
+      src={imgSrc}
+      alt=""
+      class="h-7 w-7 shrink-0 object-contain"
+      aria-hidden="true"
+    />
+  ) : svg ? (
     <div class="h-7 w-7 shrink-0 [&_svg]:h-full [&_svg]:w-full" set:html={svg} />
   ) : path && color ? (
     <svg

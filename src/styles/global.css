@@ -41,6 +41,17 @@
     border-color: rgb(var(--c-rosie-red)) !important;
   }
 
+  /* Tech stack: active tab keeps border/glow when subcards are showing */
+  .tech-tab.is-active.language-card,
+  .tech-tab.is-active.platform-card {
+    box-shadow: var(--card-hover-shadow-light) !important;
+    border-color: rgb(208, 182, 95) !important;
+  }
+  .tech-tab.is-active.tool-card {
+    box-shadow: var(--card-hover-shadow-red-light) !important;
+    border-color: rgb(var(--c-rosie-red)) !important;
+  }
+
   .dark {
     --c-surface: 23 23 23;
     --c-surface-elevated: 38 38 38;
@@ -88,19 +99,66 @@
     background-color: rgb(52 52 52) !important;
   }
 
+  .dark .tech-tab.is-active.language-card,
+  .dark .tech-tab.is-active.platform-card {
+    box-shadow: var(--card-hover-shadow) !important;
+    border-color: rgb(var(--c-rosie-yellow)) !important;
+    background-color: rgb(52 52 52) !important;
+  }
+  .dark .tech-tab.is-active.tool-card {
+    box-shadow: var(--card-hover-shadow-red) !important;
+    border-color: rgb(var(--c-rosie-red)) !important;
+    background-color: rgb(52 52 52) !important;
+  }
+
   /* Dark theme: GitHub green, macOS moon silver */
   .dark .tool-card.icon-github svg {
     fill: rgb(var(--c-github)) !important;
   }
 
-  .dark .platform-card.icon-macos svg,
-  .dark .tool-card.icon-macos svg {
+  .dark .platform-card.icon-apple svg,
+  .dark .tool-card.icon-apple svg {
     fill: #c7c7cc !important;
+  }
+
+  /* Ubuntu: official brand orange #E95420 (design.ubuntu.com) */
+  .platform-card.icon-ubuntu svg,
+  .tool-card.icon-ubuntu svg {
+    fill: #e95420 !important;
+  }
+
+  /* VMware: white logo on dark backgrounds per brand guidelines */
+  .dark .tool-card.icon-vmware svg {
+    fill: #ffffff !important;
   }
 
   /* Dark theme: Cursor purple brand color (AI section uses language-card) */
   .dark .language-card.icon-cursor svg {
     fill: #6b21a8 !important;
+  }
+
+  /* Tech stack sub cards: square aspect ratio, centered */
+  .tech-stack-detail-grid {
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .75rem;
+  }
+  .tech-stack-detail-grid > * {
+    aspect-ratio: 1 !important;
+    min-height: 0 !important;
+    width: 5.5rem !important;
+    flex: 0 0 5.5rem;
+    padding: 0.5rem !important;
+  }
+  /* Fixed icon size for all subcards: larger icons + aligned labels */
+  .tech-stack-detail-grid > * > .shrink-0 {
+    height: 2.25rem !important;
+    width: 2.25rem !important;
+  }
+  .tech-stack-detail-grid > * span {
+    font-size: 0.7rem;
+    line-height: 1.1;
   }
 
   html {
@@ -151,12 +209,32 @@
     box-shadow: 0 0 16px rgb(var(--c-rosie-navy-bright) / 0.5);
   }
 
+  /* Awards: persistent light-navy glow and border */
+  .badge-award {
+    @apply border-2 border-rosie-navy-bright bg-rosie-navy-bright/15 px-2.5 py-0.5 text-rosie-navy-bright font-medium;
+    box-shadow: 0 0 12px rgb(var(--c-rosie-navy-bright) / 0.4);
+  }
+
+  .dark .badge-award {
+    box-shadow: 0 0 16px rgb(var(--c-rosie-navy-bright) / 0.5);
+  }
+
   .section-heading {
     @apply text-2xl font-semibold tracking-tight text-[rgb(var(--c-text))] md:text-3xl;
   }
 
   .section-heading-rosie {
     @apply section-heading border-l-4 border-rosie-navy pl-4;
+  }
+
+  /* Sticky section headings - stay visible when scrolling through content */
+  .sticky-section-heading {
+    @apply sticky top-0 z-10 py-4;
+    background-color: rgb(var(--c-surface-elevated));
+  }
+
+  .sticky-section-heading--surface {
+    background-color: rgb(var(--c-surface));
   }
 
   .banner-wip {
@@ -175,6 +253,17 @@
 
   .banner-wip__text {
     @apply tracking-tight;
+  }
+
+  /* LinkedIn card: orange border and glow only */
+  .card-linkedin {
+    @apply rounded-xl border-2 border-rosie-orange bg-surface-elevated p-6;
+    box-shadow: 0 0 16px rgb(var(--c-rosie-orange) / 0.5);
+  }
+
+  .dark .card-linkedin {
+    @apply border-rosie-orange bg-surface-elevated;
+    box-shadow: 0 0 20px rgb(var(--c-rosie-orange) / 0.35);
   }
 
   .prose-custom {
@@ -200,7 +289,7 @@
 /* Reveal animation - respects reduced motion */
 @layer utilities {
   .reveal {
-    @apply opacity-0 transition-all duration-500 ease-out;
+    @apply opacity-0 transition-all duration-700 ease-out;
   }
 
   .reveal--visible {
@@ -213,20 +302,82 @@
     }
   }
 
-  .reveal--visible.reveal--animate {
-    animation: fadeUp 0.5s ease-out forwards;
+  .reveal--visible.reveal--animate-up {
+    animation: fadeUp 0.65s ease-out forwards;
+  }
+
+  .reveal--visible.reveal--animate-down {
+    animation: fadeDown 0.65s ease-out forwards;
+  }
+
+  /* Re-enter animations: no opacity change, avoids flicker */
+  .reveal--visible.reveal--animate-up-subtle {
+    animation: slideUpSubtle 0.55s ease-out forwards;
+  }
+
+  .reveal--visible.reveal--animate-down-subtle {
+    animation: slideDownSubtle 0.55s ease-out forwards;
+  }
+
+  /* Exit animations: slide out when leaving viewport */
+  .reveal.reveal--exit-up {
+    transform: translateY(-48px);
+  }
+
+  .reveal.reveal--exit-down {
+    transform: translateY(48px);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .reveal--visible.reveal--animate {
+    .reveal--visible.reveal--animate-up,
+    .reveal--visible.reveal--animate-down,
+    .reveal--visible.reveal--animate-up-subtle,
+    .reveal--visible.reveal--animate-down-subtle {
       animation: none;
+    }
+    .reveal.reveal--exit-up,
+    .reveal.reveal--exit-down {
+      transform: none;
     }
   }
 
   @keyframes fadeUp {
     from {
       opacity: 0;
-      transform: translateY(12px);
+      transform: translateY(48px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeDown {
+    from {
+      opacity: 0;
+      transform: translateY(-48px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUpSubtle {
+    from {
+      opacity: 1;
+      transform: translateY(28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideDownSubtle {
+    from {
+      opacity: 1;
+      transform: translateY(-28px);
     }
     to {
       opacity: 1;
