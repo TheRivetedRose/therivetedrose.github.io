@@ -272,8 +272,8 @@
     @apply prose-a:no-underline hover:prose-a:underline;
     /* Internal links default: red */
     @apply [&_a[href^="/"]]:!text-rosie-red [&_a[href^="/"]]:hover:!text-rosie-red;
-    /* External links: bright navy */
-    @apply [&_a[href^="http"]]:!text-rosie-navy-bright [&_a[href^="http"]]:hover:!text-rosie-navy-bright;
+    /* External links: bright navy (exclude branded buttons which use white text) */
+    @apply [&_a[href^="http"]:not(.btn-github):not(.btn-linkedin)]:!text-rosie-navy-bright [&_a[href^="http"]:not(.btn-github):not(.btn-linkedin)]:hover:!text-rosie-navy-bright;
     /* Internal blog links: red (explicit) */
     @apply [&_a[href^="/blog/"]]:!text-rosie-red [&_a[href^="/blog/"]]:hover:!text-rosie-red;
     /* Internal project links: yellow (overrides default) */
