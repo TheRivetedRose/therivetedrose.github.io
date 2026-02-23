@@ -1,3 +1,6 @@
+# private files
+Docs_private/
+
 # build output
 dist/
 docs/
