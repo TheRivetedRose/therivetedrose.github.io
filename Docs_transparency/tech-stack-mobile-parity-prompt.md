@@ -1,5 +1,9 @@
 # Tech Stack Mobile Parity — Implementation Prompt
 
+> **Disclaimer:** The original reported issue (animations not playing on mobile) was resolved when the user discovered their phone had **Reduce Motion** enabled in system settings. The site correctly respects `prefers-reduced-motion` and disables animations when this preference is set. The implementations below are robustness improvements (touch support, scroll fallback, etc.) that remain useful for users who have animations enabled.
+
+---
+
 **Goal:** On mobile, my Tech Stack section is missing (a) the sub-card slide animation and (b) reveal-on-scroll. Desktop works. Fix mobile parity without breaking desktop behavior.
 
 **Constraints:**
