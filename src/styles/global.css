@@ -145,9 +145,19 @@
     fill: #e95420 !important;
   }
 
-  /* VMware: white logo on dark backgrounds per brand guidelines */
-  .dark .tool-card.icon-vmware svg {
-    fill: #ffffff !important;
+  /* VMware: brand blue on dark backgrounds (Pantone 7461 C); target path to override inline fill */
+  .dark .tool-card.icon-vmware svg path {
+    fill: #0095D3 !important;
+  }
+
+  /* VMware: reduce padding and gap so icon can scale larger */
+  .tech-stack-detail-grid > .tool-card.icon-vmware {
+    padding: 0.25rem !important;
+    gap: 0.25rem !important;
+  }
+  .tech-stack-detail-grid > .tool-card.icon-vmware > .shrink-0 {
+    height: 2.75rem !important;
+    width: 2.75rem !important;
   }
 
   /* Dark theme: Cursor purple brand color (AI section uses language-card) */

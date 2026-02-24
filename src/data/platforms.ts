@@ -13,7 +13,7 @@ const KALI_DRAGON_URL =
 
 export const platforms = [
   { name: "Windows", icon: WINDOWS_ICON },
-  { name: "Ubuntu", icon: siUbuntu, iconSlug: "ubuntu" },
   { name: "Kali Linux", icon: { imgSrc: KALI_DRAGON_URL }, iconSlug: "kali" },
+  { name: "Ubuntu", icon: siUbuntu, iconSlug: "ubuntu" },
   { name: "macOS", icon: siApple, iconSlug: "apple" },
 ] as const;
