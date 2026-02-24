@@ -311,6 +311,9 @@ function getPlatformIconProps(platform: (typeof platforms)[number]) {
       tab.addEventListener("focus", () => {
         setActive(tab.getAttribute("data-category") ?? "languages");
       });
+      tab.addEventListener("click", () => {
+        setActive(tab.getAttribute("data-category") ?? "languages");
+      });
     });
 
     const initialPanel = container?.querySelector(".tech-panel.is-active");
