@@ -207,15 +207,12 @@
   /* Tech stack subcard slide animations */
   .tech-stack-detail-grid.slide-out > * {
     animation: techSlideOut 0.25s ease-in forwards;
-    -webkit-animation: techSlideOut 0.25s ease-in forwards;
   }
 
   .tech-stack-detail-grid.slide-in > * {
     opacity: 0;
-    transform: translateX(-12px) translateZ(0);
-    -webkit-transform: translateX(-12px) translateZ(0);
+    transform: translateX(-12px);
     animation: techSlideIn 0.3s ease-out forwards;
-    -webkit-animation: techSlideIn 0.3s ease-out forwards;
   }
 
   .tech-stack-detail-grid.slide-in > *:nth-child(1) { animation-delay: 0ms; }
@@ -233,28 +230,14 @@
   @keyframes techSlideIn {
     to {
       opacity: 1;
-      transform: translateX(0) translateZ(0);
-    }
-  }
-
-  @-webkit-keyframes techSlideIn {
-    to {
-      opacity: 1;
-      -webkit-transform: translateX(0) translateZ(0);
+      transform: translateX(0);
     }
   }
 
   @keyframes techSlideOut {
     to {
       opacity: 0;
-      transform: translateX(12px) translateZ(0);
-    }
-  }
-
-  @-webkit-keyframes techSlideOut {
-    to {
-      opacity: 0;
-      -webkit-transform: translateX(12px) translateZ(0);
+      transform: translateX(12px);
     }
   }
 
@@ -461,39 +444,12 @@
     transform: translateY(48px);
   }
 
-  /* Mobile: more pronounced reveal for better visibility on small screens */
-  @media (max-width: 768px) {
-    .reveal--visible.reveal--animate-up {
-      animation: fadeUpMobile 0.85s ease-out forwards;
-    }
-
-    .reveal--visible.reveal--animate-down {
-      animation: fadeDownMobile 0.85s ease-out forwards;
-    }
-
-    .reveal--visible.reveal--animate-up-subtle {
-      animation: slideUpSubtleMobile 0.75s ease-out forwards;
-    }
-
-    .reveal--visible.reveal--animate-down-subtle {
-      animation: slideDownSubtleMobile 0.75s ease-out forwards;
-    }
-
-    .reveal.reveal--exit-up {
-      transform: translateY(-72px);
-    }
-
-    .reveal.reveal--exit-down {
-      transform: translateY(72px);
-    }
-  }
-
   @media (prefers-reduced-motion: reduce) {
     .reveal--visible.reveal--animate-up,
     .reveal--visible.reveal--animate-down,
     .reveal--visible.reveal--animate-up-subtle,
     .reveal--visible.reveal--animate-down-subtle {
-      animation: none !important;
+      animation: none;
     }
     .reveal.reveal--exit-up,
     .reveal.reveal--exit-down {
@@ -542,51 +498,6 @@
     to {
       opacity: 1;
       transform: translateY(0);
-    }
-  }
-
-  /* Mobile: larger movement for more noticeable reveal, translateZ(0) for GPU compositing */
-  @keyframes fadeUpMobile {
-    from {
-      opacity: 0;
-      transform: translateY(72px) translateZ(0);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) translateZ(0);
-    }
-  }
-
-  @keyframes fadeDownMobile {
-    from {
-      opacity: 0;
-      transform: translateY(-72px) translateZ(0);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) translateZ(0);
-    }
-  }
-
-  @keyframes slideUpSubtleMobile {
-    from {
-      opacity: 1;
-      transform: translateY(40px) translateZ(0);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) translateZ(0);
-    }
-  }
-
-  @keyframes slideDownSubtleMobile {
-    from {
-      opacity: 1;
-      transform: translateY(-40px) translateZ(0);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) translateZ(0);
     }
   }
 
