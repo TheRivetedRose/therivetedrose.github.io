@@ -313,7 +313,7 @@
   }
 
   .section-heading-rosie {
-    @apply section-heading border-l-4 border-rosie-navy pl-4;
+    @apply section-heading border-l-4 border-rosie-navy pl-4 text-rosie-navy-bright;
   }
 
   /* Sticky section headings - stay visible when scrolling through content */
