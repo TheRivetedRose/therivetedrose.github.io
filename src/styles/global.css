@@ -160,6 +160,21 @@
     width: 2.75rem !important;
   }
 
+  /* PL/SQL: light gray cylinders in dark mode, darker gray in light mode (default) */
+  .dark .language-card.icon-plsql img {
+    filter: brightness(1.6) contrast(0.95);
+  }
+
+  /* PL/SQL: reduce padding and gap so icon can scale larger */
+  .tech-stack-detail-grid > .language-card.icon-plsql {
+    padding: 0.25rem !important;
+    gap: 0.25rem !important;
+  }
+  .tech-stack-detail-grid > .language-card.icon-plsql > .shrink-0 {
+    height: 2.75rem !important;
+    width: 2.75rem !important;
+  }
+
   /* Dark theme: Cursor purple brand color (AI section uses language-card) */
   .dark .language-card.icon-cursor svg {
     fill: #6b21a8 !important;

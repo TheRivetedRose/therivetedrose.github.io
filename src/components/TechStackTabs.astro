@@ -7,11 +7,13 @@ import { platforms } from "../data/platforms";
 import { ai } from "../data/ai";
 
 function getLangIconProps(lang: (typeof languages)[number]) {
-  const icon = lang.icon as { path?: string; hex?: string; svg?: string };
+  const icon = lang.icon as { path?: string; hex?: string; svg?: string; imgSrc?: string };
   return {
     path: icon.path,
     color: icon.hex,
     svg: icon.svg,
+    imgSrc: icon.imgSrc,
+    iconSlug: "iconSlug" in lang ? lang.iconSlug : undefined,
   };
 }
 
@@ -126,6 +128,8 @@ function getPlatformIconProps(platform: (typeof platforms)[number]) {
                   path={iconProps.path}
                   color={iconProps.color}
                   svg={iconProps.svg}
+                  imgSrc={iconProps.imgSrc}
+                  iconSlug={iconProps.iconSlug}
                   variant="language"
                 />
               );
