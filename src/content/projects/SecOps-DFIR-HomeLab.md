@@ -102,7 +102,7 @@ Reference:
 - **<a href="https://www.microsoft.com/en-us/evalcenter/" target="_blank" rel="noopener noreferrer">Windows Virtual Machine</a>** – Target system for telemetry and endpoint detection practice
   - Windows provides enterprise-relevant log generation.
 
-- **<a href="https://www.kali.org/" target="_blank" rel="noopener noreferrer">Kali Linux Virtual Machine<a>** – Controlled adversary simulation platform
+- **<a href="https://www.kali.org/" target="_blank" rel="noopener noreferrer">Kali Linux Virtual Machine</a>** – Controlled adversary simulation platform
   - Kali supports structured adversary technique simulation.
 
 [Blog Post: Operating System & Hypervisor Selection Rationale](/blog/HomeLab-OS-Selection/)

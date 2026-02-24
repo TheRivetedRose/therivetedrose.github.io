@@ -286,12 +286,13 @@
   }
 
   .btn-solid-navy {
-    @apply inline-flex items-center justify-center rounded-lg bg-rosie-navy-bright px-4 py-2 text-sm font-medium !text-white transition-all hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-rosie-navy-bright focus:ring-offset-2 focus:ring-offset-surface;
+    @apply inline-flex items-center justify-center rounded-lg bg-rosie-navy px-4 py-2 text-sm font-medium !text-white transition-all focus:outline-none focus:ring-2 focus:ring-rosie-navy-bright focus:ring-offset-2 focus:ring-offset-surface;
     box-shadow: none;
-    transition: box-shadow 0.2s ease-out;
+    transition: background-color 0.2s ease-out, box-shadow 0.2s ease-out;
   }
 
   .btn-solid-navy:hover {
+    background-color: rgb(var(--c-rosie-navy-bright));
     box-shadow: 0 0 16px rgb(var(--c-rosie-navy-bright) / 0.5);
   }
 
@@ -386,6 +387,18 @@
     @apply [&_a.btn-solid-yellow]:!text-black;
     @apply prose-code:rounded prose-code:bg-surface-elevated prose-code:px-1.5 prose-code:py-0.5 prose-code:before:content-none prose-code:after:content-none;
     @apply prose-pre:rounded-xl prose-pre:border prose-pre:border-border;
+  }
+
+  /* Light mode: improve code block readability on cream background (dark block for contrast) */
+  :root:not(.dark) .prose-custom pre {
+    background-color: rgb(45 55 72) !important;
+    color: rgb(226 232 240) !important;
+    border-color: rgb(55 65 81) !important;
+  }
+
+  :root:not(.dark) .prose-custom pre code {
+    background-color: transparent !important;
+    color: inherit !important;
   }
 }
 
