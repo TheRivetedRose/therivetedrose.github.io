@@ -91,12 +91,19 @@ const typewriterSubheadlines = [
 
   <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
     <RevealOnScroll>
-      <h2 class="section-heading-rosie sticky-section-heading sticky-section-heading--surface mb-8">About</h2>
+      <h2
+        class="section-heading-rosie sticky-section-heading sticky-section-heading--surface mb-8"
+      >
+        About
+      </h2>
       <p class="max-w-2xl text-muted">
-        I focus on security, virtualization, and technical documentation. My
-        work spans dual-boot lab architectures, network segmentation, packet
-        analysis, and log collection. I believe in repeatable deployments and
-        clear documentation.
+        I am a cybersecurity student working towards a role in Security
+        Operations, with a focus on detection, investigation, and structured
+        incident response. I am developing practical blue team skills through
+        hands-on lab work, emphasizing log analysis, system hardening, and
+        disciplined documentation. Prior to transitioning into computer science,
+        I spent over a decade in operational security roles within the U.S. Air
+        Force and later in law enforcement.
       </p>
       <a href="/about/" class="btn-solid-red mt-4">Learn More</a>
     </RevealOnScroll>
@@ -108,44 +115,50 @@ const typewriterSubheadlines = [
 
   <section class="border-t border-rosie-navy/20 bg-surface-elevated">
     <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
-    <RevealOnScroll>
-      <h2 class="section-heading-rosie sticky-section-heading mb-8">Featured Projects</h2>
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {
-          featuredProjects.length > 0
-            ? featuredProjects.map((project) => (
-                <ProjectCard
-                  slug={project.slug}
-                  title={project.data.title}
-                  summary={project.data.summary}
-                  tags={project.data.tags}
-                  featured={project.data.featured}
-                  pubDate={project.data.pubDate}
-                  updatedDate={project.data.updatedDate}
-                />
-              ))
-            : projects
-                .slice(0, 3)
-                .map((project) => (
+      <RevealOnScroll>
+        <h2 class="section-heading-rosie sticky-section-heading mb-8">
+          Featured Projects
+        </h2>
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {
+            featuredProjects.length > 0
+              ? featuredProjects.map((project) => (
                   <ProjectCard
                     slug={project.slug}
                     title={project.data.title}
                     summary={project.data.summary}
                     tags={project.data.tags}
                     featured={project.data.featured}
+                    pubDate={project.data.pubDate}
+                    updatedDate={project.data.updatedDate}
                   />
                 ))
-        }
-      </div>
-      <a href="/projects/" class="btn-solid-yellow mt-8">All Projects</a>
-    </RevealOnScroll>
+              : projects
+                  .slice(0, 3)
+                  .map((project) => (
+                    <ProjectCard
+                      slug={project.slug}
+                      title={project.data.title}
+                      summary={project.data.summary}
+                      tags={project.data.tags}
+                      featured={project.data.featured}
+                    />
+                  ))
+          }
+        </div>
+        <a href="/projects/" class="btn-solid-yellow mt-8">All Projects</a>
+      </RevealOnScroll>
     </div>
   </section>
 
   <section class="border-t border-rosie-navy/20 bg-surface">
     <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
       <RevealOnScroll>
-        <h2 class="section-heading-rosie sticky-section-heading sticky-section-heading--surface mb-8">Latest Blog</h2>
+        <h2
+          class="section-heading-rosie sticky-section-heading sticky-section-heading--surface mb-8"
+        >
+          Latest Blog
+        </h2>
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {
             blogPosts.map((post) => (

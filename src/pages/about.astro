@@ -1,58 +1,79 @@
 ---
-import PageLayout from '../layouts/PageLayout.astro';
-import RevealOnScroll from '../components/RevealOnScroll.astro';
-import GitHubIcon from '../components/icons/GitHubIcon.astro';
-import LinkedInIcon from '../components/icons/LinkedInIcon.astro';
+import PageLayout from "../layouts/PageLayout.astro";
+import RevealOnScroll from "../components/RevealOnScroll.astro";
+import GitHubIcon from "../components/icons/GitHubIcon.astro";
+import LinkedInIcon from "../components/icons/LinkedInIcon.astro";
 ---
 
-<PageLayout title="About" description="About TheRivetedRose — background, skills, and interests">
+<PageLayout
+  title="About"
+  description="About TheRivetedRose — background, skills, and interests"
+>
   <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
     <RevealOnScroll>
       <h1 class="section-heading-rosie mb-8">About</h1>
       <div class="prose-custom space-y-6">
         <p>
-          I'm a software engineer and security researcher with a focus on lab architecture, virtualization,
-          and technical documentation. I build segmented environments for safe experimentation and
-          document the process for repeatability.
+          I am a cybersecurity student working towards a role in Security
+          Operations, with a focus on detection, investigation, and structured
+          incident response. I am developing practical blue team skills through
+          hands-on lab work, emphasizing log analysis, system hardening, and
+          disciplined documentation. Prior to transitioning into computer
+          science, I spent over a decade in operational security roles within
+          the U.S. Air Force and later in law enforcement.
         </p>
         <p>
-          My work spans dual-boot lab setups, network segmentation, packet analysis, and log collection.
-          I believe in OS-level separation for lab containment and clear documentation for knowledge sharing.
+          In those roles, I worked in environments where decisions had
+          consequences and documentation had to be clear, accurate, and
+          defensible. I conducted investigations, prepared detailed reports,
+          maintained evidentiary standards, and operated in situations that
+          demanded composure and critical thinking under pressure. That
+          foundation translates directly to security operations: methodical
+          analysis, attention to detail, and accountability in how findings are
+          documented and communicated.
         </p>
-        <h2 class="text-xl font-semibold">Skills</h2>
-        <ul class="list-disc pl-6">
-          <li>Dual-boot architecture planning</li>
-          <li>Virtualization management (VirtualBox)</li>
-          <li>Network segmentation and static IP planning</li>
-          <li>Packet analysis (Wireshark)</li>
-          <li>Log collection and parsing</li>
-          <li>Structured technical documentation</li>
-        </ul>
-        <h2 class="text-xl font-semibold">Interests</h2>
         <p>
-          Security lab design, automation, detection development, and writing clear technical guides.
+          I am now applying that investigative rigor to my technical growth.
+          Through coursework and independent lab development, I am strengthening
+          my understanding of networking, logging, detection workflows, and
+          defensive frameworks. My goal is to contribute in a SOC environment
+          where structured analysis, technical skill, and clear reporting
+          matter.
         </p>
-        <h2 class="text-xl font-semibold">Connect</h2>
-        <div class="flex flex-wrap gap-4">
-          <a
-            href="https://github.com/therivetedrose"
-            class="btn-github"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <GitHubIcon size={18} />
-            GitHub
-          </a>
-          <a
-            href="https://www.linkedin.com/in/rosefr"
-            class="btn-linkedin"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <LinkedInIcon size={18} />
-            LinkedIn
-          </a>
-        </div>
+      </div>
+    </RevealOnScroll>
+    <RevealOnScroll class="pt-8">
+      <h2 class="text-xl font-semibold">See my work</h2>
+      <div class="flex flex-wrap gap-4">
+        <a
+          href="/projects/"
+          class="btn-solid-yellow focus:ring-offset-rosie-navy"
+        >
+          View Projects
+        </a>
+        <a
+          href="https://github.com/therivetedrose"
+          class="btn-github"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <GitHubIcon size={18} />
+          GitHub
+        </a>
+      </div>
+    </RevealOnScroll>
+    <RevealOnScroll class="pt-8">
+      <h2 class="text-xl font-semibold">Connect with me</h2>
+      <div class="flex flex-wrap gap-4">
+        <a
+          href="https://www.linkedin.com/in/rosefr"
+          class="btn-linkedin"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <LinkedInIcon size={18} />
+          LinkedIn
+        </a>
       </div>
     </RevealOnScroll>
   </div>

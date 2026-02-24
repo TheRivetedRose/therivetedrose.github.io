@@ -285,6 +285,20 @@
     @apply inline-flex items-center justify-center gap-2 rounded-lg bg-[rgb(var(--c-linkedin))] px-4 py-2 text-sm font-medium !text-white transition-colors hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[rgb(var(--c-linkedin))] focus:ring-offset-2 focus:ring-offset-surface;
   }
 
+  .btn-solid-navy {
+    @apply inline-flex items-center justify-center rounded-lg bg-rosie-navy-bright px-4 py-2 text-sm font-medium !text-white transition-all hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-rosie-navy-bright focus:ring-offset-2 focus:ring-offset-surface;
+    box-shadow: none;
+    transition: box-shadow 0.2s ease-out;
+  }
+
+  .btn-solid-navy:hover {
+    box-shadow: 0 0 16px rgb(var(--c-rosie-navy-bright) / 0.5);
+  }
+
+  .dark .btn-solid-navy:hover {
+    box-shadow: 0 0 20px rgb(var(--c-rosie-navy-bright) / 0.55);
+  }
+
   .badge {
     @apply inline-flex items-center rounded-full border border-border bg-surface-elevated px-2.5 py-0.5 text-xs font-medium text-muted;
   }
