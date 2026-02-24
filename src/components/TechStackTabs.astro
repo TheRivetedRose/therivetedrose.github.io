@@ -111,7 +111,7 @@ function getPlatformIconProps(platform: (typeof platforms)[number]) {
         </button>
       </div>
 
-      <div class="mt-8">
+      <div class="tech-stack-panels mt-8">
         <div
           id="panel-languages"
           class="tech-panel is-active"
@@ -314,6 +314,9 @@ function getPlatformIconProps(platform: (typeof platforms)[number]) {
       tab.addEventListener("click", () => {
         setActive(tab.getAttribute("data-category") ?? "languages");
       });
+      tab.addEventListener("touchstart", () => {
+        setActive(tab.getAttribute("data-category") ?? "languages");
+      }, { passive: true });
     });
 
     const initialPanel = container?.querySelector(".tech-panel.is-active");
@@ -357,5 +360,13 @@ function getPlatformIconProps(platform: (typeof platforms)[number]) {
     display: block;
   }
 
-
+  /* Fixed height for Tech Stack section - prevents layout shift when switching tabs */
+  .tech-stack-panels {
+    min-height: 12rem;
+  }
+  @media (min-width: 768px) {
+    .tech-stack-panels {
+      min-height: 6.5rem;
+    }
+  }
 </style>

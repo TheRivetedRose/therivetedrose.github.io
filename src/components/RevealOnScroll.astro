@@ -35,32 +35,36 @@ const { class: className } = Astro.props;
       { passive: true }
     );
 
+    function revealElement(el: Element) {
+      const alreadyRevealed = el.hasAttribute('data-revealed');
+      const htmlEl = el as HTMLElement & { _revealExitHandler?: () => void };
+      if (htmlEl._revealExitHandler) {
+        htmlEl.removeEventListener('transitionend', htmlEl._revealExitHandler);
+        htmlEl._revealExitHandler = undefined;
+      }
+      el.classList.remove('reveal--animate-up', 'reveal--animate-down', 'reveal--animate-up-subtle', 'reveal--animate-down-subtle', 'reveal--exit-up', 'reveal--exit-down');
+      el.classList.add('reveal--visible');
+      const rect = el.getBoundingClientRect();
+      const viewportMid = window.innerHeight / 2;
+      const isEnteringFromTop = rect.top < viewportMid;
+      const isScrollingDown = !isEnteringFromTop;
+      if (!alreadyRevealed) {
+        const animateClass = isScrollingDown ? 'reveal--animate-up' : 'reveal--animate-down';
+        el.classList.add(animateClass);
+        el.setAttribute('data-revealed', '');
+      } else {
+        const subtleClass = isScrollingDown ? 'reveal--animate-up-subtle' : 'reveal--animate-down-subtle';
+        el.classList.remove(subtleClass);
+        void el.getBoundingClientRect();
+        el.classList.add(subtleClass);
+      }
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const alreadyRevealed = entry.target.hasAttribute('data-revealed');
-            const el = entry.target as HTMLElement & { _revealExitHandler?: () => void };
-            if (el._revealExitHandler) {
-              el.removeEventListener('transitionend', el._revealExitHandler);
-              el._revealExitHandler = undefined;
-            }
-            entry.target.classList.remove('reveal--animate-up', 'reveal--animate-down', 'reveal--animate-up-subtle', 'reveal--animate-down-subtle', 'reveal--exit-up', 'reveal--exit-down');
-            entry.target.classList.add('reveal--visible');
-            const rect = entry.boundingClientRect;
-            const viewportMid = window.innerHeight / 2;
-            const isEnteringFromTop = rect.top < viewportMid;
-            const isScrollingDown = !isEnteringFromTop;
-            if (!alreadyRevealed) {
-              const animateClass = isScrollingDown ? 'reveal--animate-up' : 'reveal--animate-down';
-              entry.target.classList.add(animateClass);
-              entry.target.setAttribute('data-revealed', '');
-            } else {
-              const subtleClass = isScrollingDown ? 'reveal--animate-up-subtle' : 'reveal--animate-down-subtle';
-              entry.target.classList.remove(subtleClass);
-              void entry.target.offsetHeight; // force reflow so animation re-runs
-              entry.target.classList.add(subtleClass);
-            }
+            revealElement(entry.target);
           } else {
             entry.target.classList.remove('reveal--visible', 'reveal--animate-up', 'reveal--animate-down', 'reveal--animate-up-subtle', 'reveal--animate-down-subtle');
             const exitClass = scrollDirection === 'down' ? 'reveal--exit-up' : 'reveal--exit-down';
@@ -77,9 +81,32 @@ const { class: className } = Astro.props;
           }
         });
       },
-      { threshold: 0.05, rootMargin: '0px 0px 100px 0px' }
+      { root: null, threshold: 0.01, rootMargin: '0px 0px 150px 0px' }
     );
 
-    document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
+    const revealElements = document.querySelectorAll('[data-reveal]');
+    revealElements.forEach((el) => observer.observe(el));
+
+    /* Mobile Safari fallback: IntersectionObserver can be unreliable on iOS. On scroll, manually check visibility. */
+    let scrollFallbackScheduled = false;
+    function checkRevealOnScroll() {
+      if (scrollFallbackScheduled) return;
+      scrollFallbackScheduled = true;
+      requestAnimationFrame(() => {
+        scrollFallbackScheduled = false;
+        const vh = window.innerHeight;
+        const triggerBottom = vh + 150;
+        revealElements.forEach((el) => {
+          if (el.classList.contains('reveal--visible')) return;
+          const rect = el.getBoundingClientRect();
+          if (rect.bottom > 0 && rect.top < triggerBottom) {
+            revealElement(el);
+          }
+        });
+      });
+    }
+    window.addEventListener('scroll', checkRevealOnScroll, { passive: true });
+    /* Initial check after layout - handles mobile Safari when elements are in view on load */
+    requestAnimationFrame(() => setTimeout(checkRevealOnScroll, 100));
   })();
 </script>
