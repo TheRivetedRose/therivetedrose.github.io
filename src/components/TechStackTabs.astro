@@ -282,11 +282,13 @@ function getPlatformIconProps(platform: (typeof platforms)[number]) {
 
         targetGrid.classList.remove("slide-in");
         void (targetGrid as HTMLElement).offsetHeight;
-        targetGrid.classList.add("slide-in");
-
-        const childCount = targetGrid.children.length;
-        const totalDuration = (childCount - 1) * SLIDE_IN_STAGGER + SLIDE_IN_DURATION;
-        setTimeout(finishSwitch, totalDuration);
+        /* Defer slide-in to next tick so mobile browsers paint the panel before animating */
+        setTimeout(() => {
+          targetGrid.classList.add("slide-in");
+          const childCount = targetGrid.children.length;
+          const totalDuration = (childCount - 1) * SLIDE_IN_STAGGER + SLIDE_IN_DURATION;
+          setTimeout(finishSwitch, totalDuration);
+        }, 0);
       }
 
       if (currentGrid && currentPanel) {

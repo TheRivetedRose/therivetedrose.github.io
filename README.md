@@ -2,7 +2,7 @@
 
 Production-ready Astro static site for [therivetedrose.github.io](https://therivetedrose.github.io/).
 
-> **Transparency:** This site was built via human and AI collaboration (ChatGPT and Cursor). See [`Docs_transparency/`](Docs_transparency/) for prompts and content used during initial site establishment and subsequent updates (e.g., Resume section, Tech Stack tabs).
+> **Transparency:** This site was built via human and AI collaboration (ChatGPT and Cursor). See [`Docs_transparency/`](Docs_transparency/) for prompts and content used during initial site establishment and subsequent updates (e.g., Resume section, Tech Stack tabs, Tech Stack mobile parity).
 
 ## Tech Stack
 
