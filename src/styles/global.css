@@ -315,7 +315,7 @@
 
   /* Awards: persistent light-navy glow and border */
   .badge-award {
-    @apply border-2 border-rosie-navy-bright bg-rosie-navy-bright/15 px-2.5 py-0.5 text-rosie-navy-bright font-medium;
+    @apply border-2 border-rosie-navy-bright bg-rosie-navy-bright/15 px-2.5 py-0.5 text-rosie-yellow font-medium;
     box-shadow: 0 0 12px rgb(var(--c-rosie-navy-bright) / 0.4);
   }
 

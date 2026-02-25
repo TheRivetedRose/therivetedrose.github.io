@@ -1,7 +1,7 @@
 ---
 import RevealOnScroll from "./RevealOnScroll.astro";
 
-const education = [
+const currentEducation = [
   {
     title: "B.S. Computer Science (Cybersecurity Focus)",
     org: "Humboldt State University",
@@ -13,6 +13,9 @@ const education = [
       "Building foundations in Python, C++, JavaScript, SQL/PL/SQL, and Linux CLI; focusing on secure coding + packet analysis",
     ],
   },
+];
+
+const completedEducation = [
   {
     title: "A.S. Police Science",
     org: "College of the Redwoods",
@@ -101,10 +104,10 @@ const awards = [
 
       <div class="grid gap-8 lg:grid-cols-2">
         <div>
-          <h3 class="sticky-section-heading mb-4 text-lg font-semibold text-[rgb(var(--c-text))]">Education</h3>
+          <h3 class="sticky-section-heading mb-4 text-lg font-semibold text-[rgb(var(--c-text))]">Current Education</h3>
           <div class="flex flex-col gap-4">
             {
-              education.map((entry) => (
+              currentEducation.map((entry) => (
                 <RevealOnScroll>
                   <article class="card project-card">
                     <h4 class="font-bold text-[rgb(var(--c-text))]">{entry.title}</h4>
@@ -126,10 +129,8 @@ const awards = [
               ))
             }
           </div>
-        </div>
 
-        <div>
-          <h3 class="sticky-section-heading mb-4 text-lg font-semibold text-[rgb(var(--c-text))]">Work Experience</h3>
+          <h3 class="sticky-section-heading mt-8 mb-4 text-lg font-semibold text-[rgb(var(--c-text))]">Work Experience</h3>
           <div class="flex flex-col gap-4">
             {
               work.map((entry) => (
@@ -152,12 +153,41 @@ const awards = [
             }
           </div>
         </div>
-      </div>
 
-      <div class="mt-8 flex flex-wrap gap-2">
-        {awards.map((award) => (
-          <span class="badge badge-award">{award}</span>
-        ))}
+        <div>
+          <h3 class="sticky-section-heading mb-4 text-lg font-semibold text-[rgb(var(--c-text))]">Completed Education</h3>
+          <div class="flex flex-col gap-4">
+            {
+              completedEducation.map((entry) => (
+                <RevealOnScroll>
+                  <article class="card project-card">
+                    <h4 class="font-bold text-[rgb(var(--c-text))]">{entry.title}</h4>
+                    <p class="text-sm text-muted">
+                      {entry.org}
+                      {entry.location ? `, ${entry.location}` : ""}
+                    </p>
+                    <p class="text-sm text-muted">
+                      {entry.date}
+                      {entry.gpa ? ` | ${entry.gpa}` : ""}
+                    </p>
+                    <ul class="resume-highlights clamp-3 mt-2 list-inside list-disc space-y-0.5 text-sm text-muted">
+                      {entry.highlights.map((h) => (
+                        <li>{h}</li>
+                      ))}
+                    </ul>
+                  </article>
+                </RevealOnScroll>
+              ))
+            }
+          </div>
+
+          <h3 class="sticky-section-heading mt-8 mb-4 text-lg font-semibold text-[rgb(var(--c-text))]">Awards</h3>
+          <div class="flex flex-wrap gap-2">
+            {awards.map((award) => (
+              <span class="badge badge-award">{award}</span>
+            ))}
+          </div>
+        </div>
       </div>
     </RevealOnScroll>
   </div>

@@ -1,262 +1,99 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
-import ProjectCard from "../components/ProjectCard.astro";
-import LinkedInIcon from "../components/icons/LinkedInIcon.astro";
+import TOC from "../components/TOC.astro";
 import RevealOnScroll from "../components/RevealOnScroll.astro";
-import { getCollection } from "astro:content";
+import GitHubIcon from "../components/icons/GitHubIcon.astro";
+import LinkedInIcon from "../components/icons/LinkedInIcon.astro";
+import CodeCopy from "../components/CodeCopy.astro";
+import { getCollection, render } from "astro:content";
 
-const projects = await getCollection("projects");
-const featuredProjects = projects.filter((p) => p.data.featured).slice(0, 3);
+const resumes = await getCollection("resume");
+const resume = resumes.find((r) => r.slug === "resume") ?? resumes[0];
+if (!resume) throw new Error("Resume content not found");
 
-const education = [
-  {
-    title: "B.S. Computer Science (Cybersecurity Focus)",
-    org: "Humboldt State University",
-    location: "CA",
-    date: "Jan 2024 – Present (Expected Dec 2026)",
-    gpa: "GPA: 3.8",
-    highlights: [
-      "Focused coursework in Computer Security, Telecommunications & Networking, Data Structures, Algorithms, and Systems Architecture.",
-      "Applying discrete mathematics and computational theory to algorithm design and problem solving.",
-      "Developing foundational skills in Python, C++, HTML, JavaScript, SQL, PL/SQL, and Linux command-line environments.",
-      "Strengthening knowledge of network packet analysis, secure coding principles, and foundational information security concepts.",
-    ],
-  },
-  {
-    title: "A.S. Police Science",
-    org: "College of the Redwoods",
-    location: "CA",
-    date: "Jul 2016 – Dec 2021",
-    gpa: "GPA: 4.0",
-    highlights: [
-      "Graduated with highest honors (GPA 4.0).",
-      "Completed P.O.S.T.-certified law enforcement training program.",
-      "Recognized for Outstanding Scholastic Performance and Outstanding Community Service.",
-      "Appointed Class Sergeant during academy training module.",
-    ],
-  },
-  {
-    title: "POST Certifications",
-    org: "Santa Rosa Junior College",
-    location: "CA",
-    date: "Aug 2014 – Sep 2014",
-    gpa: null,
-    highlights: [
-      "Completed 196 hours of instruction in correctional operations, criminal justice procedures, report writing, and emergency response.",
-      "Training included legal compliance, ethics, use-of-force protocols, and courtroom testimony.",
-    ],
-  },
-];
+const { Content, headings } = await render(resume);
 
-const work = [
-  {
-    title: "Sales Associate / Closing Manager",
-    org: "Pierson Building Center",
-    location: "CA",
-    date: "Oct 2020 – Oct 2024",
-    highlights: [
-      "Promoted to Closing Manager; oversaw end-of-day operational security procedures, including financial reconciliation and physical asset protection.",
-      "Implemented loss prevention measures and monitored for suspicious activity; applied de-escalation techniques to mitigate risk.",
-      "Trained staff on procedural accountability and incident reporting procedures.",
-    ],
-  },
-  {
-    title: "Deputy Sheriff (Criminal Investigation Division)",
-    org: "Humboldt County Sheriff's Office",
-    location: "CA",
-    date: "Jul 2016 – Sep 2020",
-    highlights: [
-      "Conducted preliminary and follow-up investigations into felony crimes including homicide, burglary, narcotics offenses, and sexual assault, ensuring proper evidence collection and strict chain-of-custody documentation.",
-      "Interviewed victims, witnesses, and suspects; prepared comprehensive investigative reports and warrants; obtained and served search and arrest warrants; testified in court proceedings.",
-      "Gathered, processed, and preserved physical evidence in accordance with evidentiary standards and procedural compliance requirements.",
-      "Assigned to the Criminal Investigation Division for seven months while recovering from line-of-duty injuries; investigated major felony cases including homicide and child abuse.",
-      "Recognized and reported critical intelligence while off duty, directly contributing to the arrest of an armed robbery suspect and wanted felon.",
-      "Selected through competitive evaluation to join the Explosive Ordnance Disposal (EOD) team.",
-      "Awarded the Medal of Valor after sustaining a gunshot wound while extracting a hostage victim during an armed standoff.",
-      "Coordinated with multi-agency task forces, fire departments, EMS personnel, and federal partners during emergency and high-risk operations.",
-    ],
-  },
-  {
-    title: "Correctional Deputy",
-    org: "Humboldt County Sheriff's Office",
-    location: "CA",
-    date: "Jan 2014 – Jul 2016",
-    highlights: [
-      "Supervised and managed inmate populations in a direct supervision correctional facility, maintaining institutional safety and security.",
-      "Conducted routine and targeted searches for contraband, enforcing compliance with facility regulations and state statutes.",
-      "Documented inmate conduct through formal written reports; filed criminal complaints and testified in court proceedings when required.",
-      "Processed inmate bookings and transfers; coordinated transportation to medical and mental health facilities.",
-      "Managed up to seventy-three inmates during a single twelve-hour shift in an open dormitory setting.",
-      "Recommended for promotion to Patrol Deputy based on demonstrated professionalism, leadership, and procedural integrity.",
-    ],
-  },
-  {
-    title: "Aerospace Propulsion Journeyman",
-    org: "United States Air Force",
-    location: null,
-    date: "Dec 2008 – Oct 2012",
-    highlights: [
-      "Maintained, inspected, and repaired aircraft propulsion systems supporting combat and special operations missions.",
-      "Deployed in support of Operation Enduring Freedom; sustained aircraft readiness under high operational tempo conditions.",
-      "Responded to time-sensitive maintenance requests, including emergency engine replacements to support mission continuation.",
-      "Augmented Security Forces during personnel shortages, supporting base operational security.",
-      "Volunteered as a Victim Advocate within the Sexual Assault Prevention Program, providing confidential support and resources.",
-      "Awarded the Air Force Achievement Medal for operational performance and mission impact.",
-      "•Maintained, inspected, and repaired aircraft propulsion systems supporting combat and special operations missions.",
-      "Deployed in support of Operation Enduring Freedom; sustained aircraft readiness under high operational tempo conditions.",
-      "Responded to time-sensitive maintenance requests, including emergency engine replacements to support mission continuation.",
-      "Augmented Security Forces during personnel shortages, supporting base operational security.",
-      "Volunteered as a Victim Advocate within the Sexual Assault Prevention Program, providing confidential support and resources.",
-      "Awarded the Air Force Achievement Medal for operational performance and mission impact.",
-    ],
-  },
-];
-
-const awards = [
-  "Medal of Valor — HCSO (2018)",
-  "Air Force Achievement Medal (2011)",
-  "Afghanistan Campaign Medal (2011)",
-  "NATO Medal (ISAF) (2011)",
-];
+const showTOC = headings.length >= 3;
 ---
 
 <PageLayout
-  title="Resume"
-  description="Rose Freixas — Education and work experience"
+  title={resume.data.title}
+  description={(resume.data as { description?: string }).description ?? "Rose Freixas — Education and work experience"}
 >
   <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
-    <div class="card-linkedin mb-12 flex flex-col items-center text-center">
-      <p class="mb-4 text-[rgb(var(--c-text))]">
-        For the most up-to-date experience and details, please visit my
-        LinkedIn.
-      </p>
-      <a
-        href="https://www.linkedin.com/in/rosefr"
-        class="btn-linkedin inline-flex"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <LinkedInIcon size={18} />
-        LinkedIn
-      </a>
-    </div>
-
-    <h2 class="section-heading-rosie mb-8">Resume</h2>
-
-    <div class="grid gap-12 lg:grid-cols-2">
-      <div>
-        <h3
-          class="sticky-section-heading sticky-section-heading--surface mb-6 text-lg font-semibold text-[rgb(var(--c-text))]"
+    <RevealOnScroll>
+      <div class="card-linkedin mb-12 flex flex-col items-center text-center">
+        <p class="mb-4 text-[rgb(var(--c-text))]">
+          For the most up-to-date experience and details, please visit my
+          LinkedIn.
+        </p>
+        <a
+          href="https://www.linkedin.com/in/rosefr"
+          class="btn-linkedin inline-flex"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          Education
-        </h3>
-        <div class="flex flex-col gap-6">
-          {
-            education.map((entry) => (
-              <RevealOnScroll>
-                <article class="card project-card">
-                  <h4 class="font-bold text-[rgb(var(--c-text))]">
-                    {entry.title}
-                  </h4>
-                  <p class="text-sm text-muted">
-                    {entry.org}
-                    {entry.location ? `, ${entry.location}` : ""}
-                  </p>
-                  <p class="text-sm text-muted">
-                    {entry.date}
-                    {entry.gpa ? ` | ${entry.gpa}` : ""}
-                  </p>
-                  <ul class="mt-3 list-inside list-disc space-y-1 text-sm text-muted">
-                    {entry.highlights.map((h) => (
-                      <li>{h}</li>
-                    ))}
-                  </ul>
-                </article>
-              </RevealOnScroll>
-            ))
-          }
-        </div>
+          <LinkedInIcon size={18} />
+          LinkedIn
+        </a>
       </div>
+    </RevealOnScroll>
 
-      <div>
-        <h3
-          class="sticky-section-heading sticky-section-heading--surface mb-6 text-lg font-semibold text-[rgb(var(--c-text))]"
-        >
-          Work Experience
-        </h3>
-        <div class="flex flex-col gap-6">
-          {
-            work.map((entry) => (
-              <RevealOnScroll>
-                <article class="card project-card">
-                  <h4 class="font-bold text-[rgb(var(--c-text))]">
-                    {entry.title}
-                  </h4>
-                  <p class="text-sm text-muted">
-                    {entry.org}
-                    {entry.location ? `, ${entry.location}` : ""}
-                  </p>
-                  <p class="text-sm text-muted">{entry.date}</p>
-                  <ul class="mt-3 list-inside list-disc space-y-1 text-sm text-muted">
-                    {entry.highlights.map((h) => (
-                      <li>{h}</li>
-                    ))}
-                  </ul>
-                </article>
-              </RevealOnScroll>
-            ))
-          }
-        </div>
-      </div>
-    </div>
-
-    <div class="mt-12">
-      <h3
-        class="sticky-section-heading sticky-section-heading--surface mb-4 text-lg font-semibold text-[rgb(var(--c-text))]"
-      >
-        Awards
-      </h3>
-      <div class="flex flex-wrap gap-2">
-        {awards.map((award) => <span class="badge badge-award">{award}</span>)}
-      </div>
-    </div>
-  </section>
-
-  <section class="border-t border-rosie-navy/20 bg-surface-elevated">
-    <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+    <article class="mx-auto max-w-3xl">
       <RevealOnScroll>
-        <h2 class="section-heading-rosie sticky-section-heading mb-8">
-          Featured Projects
-        </h2>
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {
-            featuredProjects.length > 0
-              ? featuredProjects.map((project) => (
-                  <ProjectCard
-                    slug={project.slug}
-                    title={project.data.title}
-                    summary={project.data.summary}
-                    tags={project.data.tags}
-                    featured={project.data.featured}
-                    pubDate={project.data.pubDate}
-                    updatedDate={project.data.updatedDate}
-                  />
-                ))
-              : projects
-                  .slice(0, 3)
-                  .map((project) => (
-                    <ProjectCard
-                      slug={project.slug}
-                      title={project.data.title}
-                      summary={project.data.summary}
-                      tags={project.data.tags}
-                      featured={project.data.featured}
-                    />
-                  ))
-          }
-        </div>
-        <a href="/projects/" class="btn-solid-yellow mt-8">All Projects</a>
+        <h1 class="section-heading-rosie mb-8">{resume.data.title}</h1>
       </RevealOnScroll>
-    </div>
+      <div class={showTOC ? "lg:grid lg:grid-cols-[1fr_200px] lg:gap-12" : ""}>
+        <div>
+          <RevealOnScroll>
+            <CodeCopy client:load>
+              <div class="prose-custom">
+                <Content />
+              </div>
+            </CodeCopy>
+          </RevealOnScroll>
+          <RevealOnScroll>
+            <section class="mt-12 border-t border-border pt-8">
+              <h2 class="text-lg font-semibold mb-4">See my work</h2>
+              <div class="flex flex-wrap gap-4 mb-8">
+                <a href="/projects/" class="btn-solid-yellow">
+                  My Projects
+                </a>
+                <a
+                  href="https://github.com/therivetedrose"
+                  class="btn-github"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <GitHubIcon size={18} />
+                  GitHub
+                </a>
+              </div>
+            </section>
+          </RevealOnScroll>
+          <RevealOnScroll>
+            <section class="border-t border-border pt-8">
+              <h2 class="text-lg font-semibold mb-4">Connect with me</h2>
+              <div class="flex flex-wrap gap-4">
+                <a
+                  href="https://www.linkedin.com/in/rosefr"
+                  class="btn-linkedin"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <LinkedInIcon size={18} />
+                  LinkedIn
+                </a>
+              </div>
+            </section>
+          </RevealOnScroll>
+        </div>
+        {showTOC && (
+          <aside class="hidden lg:block">
+            <TOC headings={headings} />
+          </aside>
+        )}
+      </div>
+    </article>
   </section>
 </PageLayout>
