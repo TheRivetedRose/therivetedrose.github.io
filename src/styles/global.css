@@ -342,6 +342,35 @@
     background-color: rgb(var(--c-surface-elevated));
   }
 
+  /* Higher z-index so it stays above other sticky headings when overlapping */
+  .sticky-section-heading--top {
+    @apply z-20;
+  }
+
+  /* Extend background into parent padding to cover card glow at edges */
+  .sticky-section-heading--bleed {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  @media (min-width: 640px) {
+    .sticky-section-heading--bleed {
+      margin-left: -1.5rem;
+      margin-right: -1.5rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .sticky-section-heading--bleed {
+      margin-left: -2rem;
+      margin-right: -2rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
   .sticky-section-heading--surface {
     background-color: rgb(var(--c-surface));
   }
