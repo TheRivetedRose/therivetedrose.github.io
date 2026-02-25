@@ -233,13 +233,18 @@ function getPlatformIconProps(platform: (typeof platforms)[number]) {
 
     let isTransitioning = false;
     let activeCategory = "languages";
+    let pendingCategory: string | null = null;
 
     function getGrid(panel: Element): Element | null {
       return panel.querySelector(".tech-stack-detail-grid");
     }
 
     function setActive(category: string) {
-      if (category === activeCategory || isTransitioning) return;
+      if (category === activeCategory) return;
+      if (isTransitioning) {
+        pendingCategory = category;
+        return;
+      }
       isTransitioning = true;
 
       const targetPanel = container?.querySelector(
@@ -268,6 +273,11 @@ function getPlatformIconProps(platform: (typeof platforms)[number]) {
         targetGrid?.classList.remove("slide-in");
         activeCategory = category;
         isTransitioning = false;
+        const next = pendingCategory;
+        pendingCategory = null;
+        if (next && next !== activeCategory) {
+          setActive(next);
+        }
       }
 
       function doSlideIn() {
