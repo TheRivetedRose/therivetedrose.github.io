@@ -102,8 +102,8 @@ const awards = [
         <a href="/resume/" class="btn-solid-navy">View Full Resume</a>
       </div>
 
-      <div class="grid gap-8 lg:grid-cols-2">
-        <div>
+      <div class="resume-grid">
+        <div class="resume-section resume-current-ed">
           <h3 class="sticky-section-heading mb-4 text-lg font-semibold text-[rgb(var(--c-text))]">Current Education</h3>
           <div class="flex flex-col gap-4">
             {
@@ -129,32 +129,9 @@ const awards = [
               ))
             }
           </div>
-
-          <h3 class="sticky-section-heading mt-8 mb-4 text-lg font-semibold text-[rgb(var(--c-text))]">Work Experience</h3>
-          <div class="flex flex-col gap-4">
-            {
-              work.map((entry) => (
-                <RevealOnScroll>
-                  <article class="card project-card">
-                    <h4 class="font-bold text-[rgb(var(--c-text))]">{entry.title}</h4>
-                    <p class="text-sm text-muted">
-                      {entry.org}
-                      {entry.location ? `, ${entry.location}` : ""}
-                    </p>
-                    <p class="text-sm text-muted">{entry.date}</p>
-                    <ul class="resume-highlights clamp-3 mt-2 list-inside list-disc space-y-0.5 text-sm text-muted">
-                      {entry.highlights.map((h) => (
-                        <li>{h}</li>
-                      ))}
-                    </ul>
-                  </article>
-                </RevealOnScroll>
-              ))
-            }
-          </div>
         </div>
 
-        <div>
+        <div class="resume-section resume-completed-ed">
           <h3 class="sticky-section-heading mb-4 text-lg font-semibold text-[rgb(var(--c-text))]">Completed Education</h3>
           <div class="flex flex-col gap-4">
             {
@@ -180,8 +157,35 @@ const awards = [
               ))
             }
           </div>
+        </div>
 
-          <h3 class="sticky-section-heading mt-8 mb-4 text-lg font-semibold text-[rgb(var(--c-text))]">Awards</h3>
+        <div class="resume-section resume-work">
+          <h3 class="sticky-section-heading mb-4 text-lg font-semibold text-[rgb(var(--c-text))]">Work Experience</h3>
+          <div class="flex flex-col gap-4">
+            {
+              work.map((entry) => (
+                <RevealOnScroll>
+                  <article class="card project-card">
+                    <h4 class="font-bold text-[rgb(var(--c-text))]">{entry.title}</h4>
+                    <p class="text-sm text-muted">
+                      {entry.org}
+                      {entry.location ? `, ${entry.location}` : ""}
+                    </p>
+                    <p class="text-sm text-muted">{entry.date}</p>
+                    <ul class="resume-highlights clamp-3 mt-2 list-inside list-disc space-y-0.5 text-sm text-muted">
+                      {entry.highlights.map((h) => (
+                        <li>{h}</li>
+                      ))}
+                    </ul>
+                  </article>
+                </RevealOnScroll>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="resume-section resume-awards">
+          <h3 class="sticky-section-heading mb-4 text-lg font-semibold text-[rgb(var(--c-text))]">Awards</h3>
           <div class="flex flex-wrap gap-2">
             {awards.map((award) => (
               <span class="badge badge-award">{award}</span>
@@ -194,6 +198,33 @@ const awards = [
 </section>
 
 <style>
+  .resume-grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  /* Collapsed (single column): Current Education → Work → Completed Education → Awards */
+  @media (max-width: 1023px) {
+    .resume-grid {
+      grid-template-columns: 1fr;
+    }
+    .resume-current-ed { order: 1; }
+    .resume-work { order: 2; }
+    .resume-completed-ed { order: 3; }
+    .resume-awards { order: 4; }
+  }
+
+  /* Expanded (two columns): Education left, Work right */
+  @media (min-width: 1024px) {
+    .resume-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .resume-current-ed { grid-column: 1; grid-row: 1; }
+    .resume-completed-ed { grid-column: 1; grid-row: 2; }
+    .resume-work { grid-column: 2; grid-row: 1; }
+    .resume-awards { grid-column: 2; grid-row: 2; }
+  }
+
   .clamp-3 {
     display: -webkit-box;
     -webkit-line-clamp: 3;
